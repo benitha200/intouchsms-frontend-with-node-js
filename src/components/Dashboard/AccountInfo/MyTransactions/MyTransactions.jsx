@@ -198,7 +198,7 @@ const columns = [
     {
         field: 'transaction',
         headerName: 'Transaction No',
-        // minWidth: 170,
+        minWidth: 100,
         // align: 'right',
         format: (value) => value.toLocaleString('en-US'),
     },
