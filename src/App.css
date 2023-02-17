@@ -1,0 +1,16 @@
+*{
+font-family:'Roboto'
+}
+.sidebar-menu{
+  top: 0;
+  margin-top: 0rem;
+  
+}
+.sidebar-menu>*:first-child{align-self: stretch;}
+.page-contents{
+  width: 100%;
+}
+#app{
+  background: rgb(162,162,162);
+  background: linear-gradient(90deg, rgba(162,162,162,1) 15%, rgba(212,211,208,1) 54%, rgba(255,255,255,1) 100%);
+}

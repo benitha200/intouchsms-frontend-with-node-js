@@ -1,0 +1,23 @@
+.footer-section{
+    display: flex;
+    flex-direction: row;
+    padding: 2rem;
+    row-gap: 2rem;
+    background-color: rgb(250, 200, 75);
+
+}
+
+.logo-img{
+    width: 10rem;
+    margin: 1.5rem;    
+}
+.company-info-section{
+    margin:1.5rem
+}
+.quick-link-section{
+    margin:1.5rem
+    
+}
+.company-link{
+    margin: 1rem;
+}

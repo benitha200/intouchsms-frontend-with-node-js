@@ -1,0 +1,148 @@
+.profile-form {
+    width: 100%;
+    justify-content: end;
+    color: rgb(34, 33, 33);
+    /* background-color:whitesmoke; */
+    height: auto;
+    /* background: rgb(247,247,247);
+background: linear-gradient(90deg, rgba(247,247,247,1) 0%, rgba(251,250,246,1) 0%, rgba(252,250,220,1) 100%); */
+
+
+}
+
+Form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 1rem;
+    row-gap: 0.5rem;
+    column-gap: 0.5rem;
+}
+
+Button {
+    column-gap: 2rem;
+}
+
+.profile-buttons Button {
+    color: rgb(35, 35, 35);
+    color: whitesmoke;
+    margin: 0.5rem;
+}
+
+Form .profile-form-input {
+    width: 10rem;
+    height: 1.5rem;
+}
+
+.fieldset {
+    background-color: rgb(251, 251, 251);
+}
+
+#outlined-read-only-input {
+    font-size: 14px;
+
+}
+
+.profile-container {
+    padding: 0.5rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    justify-content: space-between;
+    /* background: rgb(247, 247, 247);
+    background: linear-gradient(90deg, rgba(247, 247, 247, 1) 0%, rgba(251, 250, 246, 1) 0%, rgba(252, 250, 220, 1) 100%); */
+
+
+}
+
+.profile-buttons {
+    background: rgb(129, 129, 129);
+    background: linear-gradient(0deg, rgba(129, 129, 129, 1) 56%, rgba(93, 92, 92, 1) 100%);
+}
+
+.profile-header {
+    padding: 1rem;
+    background: rgb(224, 224, 224);
+    background: linear-gradient(0deg, rgba(224, 224, 224, 1) 42%, rgba(255, 255, 255, 1) 100%);
+
+}
+
+.profile-paper {
+    display: flex;
+    flex-direction: row;
+    background-color: whitesmoke;
+}
+
+.profile-contents {
+    width: 100%;
+    height: 100%;
+    margin: 1rem;
+    /* padding: 0rem; */
+    /* justify-content: flex-end; */
+}
+
+.profile-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400;
+    /* bgcolor: "background.paper", */
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgb(226, 226, 226) 56%, rgb(226, 225, 225) 100%);
+
+    border: 0.2px solid #000;
+    box-shadow: 24;
+    padding: 4;
+}
+
+.modal-form TextField {
+    width: 100%;
+}
+
+.modal-input {
+    width: 100%;
+}
+
+/* .modal-input:hover{
+    border: ;
+
+} */
+
+.profile-form {
+    border: 1px solid grey;
+}
+
+.modal-title {
+    background: rgb(164, 164, 164);
+    background: linear-gradient(0deg, rgba(164, 164, 164, 1) 51%, rgba(198, 198, 198, 1) 100%);
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+@media screen and (max-width:896px) {
+    .profile-paper {
+        display: flex;
+        flex-direction: column;
+        column-gap: 2rem;
+    }
+
+    Form {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        row-gap: 0.2rem;
+        column-gap: 0.2rem;
+        overflow-x: auto;
+        padding-top: 0.5rem;
+        padding-left: 0rem;
+        margin-left: 0rem;
+
+        /* padding: initial; */
+    }
+
+    .profile-container {
+        padding: 0rem;
+    }
+
+}
