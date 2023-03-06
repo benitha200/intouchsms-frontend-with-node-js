@@ -1,0 +1,22 @@
+table{
+    font-family: "Helvetica Neue", Helvetica, Roboto, Arial;
+    font-weight: bold;
+}
+.btn-group{
+    gap: 1rem;
+
+
+}
+.modal-header{
+    background-color: rgb(247, 191, 8);
+    opacity: 0.9;
+    color: #333;
+}
+
+.modal{
+    top: 50%;
+    left: 50%;
+}
+.btn-close{
+    color: whitesmoke;
+}

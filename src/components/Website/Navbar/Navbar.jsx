@@ -14,9 +14,9 @@ const Navbar = () => {
     }
     return (
         <nav className='navbar'>
-            <div className='container'>
+            {/* <div className='container'> */}
                 <div className='logo'>
-                    <img src={logo} className='logo-img'/>
+                    <img src={logo} className='logo-img m-0'/>
                 </div>
                 <div className='menu-icon' onClick={handleShowNavbar}>
                   <HamburgerIcon/>
@@ -48,7 +48,7 @@ const Navbar = () => {
 
                     </ul>
                 </div>
-            </div>
+            {/* </div> */}
         </nav>
     )
 }

@@ -1,7 +1,11 @@
-
 .sidebar-links{
     text-decoration: none;
     color: rgb(35, 34, 34);
+    font-size: 14px;
+}
+.sub-menu{
+    font-size: 14px;
+    background-color: #f9cc41;
 }
 .page-content{
     align-items: flex-end;
@@ -12,7 +16,14 @@
     flex-direction: row;
 }
 .burger-icon{
-    display: none;
+    /* display: none; */
+    position:sticky;
+}
+
+.sub-menu .sidebar-links a.active{
+    color: white;
+    background-color: #333;
+    font-weight: 500;
 }
 @media screen and (max-width:868px) {
     .sidebar-menu{

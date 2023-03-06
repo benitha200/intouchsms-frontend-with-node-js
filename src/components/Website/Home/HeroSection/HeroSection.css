@@ -25,7 +25,6 @@
     padding-left: 4rem;
     margin: 1rem;
     row-gap: 30px;
-    font-size: 16px;
 
 }
 
@@ -35,28 +34,29 @@
 }
 
 .content-right{
-    height: 10rem;
+    width: 20rem;
+   
 }
 .content-right-img{
     margin-top: 2rem;
-    width: 15rem;
-    height:10rem;
+    width: 20rem;
+    height:20rem;
+    /* display: none; */
 }
-.content-right-text{
-    padding: 1.5rem;
-    background-color: rgb(250, 202, 79);
-    font-size: 24px;
+.content-right-text{   
     text-align: center;
+     background-color: #f9cc41;
 }
 
-.hero-button{
+.hero-button {
     background-color: rgb(250, 202, 79);
     border: none;
-    width: 15rem;
+    /* width: 15rem; */
     padding: 20px;
     margin-top: 15px;
     margin-bottom: 15px;
-    position:static;
+    position: static;
+    font-size: small;
 }
 
 @media  screen and (max-width:600px) {

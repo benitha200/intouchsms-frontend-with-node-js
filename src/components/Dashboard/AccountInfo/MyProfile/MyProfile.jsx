@@ -8,18 +8,19 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import Modal from '@mui/material/Modal'
+import { Button, Col, Form, FormGroup, InputGroup, Row } from 'react-bootstrap';
+import { useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
 // import Box from '@mui/material/Box';
 // import Tab from '@mui/material/Tab';
 // import TabContext from '@mui/lab/TabContext';
 // import TabList from '@mui/lab/TabList';
 // import TabPanel from '@mui/lab/TabPanel';
+import './MyProfile.css';
+import { responsiveFontSizes, Typography } from '@material-ui/core';
+import { BsKey, BsKeyFill, BsSearch } from 'react-icons/bs';
 
 
-import { Button, Form, Label, FormGroup, Input, CloseButton } from 'reactstrap'
-import './MyProfile.css'
-import { useState } from 'react';
-import { Typography } from '@material-ui/core';
 
 const columns = [
 
@@ -28,14 +29,14 @@ const columns = [
     label: 'Name',
     minWidth: 50,
     align: 'left',
-    format: (value) => value.toLocaleString('en-US'),
+    // format: (value) => value.toLocaleString('en-US'),
   },
   {
     id: 'expires',
     label: 'Expires',
     minWidth: 30,
     align: 'left',
-    format: (value) => value.toLocaleString('en-US'),
+    // format: (value) => value.toLocaleString('en-US'),
   },
 
 ];
@@ -45,29 +46,70 @@ function createData(name, expires) {
 }
 
 const rows = [
-  createData('Test', '11 feb 2020'),
-  createData('Test', '11 feb 2020'),
-  createData('Test', '11 feb 2020'),
+  createData('Test1', '11 feb 2021'),
+  createData('Test2', '11 feb 2022'),
+  createData('Test3', '11 feb 2023'),
 
 ];
-const MyProfile = () => {
+const MyProfile = ({token}) => {
+
+  // Dummy data
   const [value, setValue] = React.useState('1');
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
+  // actual states
+  const [profile,setProfile]=React.useState(['']);
+  const [senderNames,setSenderNames]=useState('');
+
   // Modal
 
 
-  const [open, setOpen] = useState(false)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  const [show, setShow] = useState(false)
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
+  // get profile
+
+  let requestOptions={
+    method:"POST",
+    mode:"cors",
+    headers:{
+      'Authorization':`Token ${token}`
+    }
+  }
+
+  fetch("http://127.0.0.1:8000/api/getmyprofile",requestOptions)
+  .then(response=>response.json())
+  .then(result=>setProfile(result[0]))
+  .catch(error => console.log('error', error));
+
+  console.log(profile)
+
+
+  // get sender names
+
+  let senderName_requestOptions={
+    method:"GET",
+    headers:{
+      Authorization:`Token ${token}`
+    }
+  }
+
+  fetch("http://127.0.0.1:8000/api/getsendernames",senderName_requestOptions)
+  .then(response=>response.text())
+  .then(result=>console.log(result))
+  .catch(error=>console.log('error',error))
+
+
   return (
-    <div className='profile-container'>
-      <Paper className='profile-paper'>
+    <div className='profile-container h-100'>
+      <div className='profile-paper d-flex flex-row' sx={{height:"100%"}}>
 
         <div className='profile-form m-4' >
           <Typography className='profile-header'>My Profile</Typography>
@@ -76,6 +118,7 @@ const MyProfile = () => {
               <FormGroup className='mb-2'>
                 <TextField
                   id="outlined-read-only-input"
+                  className='form-text-input'
                   label="Customer No"
                   defaultValue="Benitha"
                   size='small'
@@ -100,7 +143,7 @@ const MyProfile = () => {
 
             <Stack direction="row" gap={1}>
 
-              <FormGroup>
+              <FormGroup className='mb-2'>
                 <TextField
                   id="outlined-read-only-input"
                   label="Names"
@@ -123,7 +166,7 @@ const MyProfile = () => {
             </Stack>
             <Stack direction="row" gap={1}>
 
-              <FormGroup>
+              <FormGroup className='mb-2'>
                 <TextField
                   id="outlined-read-only-input"
                   label="Office Phone"
@@ -146,7 +189,7 @@ const MyProfile = () => {
             </Stack>
             <Stack direction="row" gap={1}>
 
-              <FormGroup>
+              <FormGroup className='mb-2'>
                 <TextField
                   id="outlined-read-only-input"
                   label="Company"
@@ -171,7 +214,7 @@ const MyProfile = () => {
             </Stack>
             <Stack direction="row" gap={1}>
 
-              <FormGroup>
+              <FormGroup className='mb-2'>
                 <TextField
                   id="outlined-read-only-input"
                   label="Account Bal"
@@ -194,99 +237,99 @@ const MyProfile = () => {
                 />
               </FormGroup>
             </Stack>
-            <Stack direction="row" gap={2}>
-              <FormGroup>
-                <TextField
-                  id="outlined-read-only-input"
-                  label="Auth Token"
-                  defaultValue="56utihtgjkfj"
-                  size='small'
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-              </FormGroup>
-              <FormGroup>
-
-                <Button className='profile-buttons'>
-                  Generate Token
-                </Button>
-              </FormGroup>
-            </Stack>
-
-
-
             <FormGroup>
-              <Button className='profile-buttons me-2' onClick={handleOpen}>Change Password</Button>
-
-              <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledBy="modal-modal-title"
-                aria-describedby='modal-modal-description'
-
-              >
-                <Box
-                  className='profile-modal'
-                  sx={{
-                    width: '30%',
-                    // height:'5rem',
-                    '&:hover': {
-                      backgroundColor: 'primary.dark',
-                      opacity: [1, 0.8, 1],
-                    }
-                  }}
-                >
-                  <div className="modal-title">
-                    <Typography>Change Password</Typography>
-                  </div>
-
-
-                  <Stack>
-                    <Form className='modal-form'>
-                      <FormGroup>
-                        <TextField
-                          id="outlined-input"
-                          label="New Password"
-                          size='small'
-                          className='modal-input'
-
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        <TextField
-                          id="outlined-input"
-                          label="Confirm New Password"
-                          size='small'
-                          className='modal-input'
-
-                        />
-                      </FormGroup>
-
-                      <Stack direction="row" gap={2}>
-                        <Button className='profile-buttons'>Save Changes</Button>
-                        <Button className='profile-buttons'>Cancel</Button>
-
-                      </Stack>
-
-                    </Form>
-                  </Stack>
-                </Box>
-
-              </Modal>
-              <Button className='profile-buttons'>Save Changes</Button>
+              <TextField
+                id="outlined-read-only-input"
+                label="Auth Token"
+                defaultValue="56utihtgjkfj"
+                size='small'
+                InputProps={{
+                  readOnly: true,
+                }}
+              />
             </FormGroup>
 
+            <Stack direction="row" gap={1}>
+
+
+              <FormGroup>
+
+                <button className='profile-buttons mt-2'>
+                  Generate Token
+                </button>
+              </FormGroup>
+
+
+
+
+              <FormGroup>
+                <Button
+                  className='app-buttons mt-0 mr-2 text-dark' onClick={handleShow}
+                >Change Password</Button>
+
+                {/* Add Modal */}
+
+                <Modal show={show} onHide={handleClose} className="modal">
+                  <Modal.Header className='modal-header' closeButton>
+                    <span className='contact-modal-title'><i className='fa fa-key'></i> CHANGE PASSWORD</span>
+                  </Modal.Header>
+                  <Form >
+                  <Modal.Body>
+                    
+
+                      {/* <InputGroup className="mb-3">
+                        <InputGroup.Text>
+                          <BsSearch />
+                        </InputGroup.Text>
+                        <Form.Control placeholder="Search" aria-label="Search" />
+                      </InputGroup> */}
+
+                      <InputGroup className='mb-3'>
+                        {/* <Form.Label>New Password</Form.Label> */}
+                        <InputGroup.Text>
+                          <BsKey />
+                        </InputGroup.Text>
+                        <Form.Control type='password' placeholder='New Password' required></Form.Control>
+                      </InputGroup>
+
+                       <InputGroup>
+                       <InputGroup.Text><BsKeyFill/></InputGroup.Text>
+                        {/* <Form.Label>Confirm New password</Form.Label> */}
+                      <Form.Control type='password' placeholder='Confirm New Password' required></Form.Control>
+                       </InputGroup>
+                     
+
+
+
+                   
+                  </Modal.Body>
+                  <Modal.Footer>
+
+                    <Button className='btn btn-dark opacity-60' type='submit'>Save Changes</Button>
+
+                    <Button className='btn btn-dark opacity-60' onClick={handleClose}> Cancel</Button>
+
+                  </Modal.Footer> 
+                  </Form>
+
+                </Modal>
+
+
+                {/* end modal */}
+                <button className='profile-buttons mt-2'>Save Changes</button>
+              </FormGroup>
+            </Stack>
           </Form>
+
         </div>
 
         <div className='profile-contents'>
 
           <Paper>
             <div className='profile-header xl-2'>
-              <Button className='profile-buttons me-2'> My Sender Names</Button>
-              <Button className='profile-buttons me-2' > My Shortcuts </Button>
-              <Button className='profile-buttons me-2'> My Keywords</Button>
+              <button className='app-buttons me-2'> My Sender Names</button>
+              <button className='app-buttons me-2' > My Shortcuts </button>
+              <button className='app-buttons me-2'> My Keywords</button>
             </div>
             <hr />
             <TableContainer sx={{ maxHeight: 440 }}>
@@ -330,7 +373,9 @@ const MyProfile = () => {
 
           </Paper>
         </div >
-      </Paper>
+        <br/>
+        <br/>
+      </div>
 
 
       <br />
@@ -340,7 +385,7 @@ const MyProfile = () => {
 
 
 
-    </div>
+    </div >
 
 
 

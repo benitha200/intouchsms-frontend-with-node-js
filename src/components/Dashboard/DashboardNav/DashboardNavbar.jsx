@@ -26,10 +26,24 @@ import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import MenuIcon from '@mui/icons-material/Menu';
+import { useState } from 'react';
+
+
 
 const DashboardNavbar = props => {
 
   const { collapseSidebar } = useProSidebar();
+
+  const [activePage, setActivePage] = useState(null);
+
+  function handleActive(event) {
+    if (!event.target.classList.value.includes()) {
+      event.target.classList.toggle('active');
+      if (activePage)
+        activePage.classList.remove("active")
+      setActivePage(event.target);
+    }
+  }
   return (
     <div>
 
@@ -40,27 +54,28 @@ const DashboardNavbar = props => {
           <Sidebar style={{ height: "100vh" }}>
             <div className="burger-icon">
               <Button onClick={() => collapseSidebar()} sx={{ color: 'black' }} className=''><MenuIcon /></Button>
+
             </div>
 
 
-            <Menu className='sidebar-menu'>
+            <Menu>
 
-              <SubMenu label="Account Info" className='sub-menu' icon={<PersonRoundedIcon />} sx={{ backgroundColor: 'grey' }}>
-                <MenuItem component={<Link to="/my-profile" className='sidebar-links' />} icon={<BsFillPersonFill className='5' />}>  My Profile </MenuItem>
-                <MenuItem component={<Link to="/my-clients" className='sidebar-links' />} icon={<BsPeopleFill />}> My Clients </MenuItem>
-                <MenuItem component={<Link to="/my-credit-transfers" className='sidebar-links' />} icon={<BsCreditCard2BackFill />}> My Credit Transfers </MenuItem>
-                <MenuItem component={<Link to="/my-transactions" className='sidebar-links' />} icon={<BsArrowLeftRight />}> My Transactions </MenuItem>
-                <MenuItem component={<Link to="/my-commissions" className='sidebar-links' />} icon={<BsCashCoin />}> My Commissions </MenuItem>
+              <SubMenu label="Account Info" className='sub-menu' component={<Link to="/account-info"/>} icon={<PersonRoundedIcon />} sx={{ backgroundColor: 'grey' }} >
+                <MenuItem component={<Link to="/account-info/" className='sidebar-links' />} icon={<BsFillPersonFill className='5' />} onClick={handleActive}>  My Profile </MenuItem>
+                <MenuItem component={<Link to="/account-info/my-clients" className='sidebar-links' />} icon={<BsPeopleFill />} onClick={handleActive}> My Clients </MenuItem>
+                <MenuItem component={<Link to="/account-info/my-credit-transfers" className='sidebar-links' />} icon={<BsCreditCard2BackFill />} onClick={handleActive}> My Credit Transfers </MenuItem>
+                <MenuItem component={<Link to="/account-info/my-transactions" className='sidebar-links' />} icon={<BsArrowLeftRight />}> My Transactions </MenuItem>
+                <MenuItem component={<Link to="/account-info/my-commissions" className='sidebar-links' />} icon={<BsCashCoin />}> My Commissions </MenuItem>
               </SubMenu>
 
-              <SubMenu label="Address Book" className='sub-menu' icon={<ContactsOutlinedIcon />}>
-                <MenuItem icon={<BsPersonPlusFill />}> Contacts</MenuItem>
-                <MenuItem icon={<BsPeopleFill />}> Groups </MenuItem>
+              <SubMenu label="Address Book" className='sub-menu' icon={<ContactsOutlinedIcon />} component={<Link to='/address-book'/>}>
+                <MenuItem icon={<BsPersonPlusFill />} component={<Link to="/address-book/" />}> Contacts</MenuItem>
+                <MenuItem icon={<BsPeopleFill />} component={<Link to="/address-book/groups" />}> Groups </MenuItem>
               </SubMenu>
 
-              <SubMenu label="Messaging" className='sub-menu' icon={<MailRounded />}>
-                <MenuItem component={<Link to="/send" className='sidebar-links' />} icon={<MdForwardToInbox />}> Send</MenuItem>
-                <MenuItem icon={<MdContactMail />}> Custom </MenuItem>
+              <SubMenu label="Messaging" className='sub-menu' icon={<MailRounded />} component={<Link to='/messaging'/>}>
+                <MenuItem component={<Link to="/messaging/" className='sidebar-links' />} icon={<MdForwardToInbox />} > Send</MenuItem>
+                <MenuItem component={<Link to="/messaging/custom" className='sidebar-links' />}icon={<MdContactMail />}> Custom </MenuItem>
                 <MenuItem icon={<BsFillCalendar2WeekFill />}> Scheduled</MenuItem>
                 <MenuItem icon={<MdMarkEmailRead />}> Sent </MenuItem>
                 <MenuItem icon={<MdOutlineMail />}> Inbox</MenuItem>

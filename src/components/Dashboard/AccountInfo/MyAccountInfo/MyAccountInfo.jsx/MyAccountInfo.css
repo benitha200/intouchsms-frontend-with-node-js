@@ -1,0 +1,24 @@
+.all{
+    display: flex;
+    align-content:space-around
+    
+}
+.container{
+    padding: 0;
+}
+.container-left{
+    font-size: 14px;
+}
+
+.account-buttons{
+    /* background-color: var(--yellow); */
+    background: rgb(249,204,65);
+    background: linear-gradient(273deg, rgba(249,204,65,1) 100%, rgba(255,255,255,1) 100%);
+    border-radius: 0%;
+    width:6rem;
+    height: 2rem;
+    border: 1px solid rgb(195, 195, 195);
+    border-radius: 2px;
+    font-weight: 400;
+    
+}

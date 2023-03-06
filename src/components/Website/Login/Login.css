@@ -35,7 +35,9 @@
 }
 
 .content-right{
-    height: 10rem;
+    height: auto;
+    width: 30%;
+
 }
 .content-right-img{
     margin-top: 2rem;
@@ -52,11 +54,13 @@
 .hero-button{
     background-color: rgb(250, 202, 79);
     border: none;
-    width: 15rem;
     padding: 20px;
     margin-top: 15px;
     margin-bottom: 15px;
     position:static;
+}
+.login-form{
+    width: 100%;
 }
 
 @media  screen and (max-width:600px) {
@@ -121,10 +125,11 @@
       padding: 2rem;
       opacity: 0.8;
       border-radius: 0.2rem;
+      width: 90%;
 }
 
 .text-input{
-    width: 14rem;
+    width: 16rem;
     padding: 1rem;
     margin: 0.5rem;
     border: none;
@@ -138,4 +143,11 @@
 
 .form-title{
     margin: 0.5rem;
+}
+
+Input:hover{
+
+}
+Input:active{
+    border: 2px solid  rgb(250, 202, 79);
 }

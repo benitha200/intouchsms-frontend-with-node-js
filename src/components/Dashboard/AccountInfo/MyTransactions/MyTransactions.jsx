@@ -277,7 +277,7 @@ export default function MyTransactions() {
     return (
         <Paper sx={{ width: '98%', margin: '0.5rem', overflowX: 'auto' }}>
             <Stack>
-            <Button className='my-transactions-buttons m-4' variant="contained" color='dark'>Refresh</Button>
+            <Button className='app-buttons m-4 w-25 text-dark' variant="contained">Refresh</Button>
             </Stack>
 
             <div className='in-between'>

@@ -8,12 +8,16 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { Stack } from '@mui/system';
-import { Button } from 'reactstrap';
+// import { Button } from 'reactstrap';
 import { Box, Typography } from '@mui/material';
-import Modal from '@mui/material/Modal'
+import { Button, Col, Form, FormGroup, InputGroup, Row } from 'react-bootstrap';
+import Modal from 'react-bootstrap/Modal';
+// import Modal from '@mui/material/Modal'
 import './MyClients.css';
 import { TextField } from '@mui/material';
-import { Form, Label, FormGroup, Input, CloseButton } from 'reactstrap'
+// import { Form, Label, FormGroup, Input, CloseButton } from 'reactstrap'
+import { Helmet } from 'react-helmet';
+import { BsCashCoin, BsCheck2Square, BsEnvelopeFill, BsHouseFill, BsInfoCircle, BsInfoLg, BsKey, BsKeyFill, BsMailbox, BsPerson, BsPersonCheck, BsPersonCheckFill, BsPersonFill, BsPersonX, BsPhoneFill, BsPlusCircleFill } from 'react-icons/bs';
 
 
 const columns = [
@@ -90,9 +94,15 @@ const rows = [
 export default function MyCreditTransfers() {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
-    const [open, setOpen] = React.useState(false)
-    const handleOpen = () => setOpen(true)
-    const handleClose = () => setOpen(false)
+    // const [open, setOpen] = React.useState(false)
+    // const handleOpen = () => setOpen(true)
+    // const handleClose = () => setOpen(false)
+
+
+    const [show, setShow] = React.useState(false)
+
+    const handleClose = () => setShow(false)
+    const handleShow = () => setShow(true)
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -105,14 +115,18 @@ export default function MyCreditTransfers() {
 
     // refresh
 
-    const refresh = () =>window.location.reload(true)
+    const refresh = () => window.location.reload(true)
+
 
 
     return (
         <Paper sx={{ width: '80%', margin: '1rem', overflowX: 'auto' }}>
+
+
             <Stack spacing={2} direction="row" sx={{ margin: "1rem", paddingTop: "1rem" }}>
-                <Button variant="outlined" color='dark' onClick={handleOpen}>Add</Button>
-                <Modal
+                <Button onClick={handleShow} className="app-buttons mt-0 text-dark ">ADD</Button>
+                {/* <Button variant="outlined" className='app-buttons text-dark mt-0' color='secondary' onClick={handleOpen}>Add</Button> */}
+                {/* <Modal
                     keepMounted
                     open={open}
                     onClose={handleClose}
@@ -126,187 +140,342 @@ export default function MyCreditTransfers() {
                         </div>
 
                         <div className='modal-form'>
-                        <Stack>
-                            <Form>
-                                <Stack direction="row" gap={1} className='form-row'>
-                                    <FormGroup>
-                                        <TextField
-                                            id="outlined-input"
-                                            label="Customer No."
-                                            size='small'
-                                            className='modal-input'
-                                            inputProps={{
-                                                readOnly:true
-                                            }}
+                            <Stack>
+                                <Form>
+                                    <Stack direction="row" gap={1} className='form-row'>
+                                        <FormGroup>
+                                            <TextField
+                                                id="outlined-input"
+                                                label="Customer No."
+                                                size='small'
+                                                className='modal-input'
+                                                inputProps={{
+                                                    readOnly: true
+                                                }}
 
-                                        />
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <TextField
-                                            id="outlined-input"
-                                            label="Names"
-                                            size='small'
-                                            className='modal-input'
+                                            />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <TextField
+                                                id="outlined-input"
+                                                label="Names"
+                                                size='small'
+                                                className='modal-input'
 
-                                        />
-                                    </FormGroup>
-                                </Stack>
-                                <Stack direction="row" gap={1}>
-                                    <FormGroup>
-                                        <TextField
-                                            id="outlined-input"
-                                            label="User Name"
-                                            size='small'
-                                            className='modal-input'
+                                            />
+                                        </FormGroup>
+                                    </Stack>
+                                    <Stack direction="row" gap={1}>
+                                        <FormGroup>
+                                            <TextField
+                                                id="outlined-input"
+                                                label="User Name"
+                                                size='small'
+                                                className='modal-input'
 
-                                        />
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <TextField
-                                            id="outlined-input"
-                                            label="Active"
-                                            size='small'
-                                            className='modal-input'
-                                            inputProps={{
-                                                readOnly:true
-                                            }}
+                                            />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <TextField
+                                                id="outlined-input"
+                                                label="Active"
+                                                size='small'
+                                                className='modal-input'
+                                                inputProps={{
+                                                    readOnly: true
+                                                }}
 
-                                        />
-                                    </FormGroup>
-                                </Stack>
-                                <Stack direction="row" gap={1}>
-                                    <FormGroup>
-                                        <TextField
-                                            id="outlined-input"
-                                            label="Mobile Phone"
-                                            size='small'
-                                            className='modal-input'
+                                            />
+                                        </FormGroup>
+                                    </Stack>
+                                    <Stack direction="row" gap={1}>
+                                        <FormGroup>
+                                            <TextField
+                                                id="outlined-input"
+                                                label="Mobile Phone"
+                                                size='small'
+                                                className='modal-input'
 
-                                        />
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <TextField
-                                            id="outlined-input"
-                                            label="E-mail"
-                                            size='small'
-                                            className='modal-input'
+                                            />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <TextField
+                                                id="outlined-input"
+                                                label="E-mail"
+                                                size='small'
+                                                className='modal-input'
 
-                                        />
-                                    </FormGroup>
-                                </Stack>
-                                <Stack direction="row" gap={1}>
-                                    <FormGroup>
-                                        <TextField
-                                            id="outlined-input"
-                                            label="Address"
-                                            size='small'
-                                            className='modal-input'
+                                            />
+                                        </FormGroup>
+                                    </Stack>
+                                    <Stack direction="row" gap={1}>
+                                        <FormGroup>
+                                            <TextField
+                                                id="outlined-input"
+                                                label="Address"
+                                                size='small'
+                                                className='modal-input'
 
-                                        />
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <TextField
-                                            id="outlined-input"
-                                            label="Account Bal"
-                                            size='small'
-                                            className='modal-input'
-                                            inputProps={{
-                                                readOnly:true
-                                            }}
+                                            />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <TextField
+                                                id="outlined-input"
+                                                label="Account Bal"
+                                                size='small'
+                                                className='modal-input'
+                                                inputProps={{
+                                                    readOnly: true
+                                                }}
 
-                                        />
-                                    </FormGroup>
-                                </Stack>
+                                            />
+                                        </FormGroup>
+                                    </Stack>
 
-                                <Stack direction="row" gap={1}>
-                                    <FormGroup>
-                                        <TextField
-                                            id="outlined-input"
-                                            label="Comission"
-                                            size='small'
-                                            className='modal-input'
-                                            inputProps={{
-                                                readOnly:true
-                                            }}
+                                    <Stack direction="row" gap={1}>
+                                        <FormGroup>
+                                            <TextField
+                                                id="outlined-input"
+                                                label="Comission"
+                                                size='small'
+                                                className='modal-input'
+                                                inputProps={{
+                                                    readOnly: true
+                                                }}
 
-                                        />
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <TextField
-                                            id="outlined-input"
-                                            label="Description"
-                                            size='small'
-                                            className='modal-input'
+                                            />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <TextField
+                                                id="outlined-input"
+                                                label="Description"
+                                                size='small'
+                                                className='modal-input'
 
-                                        />
-                                    </FormGroup>
-                                </Stack>
-                                <Stack direction="row" gap={1}>
-                                    <FormGroup>
-                                        <TextField
-                                            id="outlined-input"
-                                            label="Password"
-                                            size='small'
-                                            className='modal-input'
+                                            />
+                                        </FormGroup>
+                                    </Stack>
+                                    <Stack direction="row" gap={1}>
+                                        <FormGroup>
+                                            <TextField
+                                                id="outlined-input"
+                                                label="Password"
+                                                size='small'
+                                                className='modal-input'
 
-                                        />
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <TextField
-                                            id="outlined-input"
-                                            label="Created"
-                                            size='small'
-                                            className='modal-input'
-                                            inputProps={{
-                                                readOnly:true
-                                            }}
+                                            />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <TextField
+                                                id="outlined-input"
+                                                label="Created"
+                                                size='small'
+                                                className='modal-input'
+                                                inputProps={{
+                                                    readOnly: true
+                                                }}
 
-                                        />
-                                    </FormGroup>
-                                </Stack>
-                                <Stack direction="row" gap={1}>
-                                    <FormGroup>
-                                        <TextField
-                                            id="outlined-input"
-                                            label="Confirm Password"
-                                            size='small'
-                                            className='modal-input'
+                                            />
+                                        </FormGroup>
+                                    </Stack>
+                                    <Stack direction="row" gap={1}>
+                                        <FormGroup>
+                                            <TextField
+                                                id="outlined-input"
+                                                label="Confirm Password"
+                                                size='small'
+                                                className='modal-input'
 
-                                        />
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <TextField
-                                            id="outlined-input"
-                                            label="Last Login"
-                                            size='small'
-                                            className='modal-input'
-                                            inputProps={{
-                                                readOnly:true
-                                            }}
+                                            />
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <TextField
+                                                id="outlined-input"
+                                                label="Last Login"
+                                                size='small'
+                                                className='modal-input'
+                                                inputProps={{
+                                                    readOnly: true
+                                                }}
 
-                                        />
-                                    </FormGroup>
-                                </Stack>
-                                
+                                            />
+                                        </FormGroup>
+                                    </Stack>
 
 
-                                <Stack direction="row" gap={1}>
-                                    <Button className='profile-buttons'>Save and Close</Button>
-                                    <Button className='profile-buttons'>Save and New</Button>
-                                    <Button className='profile-buttons'>Cancel</Button>
-                                </Stack>
 
-                            </Form>
-                        </Stack>
+                                    <Stack direction="row" gap={1}>
+                                        <button className='app-modal-buttons'>Save and Close</button>
+                                        <button className='app-modal-buttons'>Save and New</button>
+                                        <button className='app-modal-buttons'>Cancel</button>
+                                    </Stack>
+
+                                </Form>
+                            </Stack>
                         </div>
-                        
+
                     </Box>
 
 
-                </Modal >
+                </Modal > */}
 
-                <Button variant="contained" color='dark'>View & Modify</Button>
-                <Button onClick={refresh} variant="contained" color='dark'>Refresh</Button>
+
+                {/* Add Modal */}
+
+                <Modal show={show} onHide={handleClose} className="modal">
+                    <Modal.Header className='modal-header' closeButton>
+                        <span className='contact-modal-title'><BsPlusCircleFill/> ADD CLIENT</span>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form >
+
+                            <div className='d-flex flex-row mb-3 gap-2'>
+                                <InputGroup>
+                                    {/* <Form.Label>New Password</Form.Label> */}
+                                    <InputGroup.Text>
+                                    <BsPersonCheckFill/>
+                                    </InputGroup.Text>
+                                    <Form.Control type='text' placeholder='Customer No' required></Form.Control>
+                                </InputGroup>
+
+                                <InputGroup>
+                                    {/* <Form.Label>New Password</Form.Label> */}
+                                    <InputGroup.Text>
+                                        <BsPerson/>
+                                    </InputGroup.Text>
+                                    <Form.Control type='text' placeholder='Names' required></Form.Control>
+                                </InputGroup>
+                            </div>
+                            <div className='d-flex flex-row mb-3 gap-2'>
+                                <InputGroup>
+                                    {/* <Form.Label>New Password</Form.Label> */}
+                                    <InputGroup.Text>
+                                    <BsPersonFill/>
+                                    </InputGroup.Text>
+                                    <Form.Control type='text' placeholder='User Name' required></Form.Control>
+                                </InputGroup>
+
+                                <InputGroup>
+                                    {/* <Form.Label>New Password</Form.Label> */}
+                                    <InputGroup.Text>
+                                        <BsPersonCheck/>
+                                    </InputGroup.Text>
+                                    <Form.Control type='text' placeholder='Active' required></Form.Control>
+                                </InputGroup>
+                            </div>
+
+                            <div className='d-flex flex-row mb-3 gap-2'>
+                                <InputGroup>
+                                    {/* <Form.Label>New Password</Form.Label> */}
+                                    <InputGroup.Text>
+                                    <BsPhoneFill/>
+                                    </InputGroup.Text>
+                                    <Form.Control type='text' placeholder='Mobile Phone' required></Form.Control>
+                                </InputGroup>
+
+                                <InputGroup>
+                                    {/* <Form.Label>New Password</Form.Label> */}
+                                    <InputGroup.Text>
+                                        <BsEnvelopeFill/>
+                                    </InputGroup.Text>
+                                    <Form.Control type='text' placeholder='E-mail' required></Form.Control>
+                                </InputGroup>
+                            </div>
+
+                            <div className='d-flex flex-row mb-3 gap-2'>
+                                <InputGroup>
+                                    {/* <Form.Label>New Password</Form.Label> */}
+                                    <InputGroup.Text>
+                                    <BsHouseFill/>
+                                    </InputGroup.Text>
+                                    <Form.Control type='text' placeholder='Address' required></Form.Control>
+                                </InputGroup>
+
+                                <InputGroup>
+                                    {/* <Form.Label>New Password</Form.Label> */}
+                                    <InputGroup.Text>
+                                        <BsCashCoin/>
+                                    </InputGroup.Text>
+                                    <Form.Control type='text' placeholder='Account Bal' required></Form.Control>
+                                </InputGroup>
+                            </div>
+
+                            <div className='d-flex flex-row mb-3 gap-2'>
+                                <InputGroup>
+                                    {/* <Form.Label>New Password</Form.Label> */}
+                                    <InputGroup.Text>
+                                    <BsCashCoin/>
+                                    </InputGroup.Text>
+                                    <Form.Control type='text' placeholder='Commission' required></Form.Control>
+                                </InputGroup>
+
+                                <InputGroup>
+                                    {/* <Form.Label>New Password</Form.Label> */}
+                                    <InputGroup.Text>
+                                        <BsInfoCircle/>
+                                    </InputGroup.Text>
+                                    <Form.Control type='text' placeholder='Description' required></Form.Control>
+                                </InputGroup>
+                            </div>
+
+                            <div className='d-flex flex-row mb-3 gap-2'>
+                                <InputGroup>
+                                    {/* <Form.Label>New Password</Form.Label> */}
+                                    <InputGroup.Text>
+                                    <BsKey/>
+                                    </InputGroup.Text>
+                                    <Form.Control type='text' placeholder='Password' required></Form.Control>
+                                </InputGroup>
+
+                                <InputGroup>
+                                    {/* <Form.Label>New Password</Form.Label> */}
+                                    <InputGroup.Text>
+                                        <BsCheck2Square/>
+                                    </InputGroup.Text>
+                                    <Form.Control type='text' placeholder='Created' required></Form.Control>
+                                </InputGroup>
+                            </div>
+
+                            <div className='d-flex flex-row mb-3 gap-2'>
+                                <InputGroup>
+                                    {/* <Form.Label>New Password</Form.Label> */}
+                                    <InputGroup.Text>
+                                    <BsKeyFill/>
+                                    </InputGroup.Text>
+                                    <Form.Control type='text' placeholder='Confirm password' required></Form.Control>
+                                </InputGroup>
+
+                                <InputGroup>
+                                    {/* <Form.Label>New Password</Form.Label> */}
+                                    <InputGroup.Text>
+                                        <BsInfoLg/>
+                                    </InputGroup.Text>
+                                    <Form.Control type='text' placeholder='Last Login' required></Form.Control>
+                                </InputGroup>
+                            </div>
+
+
+
+
+
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+
+                        <Button className='btn btn-dark opacity-60'>Save Changes</Button>
+
+                        <Button className='btn btn-dark opacity-60' onClick={handleClose}> Cancel</Button>
+
+                    </Modal.Footer>
+
+                </Modal>
+
+
+                {/* end modal */}
+
+
+                <button className='app-buttons' variant="contained" color='dark'>View & Modify</button>
+                <button className='app-buttons' onClick={refresh} variant="contained" color='dark'>Refresh</button>
             </Stack >
             <TableContainer sx={{ maxHeight: 440 }}>
                 <Table stickyHeader aria-label="sticky table">
@@ -334,7 +503,7 @@ export default function MyCreditTransfers() {
                                             const value = row[column.id];
                                             return (
                                                 <TableCell key={column.id} align={column.align}>
-                                                    {column.format && typeof value === 'number'
+                                                    {column.format && typeof value === 'text'
                                                         ? column.format(value)
                                                         : value}
                                                 </TableCell>

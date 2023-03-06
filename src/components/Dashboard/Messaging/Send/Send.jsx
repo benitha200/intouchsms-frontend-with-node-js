@@ -2,10 +2,12 @@ import { Autocomplete, Box, Container, FormGroup, InputLabel, Paper, Stack, Text
 import React from 'react'
 import { useState } from 'react'
 import { Form } from 'react-bootstrap'
+import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 // import { Form } from 'react-router-dom'
-import { Button, Label, Table } from 'reactstrap'
+import { Label, Table } from 'reactstrap'
 import { Pane } from 'split-pane-react'
 import SplitPane from 'split-pane-react/esm/SplitPane'
+import Button from "@mui/material/Button"
 import './Send.css'
 const senderNames = [
   { label: 'Test1' },
@@ -30,43 +32,45 @@ const Send = () => {
 
   return (
     <div className='send-container'>
-      <div className='send-form' style={{ width: '30%' }}>
+      <div className='send-form' style={{ width: '40%' }}>
 
         {/* <Box sx={{ width: "30%" }}> */}
         <div className="send-headers">
-          <Typography>Compose Message</Typography>
+          <span>Compose Message</span>
           <hr />
         </div>
 
-        <Stack direction="row" gap={1} margin="1rem" marginTop={2}>
+        <Stack direction="row" gap={1} margin="1rem" marginTop={1}>
 
-          <Button className='send-button'>Add Contact(s)</Button>
-          <Button className='send-button'>Add Group(s)</Button>
+          <button className='app-buttons'>Add Contact(s)</button>
+          <button className='app-buttons'>Add Group(s)</button>
 
         </Stack>
         <Box>
-          <Form sx={{ padding: "2rem" }}>
-            <FormGroup >
-              <TextField
-                id="outlined-multiline-static"
-                label="Phone Number(s)"
-                multiline
-                rows={4}
-                variant='outlined'
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>
-                Load Contacts File(Excel Format):
-              </Label>
-              <TextField
-                // label="  Load Contacts File(Excel Format):"
-                type="file"
-                size="small"
+          <Form sx={{ padding: "1rem" }}>
+            <div className="form-outline">
+              <label className="form-label" for="textAreaExample">Phone Number</label>
+              <textarea className="form-control form-control-sm" id="textAreaExample" rows="4"></textarea>
+            </div>
 
-              />
-            </FormGroup>
-            <FormGroup>
+            <div className="form-outline">
+              <label className="form-label" for="formControlSm">Load Contact File(Excel Format)</label>
+              <input type="file" id="formControlSm" className="form-control form-control-sm" />
+            </div>
+
+            <div className="form-outline">
+              <label className="form-label" for="formControlSm">From:</label>
+              <select className="form-control" data-mdb-filter="true">
+                <option value="test1">Test1</option>
+                <option value="test2">Test2</option>
+                <option value="test3">Test3</option>
+                <option value="test4">Test4</option>
+              </select>
+
+            </div>
+
+
+            {/*<FormGroup>
               <Label>
                 From:
               </Label>
@@ -78,20 +82,16 @@ const Send = () => {
                 sx={{ width: { sm: 100, md: 280 } }}
                 renderInput={(params) => <TextField {...params} label="Sender Names" />}
               />
-            </FormGroup>
-            <FormGroup>
-              <TextField
-                id="outlined"
-                label="Message"
-                multiline
-                rows={4}
-                onChange={e => setCounter(e.target.value.length)}
-              />
-              <span>{counter} characters of message 1</span>
+            </FormGroup> */}
 
-            </FormGroup>
+            <div className="form-outline">
+              <label className="form-label" for="textAreaExample">Message</label>
+              <textarea className="form-control form-control-sm" id="textAreaExample" rows="4"></textarea>
+              <span>{counter} characters of message 1</span>
+            </div>
+
             <FormGroup>
-              <Button className='send-button' >Send</Button>
+              <button className='app-buttons' color='secondary' >Send</button>
             </FormGroup>
           </Form>
 
@@ -102,75 +102,81 @@ const Send = () => {
       </div>
 
 
-      <div className='panel-view'>
-        <div className="send-headers">
-          <Typography>Message Log</Typography>
-          <hr />
+      <div className='right-side'>
+        <div className='message-log-table'>
+        <MDBTable className='table-stripped caption-top'>
+          <caption>List of users</caption>
+          <MDBTableHead>
+            <tr>
+              <th scope='col'>#</th>
+              <th scope='col'>First</th>
+              <th scope='col'>Last</th>
+              <th scope='col'>Handle</th>
+            </tr>
+          </MDBTableHead>
+          <MDBTableBody>
+            <tr>
+              <th scope='row'>1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope='row'>2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope='row'>3</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </MDBTableBody>
+        </MDBTable>
         </div>
-        <div className='panel panel-default'>
-          <div className="panel-body panel-resizable" style={{ height: '50%' }}>
-          </div>
-          <div className="panel-footer">Messages</div>
-
+        <div className='message-log-table'>
+        <MDBTable className='caption-top'>
+          <caption>List of users</caption>
+          <MDBTableHead>
+            <tr>
+              <th scope='col'>#</th>
+              <th scope='col'>First</th>
+              <th scope='col'>Last</th>
+              <th scope='col'>Handle</th>
+            </tr>
+          </MDBTableHead>
+          <MDBTableBody>
+            <tr>
+              <th scope='row'>1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope='row'>2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope='row'>3</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </MDBTableBody>
+        </MDBTable>
         </div>
 
-        <div className="panel panel-default">
-          <div className="panel-body panel-resizable" style={{ height: '50%' }}>
 
-            <table className='message-log-table'>
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>From</th>
-                  <th>Message</th>
-                  <th>Created</th>
-                  <th>Queued</th>
-                  <th>Delivered</th>
-                  <th>UnDelivered</th>
-                  <th>Unsent</th>
-                  <th>Total</th>
-                  <th>Progress</th>
-                  <th>Credits</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Test</td>
-                  <td>Hello</td>
-                  <td>12 feb 2023 09:08AM</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>4</td>
-                  <td>1</td>
-                  <td>5</td>
-                  <td>100%</td>
-                  <td>1.00</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Test</td>
-                  <td>Hello</td>
-                  <td>12 feb 2023 09:08AM</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>4</td>
-                  <td>1</td>
-                  <td>5</td>
-                  <td>100%</td>
-                  <td>1.00</td>
-                </tr>
-              </tbody>
-            </table>
-
-
-          </div>
-          <div className="panel-footer">Message Log</div>
-
-        </div>
       </div>
 
+
+      
     </div>
+
   )
 }
 
