@@ -16,19 +16,14 @@ const senderNames = [
 
 const Send = () => {
   const [counter, setCounter] = useState([0])
-  // const [sizes, setSizes] = useState([
-  //   100,
-  //   '30%',
-  //   '100%',
-  // ]);
+  const [recipients,setRecipients]=useState()
+  const [sender,setSender]=useState()
+  const [message,setMessage]=useState()
 
-  // const layoutCSS = {
-  //   width: '50%',
-  //   height:'100%',
-  //   display: 'flex',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  // };
+
+  function send_message() {
+
+  }
 
   return (
     <div className='send-container'>
@@ -47,10 +42,17 @@ const Send = () => {
 
         </Stack>
         <Box>
-          <Form sx={{ padding: "1rem" }}>
+          {/* <Form sx={{ padding: "1rem" }}> */}
+          <form encType='multipart/form-data' onSubmit={send_message}>
             <div className="form-outline">
               <label className="form-label" for="textAreaExample">Phone Number</label>
-              <textarea className="form-control form-control-sm" id="textAreaExample" rows="4"></textarea>
+              <textarea
+               className="form-control form-control-sm" 
+               id="textAreaExample" 
+               rows="4"
+               onChange={(e)=>setRecipients(e.target.value)}
+               value={recipients}
+               />
             </div>
 
             <div className="form-outline">
@@ -93,7 +95,8 @@ const Send = () => {
             <FormGroup>
               <button className='app-buttons' color='secondary' >Send</button>
             </FormGroup>
-          </Form>
+            {/* </Form> */}
+          </form>
 
         </Box>
         {/* </Box> */}
@@ -104,77 +107,77 @@ const Send = () => {
 
       <div className='right-side'>
         <div className='message-log-table'>
-        <MDBTable className='table-stripped caption-top'>
-          <caption>List of users</caption>
-          <MDBTableHead>
-            <tr>
-              <th scope='col'>#</th>
-              <th scope='col'>First</th>
-              <th scope='col'>Last</th>
-              <th scope='col'>Handle</th>
-            </tr>
-          </MDBTableHead>
-          <MDBTableBody>
-            <tr>
-              <th scope='row'>1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope='row'>2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope='row'>3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </MDBTableBody>
-        </MDBTable>
+          <MDBTable className='table-stripped caption-top'>
+            <caption>List of users</caption>
+            <MDBTableHead>
+              <tr>
+                <th scope='col'>#</th>
+                <th scope='col'>First</th>
+                <th scope='col'>Last</th>
+                <th scope='col'>Handle</th>
+              </tr>
+            </MDBTableHead>
+            <MDBTableBody>
+              <tr>
+                <th scope='row'>1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope='row'>2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope='row'>3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </MDBTableBody>
+          </MDBTable>
         </div>
         <div className='message-log-table'>
-        <MDBTable className='caption-top'>
-          <caption>List of users</caption>
-          <MDBTableHead>
-            <tr>
-              <th scope='col'>#</th>
-              <th scope='col'>First</th>
-              <th scope='col'>Last</th>
-              <th scope='col'>Handle</th>
-            </tr>
-          </MDBTableHead>
-          <MDBTableBody>
-            <tr>
-              <th scope='row'>1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope='row'>2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope='row'>3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </MDBTableBody>
-        </MDBTable>
+          <MDBTable className='caption-top'>
+            <caption>List of users</caption>
+            <MDBTableHead>
+              <tr>
+                <th scope='col'>#</th>
+                <th scope='col'>First</th>
+                <th scope='col'>Last</th>
+                <th scope='col'>Handle</th>
+              </tr>
+            </MDBTableHead>
+            <MDBTableBody>
+              <tr>
+                <th scope='row'>1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope='row'>2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope='row'>3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </MDBTableBody>
+          </MDBTable>
         </div>
 
 
       </div>
 
 
-      
+
     </div>
 
   )

@@ -21,3 +21,14 @@
 .company-link{
     margin: 1rem;
 }
+
+@media screen and (max-width:600px) {
+    .footer-section{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    /* row-gap: 2rem; */
+    background-color: rgb(250, 200, 75);
+
+}
+}

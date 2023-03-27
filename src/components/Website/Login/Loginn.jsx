@@ -35,7 +35,7 @@ const Loginn = () => {
             .then(result => setToken(result.token))
             .catch(error => console.log('error', error));
 
-       alert(token)
+    //    alert(token)
     }
 
 

@@ -1,37 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-body{
-    margin:0;
-    padding:0;
-    font-family: 'Poppins',sans-serif;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
     background-color: #fcfcfc;
 }
 
-.container{
+.container {
     max-width: 100%;
-    margin: 0 auto; 
-    padding:0 10px;
-    display:flex;
+    margin: 0 auto;
+    padding: 0 10px;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     height: 100%;
 }
 
-.navbar{
+.navbar {
     height: 60px;
-    background-color: #353636;
+    background-color: #333333;
     position: relative;
     color: whitesmoke;
     position: fixed;
     width: 100%;
 }
 
-.menu-icon{
+.menu-icon {
     display: none;
 }
 
-.logo-img{
-    width:22%;
+.logo-img {
+    width: 22%;
     background-color: #fcfcfc;
     margin: 0;
 }
@@ -41,66 +41,75 @@ body{
     margin: 0.5rem;
 }
 
-@media (max-width: 768px) {
+@media screen {}
+
+@media screen and (max-width: 768px) {
     .nav-elements ul li:not(:last-child) {
-      margin-right: 30px;
+        margin-right: 30px;
     }
-  }
-
-@media (max-width:600px) {
-    
-
-.menu-icon{
-    display: block;
-    cursor: pointer;
-
-}
-.nav-elements{
-    position: absolute;
-    right: 0;
-    top:60px;
-    background-color: #353636;
-    width: 0;
-    height: calc(100vh - 60px);
-    transition: all 0.3s ease-in;
-    overflow: hidden;
-
-}
-.nav-elements.active{
-    width: 270px;
-}
-.nav-elements ul{
-    display: flex;
-    flex-direction: column;
-}
-.nav-elements ul li{
-    margin-right:unset;
-    margin-top: 22px;
 }
 
+@media screen and (max-width:600px) {
+
+
+    .menu-icon {
+        display: block;
+        cursor: pointer;
+
+    }
+
+    .nav-elements {
+        position: absolute;
+        right: 0;
+        top: 60px;
+        background-color: #353636;
+        width: 0;
+        height: calc(100vh - 60px);
+        transition: all 0.3s ease-in;
+        overflow: hidden;
+
+    }
+
+    .nav-elements.active {
+        width: 270px;
+    }
+
+    .nav-elements ul {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nav-elements ul li {
+        margin-right: unset;
+        margin-top: 22px;
+    }
+
 }
-.nav-elements ul{
+
+.nav-elements ul {
     display: flex;
     justify-content: space-between;
     list-style-type: none;
 }
-.nav-elements ul li:not(:last-child){
+
+.nav-elements ul li:not(:last-child) {
     margin-right: 50px;
 }
-.nav-elements ul a{
+
+.nav-elements ul a {
     font-size: 14px;
     font-weight: 400;
     color: whitesmoke;
     text-decoration: none;
 }
 
-.nav-elements ul a.active{
+.nav-elements ul a.active {
     color: #e1dbdb;
     font-weight: 500;
     position: relative;
 }
 
-.nav-elements ul a.active::after{
+.nav-elements ul a.active::after {
     content: '';
     position: absolute;
     bottom: -4px;

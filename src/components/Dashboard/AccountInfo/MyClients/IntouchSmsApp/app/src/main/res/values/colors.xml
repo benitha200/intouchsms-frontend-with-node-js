@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#2CA7E0</color>
+    <color name="colorPrimaryDark">#2696ca</color>
+    <color name="colorAccent">#03a9fa</color>
+    <color name="colorBlack">#262626</color>
+    <color name="alternativeColor">#f2f2f2</color>
+    <color name="logincursorcolor">#fe5824</color>
+    <color name="loginsignupBackgroundTint">#70dfdfdf</color>
+    <color name="edittextsendmessage">#ffffff</color>
+    <color name="messageFieldBackgroundTint">#00ffffff</color>
+
+    <color name="orange">#ed8305</color>
+    <color name="blue">#0000ff</color>
+    <color name="green">#3d9ad6</color>
+    <color name="button_white">@android:color/white</color>
+    <color name="black">#000000</color>
+    <color name="agentorresellerpackagetint">#ffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="activity5SplitterGray">#70dfdfdf</color>
+
+</resources>

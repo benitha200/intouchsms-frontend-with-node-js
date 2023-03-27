@@ -27,12 +27,21 @@ import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
-
+import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
 
 
 const DashboardNavbar = props => {
 
   const { collapseSidebar } = useProSidebar();
+
+  //menuCollapse state using useState hook
+  const [menuCollapse, setMenuCollapse] = useState(false)
+  //custom function that will change menucollapse state from false to true and true to false
+  const menuIconClick = () => {
+    //condition checking to change state from true to false and vice versa
+    menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
+  };
+
 
   const [activePage, setActivePage] = useState(null);
 
@@ -50,17 +59,25 @@ const DashboardNavbar = props => {
       <div className='all'>
         <>
 
-
           <Sidebar style={{ height: "100vh" }}>
             <div className="burger-icon">
               <Button onClick={() => collapseSidebar()} sx={{ color: 'black' }} className=''><MenuIcon /></Button>
 
             </div>
 
+            {/* <div className="closemenu" onClick={menuIconClick}>
+              {/* changing menu collapse icon on click */}
+              {/* {menuCollapse ? ( 
+                <FiArrowRightCircle />
+              ) : (
+                <FiArrowLeftCircle />
+              )}
+            </div> */}
+
 
             <Menu>
 
-              <SubMenu label="Account Info" className='sub-menu' component={<Link to="/account-info"/>} icon={<PersonRoundedIcon />} sx={{ backgroundColor: 'grey' }} >
+              <SubMenu label="Account Info" className='sub-menu' component={<Link to="/account-info" />} icon={<PersonRoundedIcon />} sx={{ backgroundColor: 'grey' }} >
                 <MenuItem component={<Link to="/account-info/" className='sidebar-links' />} icon={<BsFillPersonFill className='5' />} onClick={handleActive}>  My Profile </MenuItem>
                 <MenuItem component={<Link to="/account-info/my-clients" className='sidebar-links' />} icon={<BsPeopleFill />} onClick={handleActive}> My Clients </MenuItem>
                 <MenuItem component={<Link to="/account-info/my-credit-transfers" className='sidebar-links' />} icon={<BsCreditCard2BackFill />} onClick={handleActive}> My Credit Transfers </MenuItem>
@@ -68,14 +85,14 @@ const DashboardNavbar = props => {
                 <MenuItem component={<Link to="/account-info/my-commissions" className='sidebar-links' />} icon={<BsCashCoin />}> My Commissions </MenuItem>
               </SubMenu>
 
-              <SubMenu label="Address Book" className='sub-menu' icon={<ContactsOutlinedIcon />} component={<Link to='/address-book'/>}>
+              <SubMenu label="Address Book" className='sub-menu' icon={<ContactsOutlinedIcon />} component={<Link to='/address-book' />}>
                 <MenuItem icon={<BsPersonPlusFill />} component={<Link to="/address-book/" />}> Contacts</MenuItem>
                 <MenuItem icon={<BsPeopleFill />} component={<Link to="/address-book/groups" />}> Groups </MenuItem>
               </SubMenu>
 
-              <SubMenu label="Messaging" className='sub-menu' icon={<MailRounded />} component={<Link to='/messaging'/>}>
+              <SubMenu label="Messaging" className='sub-menu' icon={<MailRounded />} component={<Link to='/messaging' />}>
                 <MenuItem component={<Link to="/messaging/" className='sidebar-links' />} icon={<MdForwardToInbox />} > Send</MenuItem>
-                <MenuItem component={<Link to="/messaging/custom" className='sidebar-links' />}icon={<MdContactMail />}> Custom </MenuItem>
+                <MenuItem component={<Link to="/messaging/custom" className='sidebar-links' />} icon={<MdContactMail />}> Custom </MenuItem>
                 <MenuItem icon={<BsFillCalendar2WeekFill />}> Scheduled</MenuItem>
                 <MenuItem icon={<MdMarkEmailRead />}> Sent </MenuItem>
                 <MenuItem icon={<MdOutlineMail />}> Inbox</MenuItem>

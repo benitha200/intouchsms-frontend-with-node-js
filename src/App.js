@@ -24,17 +24,40 @@ import Groups from './components/Dashboard/AddressBook/Groups/Groups';
 import Messaging from './components/Dashboard/Messaging/Messaging';
 import Custom from './components/Dashboard/Messaging/Custom/Custom'
 import AccountInfo from './components/Dashboard/AccountInfo/AccountInfo';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import SignUp from './components/Website/SignUp/SignUp';
 import { TOKEN } from './Constants/Index';
 import Loginn from './components/Website/Login/Loginn';
+import Mine from './components/Dashboard/AccountInfo/MyProfile/Mine';
 
 
 function App() {
   const [token,setToken] = useState('')
   console.log(token)
 
+  // const storedToken =localStorage.getItem("refreshToken");
+  //   localStorage.setItem("refreshToken",token)
+
+  //   useEffect(()=>{
+  //     setToken(localStorage.getItem("refreshToken"));
+  //   },[])
+  
+
+    
+
+
+  // useEffect(() => {
+  //   const storedToken = localStorage.getItem({token});
+  //   if (storedToken) {
+  //     setToken(storedToken);
+  //     // Use the token to authenticate the user
+  //   } else {
+  //     // Redirect the user to the login page
+  //   }
+  // }, []);
+
   if(token){
+    
 
   return (
 
@@ -70,15 +93,15 @@ function App() {
             <Routes>
               <Route path='/account-info' element={<AccountInfo token={token}/>}>
                 <Route path='/account-info/' element={<MyProfile token={token}/>}/>
-                <Route path='/account-info/my-clients' element={<MyClients />} />
+                <Route path='/account-info/my-clients' element={<MyClients token={token}/>} />
                 <Route path='/account-info/my-credit-transfers' element={<MyCreditTransfers />} />
                 <Route path='/account-info/my-transactions' element={<MyTransactions />} />
                 <Route path='/account-info/send' element={<Send />} />
               </Route>
 
-              <Route path='/address-book' element={<AddressBook />}>
-                <Route path='/address-book/' element={<Contacts />} />
-                <Route path='/address-book/groups' element={<Groups />} />
+              <Route path='/address-book' element={<AddressBook token={token}/>}>
+                <Route path='/address-book/' element={<Contacts token={token}/>} />
+                <Route path='/address-book/groups' element={<Groups token={token}/>} />
               </Route>
               <Route path='/messaging' element={<Messaging />}>
                 <Route index path='/messaging/' element={<Send />} />

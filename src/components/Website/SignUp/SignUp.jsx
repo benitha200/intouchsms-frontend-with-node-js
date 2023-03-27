@@ -11,12 +11,21 @@ import { InputGroup } from 'react-bootstrap'
 import { BsEnvelope, BsFillKeyFill, BsKeyFill, BsPerson, BsPersonCheckFill, BsPersonFill, BsSuitHeart, BsTelephoneFill } from 'react-icons/bs'
 const SignUp = () => {
 
+
+    const [username, setUsername] = useState()
+    const [names, setNames] = useState()
+    const [phone, setPhone] = useState()
+    const [email, setEmail] = useState()
+    const [password, setPassword] = useState()
+
+
+
     return (
         <div>
 
-            <div className='hero-content d-flex flex-row'>
+            <div className='hero-content d-flex flex-row p-0 pb-5 pt-2'>
 
-                <div className='content-left'>
+                <div className='content-left mt-5 mb-5'>
 
                     <p className='content-header'>SMS Gateway</p>
                     <span>Your Customer Engagement Platform</span>
@@ -27,12 +36,78 @@ const SignUp = () => {
                         With simple API intergration and cost-effective solutions,<br /> we connect you to your customers
                     </span>
                 </div>
-                <div className='content-right mt-0'>
-                    <div className='login-form mt-0 p-3'>
-                        <span className='form-title'>Create Account </span>
-                        <hr color='white' />
-                        {/* <Form onSubmit={onSubmit}> */}
-                        <Form>
+
+                <div className='form-holder shadow p-3 mt-2 mb-5 bg-white h-100 gap-2 pb-5'>
+                    <span className='form-title'>Create Account </span>
+                    <hr color='white' />
+
+                    <form className='d-flex flex-column gap-3' 
+                    encType='multipart/form-data' 
+                    // onSubmit={login}
+                    >
+                        <div>
+                            <input
+                                type="text"
+                                placeholder='Username'
+                                className='form-control border-bottom rounded-0'
+                                onChange={(e) => setUsername(e.target.value)}
+                                value={username}
+                            />
+                            </div>
+                        <div>
+                            <input
+                                type="text"
+                                placeholder='Full Name'
+                                className='form-control border-bottom rounded-0'
+                                onChange={(e) => setUsername(e.target.value)}
+                                value={username}
+                            /></div>
+                        <div>
+                            <input
+                                type="text"
+                                placeholder='Mobile Phone'
+                                className='form-control border-bottom rounded-0'
+                                onChange={(e) => setUsername(e.target.value)}
+                                value={username}
+                            />
+                            </div>
+                        <div>
+                            <input
+                                type="text"
+                                placeholder='E-mail'
+                                className='form-control border-bottom rounded-0'
+                                onChange={(e) => setUsername(e.target.value)}
+                                value={username}
+                            /></div>
+                        <div>
+                            <input
+                                type="password"
+                                placeholder='password'
+                                className='form-control border-bottom rounded-0 width-25'
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <input
+                                type="password"
+                                placeholder='Confirm Password'
+                                className='form-control border-bottom rounded-0 width-25'
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
+                        <button type="submit" className='app-buttons w-100 text-dark'> Log In </button>
+
+
+                    </form>
+
+                    <hr color="grey" />
+                    <span className='text-dark'> Already have an account ? <a href='/login'> Login</a></span>
+
+                    {/* </div> */}
+
+
+                    {/* <Form onSubmit={onSubmit}> */}
+                    {/* <Form>
                             <div className='d-flex flex-width gap-2'>
                                 <FormGroup>
                                     <InputGroup>
@@ -151,7 +226,7 @@ const SignUp = () => {
                             </div>
 
                             <FormGroup>
-                                {/* <CheckBox className='text-light'>I have Read ad Accepted the terms of use</CheckBox> */}
+                                
                                 <InputGroup.Text className='bg-dark text-light border-0 opacity-75'>
                                     <Input type='checkbox' aria-label='' />I have Read ad Accepted the terms of use
                                 </InputGroup.Text>
@@ -167,9 +242,9 @@ const SignUp = () => {
                             <FormGroup>
                                 <span className='text-light'> Already have an account ? <a href='/login'>Login</a> </span>
                             </FormGroup>
-                        </Form>
-                    </div>
+                        </Form> */}
                 </div>
+
 
             </div>
         </div>

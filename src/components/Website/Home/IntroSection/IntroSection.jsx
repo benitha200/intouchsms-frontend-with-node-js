@@ -8,18 +8,20 @@ import ussd from '../../../../assets/images/ussd5.jpg'
 
 const IntroSection = () => {
 
-    const years_of_experience = new Date().getFullYear - 2014
+    // const years_of_experience = new Date().getFullYear - 2014
 
+    var date = new Date().getFullYear() - 2014
+    
     return (
         <div className='content'>
 
             {/* Intouchsms introduction*/}
 
-            <div className='row-section'>
+            <div className='row-section gap-2'>
                 <div className='col-left'>
                     <AnimationOnScroll animateIn='animate__bounceIn'>
-                        <div className='about-left text-center'>
-                            <h3>9</h3>
+                        <div className='about-left text-center rounded-pill w-75 h-100 pt-4 pb-4'>
+                            <h3>{date}</h3>
                             <p>Years <br />of Creativity +Innovation</p>
                         </div>
                     </AnimationOnScroll>
@@ -59,9 +61,9 @@ const IntroSection = () => {
 
             {/* Capabilities of Intouchsms */}
 
-            <div className='about-right-title'>
-                <h2>Features, Capabilities, APIs</h2>
-                <h4>What can the Gateway Do?</h4>
+            <div className='about-right-title m-5'>
+                <h2 className='h1'>Features, Capabilities, APIs</h2>
+                <h4 className='font-weight-bold'>What can the Gateway Do?</h4>
             </div>
             <div className='row-section'>
                 <div className='col-left'>

@@ -1,5 +1,5 @@
 .profile-form {
-    width: 100%;
+    width: 90%;
     justify-content: end;
     color: rgb(34, 33, 33);
     /* background-color:whitesmoke; */
@@ -44,8 +44,7 @@ Form .profile-form-input {
 }
 
 .profile-container {
-    padding: 0.5rem;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 0.7rem;
     justify-content: space-between;
     font-size: 14px;
     /* background: rgb(247, 247, 247);
@@ -58,8 +57,9 @@ Form .profile-form-input {
 }
 
 .profile-buttons {
-    margin: 0.2rem;
-    color: inherit;
+    margin: 0.1rem;
+    padding:0;
+    color: #333;
     text-transform: uppercase;
     word-wrap: break-word;
     white-space: normal;
@@ -73,21 +73,45 @@ Form .profile-form-input {
     height: 2.5rem;
     background: rgb(249, 204, 65);
     background: linear-gradient(273deg, rgba(249, 204, 65, 1) 100%, rgba(255, 255, 255, 1) 100%); 
+   
 }
 
-.profile-header {
+.profile-header-buttons{
+    background: rgb(249, 204, 65);
+    background: linear-gradient(273deg, rgba(249, 204, 65, 1) 100%, rgba(255, 255, 255, 1) 100%); 
+    border-right: 1px solid whitesmoke; 
+    border-bottom: 0;
+    border-left:0;
+    border-top: 0;
+    padding-right:5rem;
+    cursor: pointer; 
+    color:#333;
+}
+
+.table-headers{
+    background: rgb(249, 204, 65);
+    background: linear-gradient(273deg, rgba(249, 204, 65, 1) 100%, rgba(255, 255, 255, 1) 100%);  
+}
+
+
+.profile-headers {
+    display:flex;
+    justify-content: space-between;
     padding: 1rem;
-  background: rgb(231,231,231);
-background: linear-gradient(0deg, rgba(231,231,231,1) 0%, rgba(255,255,255,1) 100%);
+    background: rgb(249, 204, 65);
+    background: linear-gradient(273deg, rgba(249, 204, 65, 1) 100%, rgba(255, 255, 255, 1) 100%); 
 }
 
 .profile-paper {
+    display: flex;
+    flex-direction: row;
     background-color: rgb(255, 255, 255);
     color: rgba(0, 0, 0, 0.87);
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     border-radius: 4px;
     box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px, rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px;
     padding-bottom: 6.7rem;
+
 }
 
 .profile-contents {
@@ -112,7 +136,16 @@ background: linear-gradient(0deg, rgba(231,231,231,1) 0%, rgba(255,255,255,1) 10
     box-shadow: 24;
     padding: 4;
 }
-
+.table-data{
+    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    font-weight: normal;
+    line-height: 1.5;
+}
+.profile-header{
+    font-family:"Helvetica Neue", Helvetica, Roboto,Arial,sans-serif ;
+    font-weight:500;
+    font-size: 1rem;
+}
 
 .fade-scale {
     transform: scale(0);

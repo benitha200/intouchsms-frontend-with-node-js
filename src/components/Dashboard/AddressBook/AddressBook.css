@@ -5,12 +5,13 @@
     background-color: #333;
     color: whitesmoke   ;
     border-radius: 2px;
+    border:0 ;
     /* background: rgb(247,247,247);
     background: linear-gradient(0deg, rgba(247,247,247,1) 0%, rgba(255,255,255,1) 100%);
     color: #333; */
     /* border:2px solid #f9cc41; */
     height: 2.5rem;
     padding: 0.2rem;
-    opacity: 0.5;
+    opacity: 1;
   }
   

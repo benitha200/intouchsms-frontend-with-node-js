@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.AddMyClient"
+    android:orientation="vertical"
+    android:weightSum="100"
+    android:scrollbars="vertical">
+
+    <ScrollView
+        android:id="@+id/scrollview_addmyclient_form"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginTop="3dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Client Information"
+                            android:textColor="@color/cardview_dark_background"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/client_names"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:backgroundTint="@color/loginsignupBackgroundTint"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:enabled="true"
+                                android:hint="Names"
+                                android:inputType="text"
+                                android:textColor="@color/cardview_dark_background"
+                                android:textColorHighlight="@color/cardview_dark_background"
+                                android:textColorHint="@color/cardview_dark_background"
+                                android:textColorLink="@color/cardview_dark_background"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </android.support.design.widget.TextInputLayout>
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/client_username"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:errorEnabled="true">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:backgroundTint="@color/loginsignupBackgroundTint"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="User Name"
+                                android:inputType="text"
+                                android:textColor="@color/cardview_dark_background"
+                                android:textColorHighlight="@color/cardview_dark_background"
+                                android:textColorHint="@color/cardview_dark_background"
+                                android:textColorLink="@color/cardview_dark_background"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/client_mobilephone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:backgroundTint="@color/loginsignupBackgroundTint"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:enabled="true"
+                                android:hint="Mobile Phone"
+                                android:inputType="phone"
+                                android:textColor="@color/cardview_dark_background"
+                                android:textColorHighlight="@color/cardview_dark_background"
+                                android:textColorHint="@color/cardview_dark_background"
+                                android:textColorLink="@color/cardview_dark_background"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/client_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:backgroundTint="@color/loginsignupBackgroundTint"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:enabled="true"
+                                android:hint="Email"
+                                android:inputType="textEmailAddress"
+                                android:textColor="@color/cardview_dark_background"
+                                android:textColorHighlight="@color/cardview_dark_background"
+                                android:textColorHint="@color/cardview_dark_background"
+                                android:textColorLink="@color/cardview_dark_background"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/office_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:backgroundTint="@color/loginsignupBackgroundTint"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:enabled="true"
+                                android:hint="Office Phone"
+                                android:inputType="phone"
+                                android:textColor="@color/cardview_dark_background"
+                                android:textColorHighlight="@color/cardview_dark_background"
+                                android:textColorHint="@color/cardview_dark_background"
+                                android:textColorLink="@color/cardview_dark_background"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/password1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:passwordToggleEnabled="true">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:backgroundTint="@color/loginsignupBackgroundTint"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:enabled="true"
+                                android:hint="Password"
+                                android:inputType="textPassword"
+                                android:textColor="@color/cardview_dark_background"
+                                android:textColorHighlight="@color/cardview_dark_background"
+                                android:textColorHint="@color/cardview_dark_background"
+                                android:textColorLink="@color/cardview_dark_background"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/password2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:passwordToggleEnabled="true">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:backgroundTint="@color/loginsignupBackgroundTint"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:enabled="true"
+                                android:hint="Confirm Password"
+                                android:inputType="textPassword"
+                                android:textColor="@color/cardview_dark_background"
+                                android:textColorHighlight="@color/cardview_dark_background"
+                                android:textColorHint="@color/cardview_dark_background"
+                                android:textColorLink="@color/cardview_dark_background"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:backgroundTint="@color/loginsignupBackgroundTint"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:enabled="true"
+                                android:hint="Address"
+                                android:inputType="textMultiLine"
+                                android:textColor="@color/cardview_dark_background"
+                                android:textColorHighlight="@color/cardview_dark_background"
+                                android:textColorHint="@color/cardview_dark_background"
+                                android:textColorLink="@color/cardview_dark_background"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </android.support.design.widget.TextInputLayout>
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/description"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:backgroundTint="@color/loginsignupBackgroundTint"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:enabled="true"
+                                android:hint="Description"
+                                android:inputType="textMultiLine"
+                                android:textColor="@color/cardview_dark_background"
+                                android:textColorHighlight="@color/cardview_dark_background"
+                                android:textColorHint="@color/cardview_dark_background"
+                                android:textColorLink="@color/cardview_dark_background"
+                                android:textSize="15sp"
+                                android:textStyle="bold" />
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+                <Button
+                    android:id="@+id/btn_saveclient"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"
+                    android:background="@color/colorPrimary"
+                    android:padding="4dp"
+                    android:text="SUBMIT"
+                    android:textColor="#ffffff"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
