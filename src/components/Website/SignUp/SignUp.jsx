@@ -23,11 +23,14 @@ const SignUp = () => {
     return (
         <div>
 
-            <div className='hero-content d-flex flex-row p-0 pb-5 pt-2'>
+            <div className='signup-page p-0 pb-5 pt-2'>
 
-                <div className='content-left mt-5 mb-5'>
 
-                    <p className='content-header'>SMS Gateway</p>
+                <div className='left-side pt-0 gap-4 pl-0'>
+
+                    {/* <img src={bulkMessage} width="100" height="100"/> */}
+
+                    <p className='content-header h2 font-weight-bold '>SMS Gateway</p>
                     <span>Your Customer Engagement Platform</span>
 
                     <button className='hero-button animated bounce'>Sign Up and Start Messaging</button>
@@ -37,12 +40,12 @@ const SignUp = () => {
                     </span>
                 </div>
 
-                <div className='form-holder shadow p-3 mt-2 mb-5 bg-white h-100 gap-2 pb-5'>
-                    <span className='form-title'>Create Account </span>
+                <div className='form-holder shadow p-3 mt-4 mb-5 bg-white h-100 gap-2 pb-5'>
+                    <span className='form-title font-weight-bold h4'>Create Account </span>
                     <hr color='white' />
 
-                    <form className='d-flex flex-column gap-3' 
-                    encType='multipart/form-data' 
+                    <form className='d-flex flex-column gap-3'
+                        encType='multipart/form-data'
                     // onSubmit={login}
                     >
                         <div>
@@ -53,7 +56,7 @@ const SignUp = () => {
                                 onChange={(e) => setUsername(e.target.value)}
                                 value={username}
                             />
-                            </div>
+                        </div>
                         <div>
                             <input
                                 type="text"
@@ -70,7 +73,7 @@ const SignUp = () => {
                                 onChange={(e) => setUsername(e.target.value)}
                                 value={username}
                             />
-                            </div>
+                        </div>
                         <div>
                             <input
                                 type="text"
@@ -95,7 +98,7 @@ const SignUp = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
-                        <button type="submit" className='app-buttons w-100 text-dark'> Log In </button>
+                        <button type="submit" className='app-buttons w-75 ml-5 text-dark'> Sign Up </button>
 
 
                     </form>

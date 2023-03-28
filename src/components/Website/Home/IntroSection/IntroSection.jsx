@@ -17,12 +17,12 @@ const IntroSection = () => {
 
             {/* Intouchsms introduction*/}
 
-            <div className='row-section gap-2'>
+            <div className='row-section gap-1'>
                 <div className='col-left'>
                     <AnimationOnScroll animateIn='animate__bounceIn'>
-                        <div className='about-left text-center rounded-pill w-75 h-100 pt-4 pb-4'>
-                            <h3>{date}</h3>
-                            <p>Years <br />of Creativity +Innovation</p>
+                        <div className='about-left text-center rounded-pill'>
+                            <h3 className='h1 font-weight-bold'>{date}+</h3>
+                            <p className='h4'>Years <br />of Creativity +Innovation</p>
                         </div>
                     </AnimationOnScroll>
                 </div>
@@ -31,10 +31,11 @@ const IntroSection = () => {
                     <div className='about-right'>
 
                         <div className='about-right-title'>
-                            <h2>Unified SMS Communication</h2>
-                            <h4>Since 2014</h4>
+                            <h2 className='h1'>Unified SMS Communication</h2>
+                            <h4 className='h2'>Since 2014</h4>
                         </div>
 
+                        <div className='about-right-text'>
 
                         <p>Intouch Communications SMS Gateway enables you to manage your bulk messaging needs in a simple, cost effective way.
                             Empowering organisations in the business and public sectors to communicate better with their customers and colleagues, through our simple and intuitive online platform, and via our high-performance APIs.
@@ -51,12 +52,14 @@ const IntroSection = () => {
                             </ul>
                         </p>
 
+                        </div>
+
                     </div>
                 </div>
 
             </div>
             {/* End of Intouchsms introduction */}
-            <hr />
+            <hr color="grey"/>
 
 
             {/* Capabilities of Intouchsms */}
@@ -69,8 +72,8 @@ const IntroSection = () => {
                 <div className='col-left'>
                     <AnimationOnScroll animateIn='animate__bounceIn'>
                         <div className='about-left text-center'>
-                            <h3>HTTP API</h3>
-                            <p>Application to Person (A2P) Messaging</p>
+                            <h3 className='h2'>HTTP API</h3>
+                            <p className='h6 font-weight-normal'>Application to Person (A2P) Messaging</p>
                         </div>
                     </AnimationOnScroll>
                 </div>
@@ -86,12 +89,12 @@ const IntroSection = () => {
                 </div>
 
             </div>
-            <hr />
+            {/* <hr /> */}
             <div className='row-section'>
                 <div className='col-left'>
                     <AnimationOnScroll animateIn='animate__bounceIn'>
                         <div className='about-left text-center'>
-                            <h3>SMPP Access</h3>
+                            <h3 className='h2'>SMPP Access</h3>
                             <p>Carrier Grade SMS Messaging</p>
                         </div>
                     </AnimationOnScroll>
@@ -118,12 +121,12 @@ const IntroSection = () => {
                 </div>
 
             </div>
-            <hr />
+            {/* <hr /> */}
             <div className='row-section'>
                 <div className='col-left'>
                     <AnimationOnScroll animateIn='animate__bounceIn'>
                         <div className='about-left text-center'>
-                            <h3>Web Portal</h3>
+                            <h3 className='h2'>Web Portal</h3>
                             <p>All-in-One Dashboard</p>
                         </div>
                     </AnimationOnScroll>
@@ -155,7 +158,7 @@ const IntroSection = () => {
                 <div className='col-left'>
                     <AnimationOnScroll animateIn='animate__bounceIn'>
                         <div className='about-left text-center'>
-                            <h3>Business Accounts</h3>
+                            <h3 className='h2'>Business Accounts</h3>
                             <p>Agents + SMS Reseller</p>
                         </div>
                     </AnimationOnScroll>

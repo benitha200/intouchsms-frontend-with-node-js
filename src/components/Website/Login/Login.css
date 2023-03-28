@@ -30,7 +30,7 @@
 
 } */
 
-.login-page{
+.login-page {
     /* background-image: url("../../../../assets/images/bgi2.png"); */
     background-image: url("../../../assets/images/bgi8.png");
     background-size: cover;
@@ -72,10 +72,10 @@
     height: auto;
 }
 
-.left{
+.left {
     display: flex;
     flex-direction: column;
-    
+
 }
 
 @media screen and (max-width:800px) {
@@ -96,15 +96,13 @@
         width: 100%;
     }
 
-    .form-holder{
+    .form-holder {
         width: 100% !important;
     }
 
     .hero-img {
         display: none;
     }
-   
-
 
 }
 
@@ -202,8 +200,8 @@
 
 }
 
-.form-control{
-    border:none;
+.form-control {
+    border: none;
     /* height: 4rem; */
 }
 
