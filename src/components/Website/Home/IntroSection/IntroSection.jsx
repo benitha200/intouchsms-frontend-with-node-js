@@ -5,6 +5,7 @@ import computers from  '../../../../assets/images/sw5.jpg'
 import payment from '../../../../assets/images/payments5.jpg'
 import messaging from '../../../../assets/images/messaging5.jpg'
 import ussd from '../../../../assets/images/ussd5.jpg'
+import { ArrowRight, ArrowRightSharp } from '@mui/icons-material'
 
 const IntroSection = () => {
 
@@ -83,7 +84,8 @@ const IntroSection = () => {
 
                         <p>Commonly known as an Enterprise Messaging Solution, A2P (Application-to-Person) is the process that involves an application that sends messages to a mobile user. Besides, A2P can also be used as a customer service tool, activation and authentication mechanism. Typical uses of A2P include travel updates, banking messages and many other value-add messages.</p>
                         <p>IntouchSMS A2P gives you a highly customizable, cost-effective, reliable yet fast plug-and-play system using our standard HTTP APIs.</p>
-
+                    
+                        <button className='home-buttons'> Read More <ArrowRight/></button>
 
                     </div>
                 </div>
@@ -117,6 +119,8 @@ const IntroSection = () => {
                             
                         </p>
 
+                        <button className='home-buttons'> Read More <ArrowRight/></button>
+
                     </div>
                 </div>
 
@@ -148,12 +152,14 @@ const IntroSection = () => {
                             <li>Access reports and export them to Excel or PDF</li>
                         </ul>
 
+                        <button className='home-buttons'> Read More <ArrowRight/></button>
+
                     </div>
                 </div>
 
             </div>
 
-            <hr />
+        
             <div className='row-section'>
                 <div className='col-left'>
                     <AnimationOnScroll animateIn='animate__bounceIn'>
@@ -179,6 +185,8 @@ const IntroSection = () => {
                             <li> access 24/7 technical support.</li>
                             </ul>
                         </p>
+
+                        <button className='home-buttons'> Read More <ArrowRight/></button>
 
                     </div>
                 </div>

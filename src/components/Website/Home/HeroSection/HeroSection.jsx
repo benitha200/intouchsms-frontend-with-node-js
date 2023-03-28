@@ -15,17 +15,17 @@ const HeroSection = () => {
         <div className='content-left'>
 
           <p className='content-header'>SMS Gateway</p>
-          <span>Your Customer Engagement Platform</span>
+          <span className='hero-text'>Your Customer Engagement Platform</span>
 
-          <button className='hero-button animated bounce'>Sign Up and Start Messaging</button>
+          <button className='hero-button animated bounce w-50'>Sign Up and Start Messaging</button>
 
-          <span>
+          <span className='hero-text'>
             With simple API intergration and cost-effective solutions,<br/> we connect you to your customers
           </span>
         </div>
-        <div className='right-content d-flex flex-column gap-2'>
+        <div className='right-content d-flex flex-column gap-2 w-25'>
           {/* <img classname='content-img' width='200' height='150' src={messaging}/> */}
-          <img className='content-right-img w-100' src={messaging} />
+          <img className='content-right-img' src={messaging} />
           <div className='content-right-text'> 
             <span>Stay Connected</span>
           </div>

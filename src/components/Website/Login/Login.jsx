@@ -69,7 +69,7 @@ const Login = ({ setToken }) => {
             With simple API intergration and cost-effective solutions,<br /> we connect you to your customers
           </span>
         </div>
-        <div className='form-holder shadow p-3 mb-5 bg-white h-100 gap-2 pb-5 mt-5'>
+        <div className='form-holder shadow p-3 mb-5 bg-light h-100 gap-2 pb-5 mt-5'>
           {/* <div className='login-form'> */}
           <div className='pt-5'>
             <span className='form-title font-weight-bold h4'>Login </span>

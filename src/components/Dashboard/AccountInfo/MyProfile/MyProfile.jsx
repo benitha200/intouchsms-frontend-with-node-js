@@ -19,7 +19,7 @@ import Modal from 'react-bootstrap/Modal';
 import './MyProfile.css';
 import { responsiveFontSizes, Typography } from '@material-ui/core';
 // import { BsKey, BsKeyFill, BsSearch } from 'react-icons/bs';
-import {Link,Outlet} from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { BsCashCoin, BsCashStack, BsCheck2Square, BsCode, BsEnvelopeFill, BsHouseFill, BsInfoCircle, BsInfoLg, BsKey, BsKeyFill, BsMailbox, BsMap, BsPerson, BsPersonBadgeFill, BsPersonCheck, BsPersonCheckFill, BsPersonFill, BsPersonX, BsPhoneFill, BsPlusCircleFill, BsSortNumericDown, BsTelephoneFill, BsTelephoneInboundFill } from 'react-icons/bs';
 
 
@@ -32,6 +32,12 @@ const MyProfile = ({ token }) => {
   const [profile, setProfile] = React.useState('');
   const [senderNames, setSenderNames] = useState('');
 
+  // change password
+
+  const [newpassword, setNewpassword] = useState('')
+  const [confirmpass, setConfirmpass] = useState('')
+  const [message, setMessage] = useState('')
+
   // Modal
 
 
@@ -40,9 +46,7 @@ const MyProfile = ({ token }) => {
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  }
+
 
   // get profile
 
@@ -83,7 +87,33 @@ const MyProfile = ({ token }) => {
 
   // console.log(senderNames)
 
+  function changePassword(e) {
+    e.preventDefault();
+    var formdata = new FormData();
+    if (newpassword !== confirmpass) {
+      setMessage("Passwords doesn't match")
+      window.location.reload(false)
+    }
+    else{
 
+    formdata.append("new_pass", newpassword);
+
+    var requestOptions = {
+      method: 'POST',
+      headers: {
+        'Authorization': `Token ${token}`,
+      },
+      body: formdata, 
+    };
+
+    fetch("http://127.0.0.1:8000/api/changepassword", requestOptions)
+      .then(response => response.text())
+      .then(result => setMessage(convertToJson(result).msg))
+      .catch(error => console.log('error', error));
+      window.location.reload(false)
+
+    }
+  }
 
 
   function convertToJson(response) {
@@ -116,14 +146,14 @@ const MyProfile = ({ token }) => {
         <div className='profile-form m-3'>
           {profile && (
             <Form >
-              <span className="profile-header pt-0"><BsPersonFill/> My profile</span>
-              <hr/>
+              <span className="profile-header pt-0"><BsPersonFill /> My profile</span>
+              <hr />
 
               <div className='d-flex flex-col mb-1 gap-1'>
                 <InputGroup>
                   {/* <Form.Label>New Password</Form.Label> */}
                   <InputGroup.Text className="w-25 gap-2">
-                    <BsPersonBadgeFill/>
+                    <BsPersonBadgeFill />
                     Customer No
                   </InputGroup.Text>
                   <Form.Control type='text' className='text-right bg-white' value={profile.response.customerno} readOnly></Form.Control>
@@ -145,7 +175,7 @@ const MyProfile = ({ token }) => {
                 <InputGroup>
                   {/* <Form.Label>New Password</Form.Label> */}
                   <InputGroup.Text className="w-25 gap-2">
-                    <BsPerson/>
+                    <BsPerson />
                     Names
                   </InputGroup.Text>
                   <Form.Control type='text' className='text-right bg-white' value={profile.response.names} readOnly></Form.Control>
@@ -155,7 +185,7 @@ const MyProfile = ({ token }) => {
                 <InputGroup>
                   {/* <Form.Label>New Password</Form.Label> */}
                   <InputGroup.Text className="w-25 gap-2">
-                    <BsTelephoneFill/>
+                    <BsTelephoneFill />
                     Mobile Phone
                   </InputGroup.Text>
                   <Form.Control type='text' className='text-right bg-white' value={profile.response.mobilephone} readOnly></Form.Control>
@@ -165,7 +195,7 @@ const MyProfile = ({ token }) => {
                 <InputGroup>
                   {/* <Form.Label>New Password</Form.Label> */}
                   <InputGroup.Text className="w-25 gap-2">
-                    <BsTelephoneInboundFill/>
+                    <BsTelephoneInboundFill />
                     Office Phone
                   </InputGroup.Text>
                   <Form.Control type='text' className='text-right bg-white' value={profile.response.officephone} readOnly></Form.Control>
@@ -176,7 +206,7 @@ const MyProfile = ({ token }) => {
                 <InputGroup>
                   {/* <Form.Label>New Password</Form.Label> */}
                   <InputGroup.Text className="w-25 gap-2">
-                    <BsEnvelopeFill/>
+                    <BsEnvelopeFill />
                     Email
                   </InputGroup.Text>
                   <Form.Control type='text' className='text-right bg-white' value={profile.response.email} readOnly></Form.Control>
@@ -186,7 +216,7 @@ const MyProfile = ({ token }) => {
                 <InputGroup>
                   {/* <Form.Label>New Password</Form.Label> */}
                   <InputGroup.Text className="w-25 gap-2">
-                    <BsHouseFill/>
+                    <BsHouseFill />
                     Company
                   </InputGroup.Text>
                   <Form.Control type='text' className='text-right bg-white' value={profile.response.company} readOnly></Form.Control>
@@ -196,7 +226,7 @@ const MyProfile = ({ token }) => {
                 <InputGroup>
                   {/* <Form.Label>New Password</Form.Label> */}
                   <InputGroup.Text className="w-25 gap-2">
-                    <BsMap/>
+                    <BsMap />
                     Address
                   </InputGroup.Text>
                   <Form.Control type='text' className='text-right bg-white' value={profile.response.address} readOnly></Form.Control>
@@ -206,7 +236,7 @@ const MyProfile = ({ token }) => {
                 <InputGroup>
                   {/* <Form.Label>New Password</Form.Label> */}
                   <InputGroup.Text className="w-25 gap-2">
-                    <BsCashCoin/>
+                    <BsCashCoin />
                     Account Bal
                   </InputGroup.Text>
                   <Form.Control type='text' className='text-right bg-white' value={profile.response.creditsbalance} readOnly></Form.Control>
@@ -217,7 +247,7 @@ const MyProfile = ({ token }) => {
                 <InputGroup>
                   {/* <Form.Label>New Password</Form.Label> */}
                   <InputGroup.Text className="w-25 gap-2">
-                    <BsCashStack/>
+                    <BsCashStack />
                     Commission bal
                   </InputGroup.Text>
                   <Form.Control type='text' className='text-right bg-white' value={profile.response.commissionbalance} readOnly></Form.Control>
@@ -227,7 +257,7 @@ const MyProfile = ({ token }) => {
                 <InputGroup>
                   {/* <Form.Label>New Password</Form.Label> */}
                   <InputGroup.Text className="w-25 gap-2">
-                    <BsKeyFill/>
+                    <BsKeyFill />
                     Auth Token
                   </InputGroup.Text>
                   <Form.Control type='text' className='text-right bg-white' value={profile.response.authtoken}></Form.Control>
@@ -249,7 +279,7 @@ const MyProfile = ({ token }) => {
                 <Modal.Header className='modal-header' closeButton>
                   <span className='contact-modal-title'><i className='fa fa-key'></i> CHANGE PASSWORD</span>
                 </Modal.Header>
-                <Form >
+                <form encType='multipart/form-data' onSubmit={changePassword} >
                   <Modal.Body>
 
                     <InputGroup className='mb-3'>
@@ -257,14 +287,28 @@ const MyProfile = ({ token }) => {
                       <InputGroup.Text>
                         <BsKey />
                       </InputGroup.Text>
-                      <Form.Control type='password' placeholder='New Password' required></Form.Control>
+                      <Form.Control
+                        type='password'
+                        placeholder='New Password'
+                        onChange={(e) => setNewpassword(e.target.value)}
+                        value={newpassword}
+                        required />
+
+
                     </InputGroup>
 
                     <InputGroup>
                       <InputGroup.Text><BsKeyFill /></InputGroup.Text>
                       {/* {/* <Form.Label>Confirm New password</Form.Label> */}
-                      <Form.Control type='password' placeholder='Confirm New Password' required></Form.Control>
+                      <Form.Control
+                        type='password'
+                        placeholder='Confirm New Password'
+                        onChange={(e) => setConfirmpass(e.target.value)}
+                        value={confirmpass}
+                        required />
                     </InputGroup>
+
+                    {message && (<span className="text-danger mt-2"><b><i>{message}</i></b></span>)}
 
 
 
@@ -273,12 +317,12 @@ const MyProfile = ({ token }) => {
                   </Modal.Body>
                   <Modal.Footer>
 
-                    <Button className='btn btn-dark opacity-60' type='submit'>Save Changes</Button>
+                    <button className='btn btn-dark opacity-60' type='submit'>Save Changes</button>
 
-                    <Button className='btn btn-dark opacity-60' onClick={handleClose}> Cancel</Button>
+                    <button className='btn btn-dark opacity-60' onClick={handleClose}> Cancel</button>
 
                   </Modal.Footer>
-                </Form>
+                </form>
 
               </Modal>
 
@@ -503,7 +547,7 @@ const MyProfile = ({ token }) => {
 
         <div className='profile-contents'>
 
-          <Paper sx={{height:'100%'}}>
+          <Paper sx={{ height: '100%' }}>
             {/* <div className='profile-headers xl-2'>
               <button className='profile-header-buttons me-2'> My Sender Names</button>
               <button className='profile-header-buttons me-2' > My Shortcuts </button>
@@ -521,7 +565,7 @@ const MyProfile = ({ token }) => {
                 <li className="nav-item">
                   <Link to="/account-info/my-credit-transfers/" className="nav-link active">My Keywords</Link>
                 </li>
-              
+
               </ul>
               <Outlet />
             </div>

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
 :root {
   --black: #333;
   --yellow: #f9cc41;
@@ -11,12 +14,13 @@
   font-weight: 500; */
   margin: 0;
   padding: 0;
-  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
+  /* font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif; */
   font-weight: normal;
   line-height: 1.5;
   /* color: #0a0a0a; */
   -webkit-font-smoothing: antialiased;
-  font-size: 12px;
+  font-size: 11px;
   /* font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif; */
   /* font-weight:500; */
 }

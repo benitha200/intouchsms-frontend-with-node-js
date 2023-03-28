@@ -32,7 +32,7 @@
 
 .login-page {
     /* background-image: url("../../../../assets/images/bgi2.png"); */
-    background-image: url("../../../assets/images/bgi8.png");
+    background-image: url("../../../assets/images/bgi15.png");
     background-size: cover;
     width: 100%;
     height: 100%;
@@ -75,6 +75,7 @@
 .left {
     display: flex;
     flex-direction: column;
+    color: whitesmoke;
 
 }
 
