@@ -1,5 +1,5 @@
 import { Autocomplete, Box, Container, FormGroup, InputLabel, Paper, Stack, TextField, Typography } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
@@ -9,21 +9,60 @@ import { Pane } from 'split-pane-react'
 import SplitPane from 'split-pane-react/esm/SplitPane'
 import Button from "@mui/material/Button"
 import './Send.css'
+import { AutoComplete } from "@mui/material"
+import MessageLogSummary from './MessageLogSummary/MessageLogSummary';
+
 const senderNames = [
   { label: 'Test1' },
   { label: 'Test2' },
 ];
 
-const Send = () => {
+const Send = ({ token }) => {
   const [counter, setCounter] = useState([0])
-  const [recipients,setRecipients]=useState()
-  const [sender,setSender]=useState()
-  const [message,setMessage]=useState()
+  const [recipients, setRecipients] = useState()
 
+  const [sender, setSender] = useState()
+  const [selectedSenderName, setSelectedSenderName] = useState('')
+  const [message, setMessage] = useState()
+
+  let senderName_requestOptions = {
+    method: "GET",
+    headers: {
+      'Authorization': `Token ${token}`
+    },
+    redirect: 'follow'
+  }
+
+  // for getting valid json list
+  function convertToJsonList(response) {
+    let json_string = JSON.stringify(response[0]).replace('success', '"success"');
+    // json_string = json_string.replace("msg", "'msg'");
+    let data = json_string.startsWith("'");
+    data = json_string.endsWith("'");
+    data = json_string.substring(1, json_string.length - 1);
+    data = data.replace(/\\/g, '');
+    console.log(data);
+    return JSON.parse(data)
+  }
+
+  useEffect(() => {
+
+    fetch("http://127.0.0.1:8000/api/getsendernames", senderName_requestOptions)
+      .then(response => response.json())
+      .then(result => setSender(convertToJsonList(result)))
+      .catch(error => console.log('error', error))
+  }, [])
+
+  function handleSelect(event) {
+    setSelectedSenderName(event.target.value)
+  }
 
   function send_message() {
 
+
   }
+
+
 
   return (
     <div className='send-container'>
@@ -47,53 +86,47 @@ const Send = () => {
             <div className="form-outline">
               <label className="form-label" for="textAreaExample">Phone Number</label>
               <textarea
-               className="form-control form-control-sm" 
-               id="textAreaExample" 
-               rows="4"
-               onChange={(e)=>setRecipients(e.target.value)}
-               value={recipients}
-               />
+                className="form-control form-control-sm"
+                id="textAreaExample"
+                rows="4"
+                onChange={(e) => setRecipients(e.target.value)}
+                value={recipients}
+              />
             </div>
 
             <div className="form-outline">
               <label className="form-label" for="formControlSm">Load Contact File(Excel Format)</label>
               <input type="file" id="formControlSm" className="form-control form-control-sm" />
             </div>
+          
+          <div className="form-outline">
+            <label className='form-label' for="formControlSm">Sender Name</label>
 
-            <div className="form-outline">
-              <label className="form-label" for="formControlSm">From:</label>
-              <select className="form-control" data-mdb-filter="true">
-                <option value="test1">Test1</option>
-                <option value="test2">Test2</option>
-                <option value="test3">Test3</option>
-                <option value="test4">Test4</option>
-              </select>
+          </div>
+            <select className="form-select" onChange={handleSelect} required>
+              <option value="">Select an Sender Name</option>
+              {sender && sender.response.map(sendername => (
+                <option key={sendername.fields.sender.fields.sendername} value={sendername.fields.sender.fields.sendername}>
+                  {sendername.fields.sender.fields.sendername}
+                </option>
+              ))}
+            </select>
 
-            </div>
-
-
-            {/*<FormGroup>
-              <Label>
-                From:
-              </Label>
-              <Autocomplete
-                disablePortal
-                id='combo-box'
-                options={senderNames}
-                size="small"
-                sx={{ width: { sm: 100, md: 280 } }}
-                renderInput={(params) => <TextField {...params} label="Sender Names" />}
-              />
-            </FormGroup> */}
 
             <div className="form-outline">
               <label className="form-label" for="textAreaExample">Message</label>
-              <textarea className="form-control form-control-sm" id="textAreaExample" rows="4"></textarea>
+              <textarea
+               className="form-control form-control-sm" 
+               id="textAreaExample"
+               rows="4"
+               value={message}
+               onChange={(e)=>setMessage(e.target.value)}
+                />
               <span>{counter} characters of message 1</span>
             </div>
 
             <FormGroup>
-              <button className='app-buttons' color='secondary' >Send</button>
+              <button className='app-buttons' color='secondary' disabled >Send</button>
             </FormGroup>
             {/* </Form> */}
           </form>
@@ -107,37 +140,7 @@ const Send = () => {
 
       <div className='right-side'>
         <div className='message-log-table'>
-          <MDBTable className='table-stripped caption-top'>
-            <caption>List of users</caption>
-            <MDBTableHead>
-              <tr>
-                <th scope='col'>#</th>
-                <th scope='col'>First</th>
-                <th scope='col'>Last</th>
-                <th scope='col'>Handle</th>
-              </tr>
-            </MDBTableHead>
-            <MDBTableBody>
-              <tr>
-                <th scope='row'>1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope='row'>2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope='row'>3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </MDBTableBody>
-          </MDBTable>
+          <MessageLogSummary token={token}/>
         </div>
         <div className='message-log-table'>
           <MDBTable className='caption-top'>

@@ -303,7 +303,7 @@ const Contacts = ({ token }) => {
                 <hr />
                 <div>
                     <div className="btn-group contact-table-headers ">
-                        <Button variant='primary' type="button" className='contact-buttons text-dark bg-transparent p-2 m-0 ml-1' onClick={handleShow}><BsPlusSquare /> Add</Button>
+                        <Button type="button" className='contact-buttons text-dark bg-transparent p-2 m-0 ml-1 btn btn-light' onClick={handleShow}><BsPlusSquare /> Add</Button>
                         <button type="button" className='contact-buttons text-dark bg-transparent'><BsPenFill /> View&Modify</button>
                         <button type="button" className='contact-buttons text-dark bg-transparent'><BsFileArrowUpFill /> Import..Contacts</button>
                         <button type="button" className='contact-buttons text-dark bg-transparent'><BsFillArrowUpRightSquareFill /> Refresh</button>

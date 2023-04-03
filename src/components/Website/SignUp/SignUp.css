@@ -1,4 +1,5 @@
 .content-right {
+    margin-top: 10rem;
     height: auto;
     width: 40%;
 }
@@ -8,12 +9,12 @@
 .signup-page{
     display: flex;
     flex-direction: row;
-    background-image: url("../../../assets/images/bgi8.png");
+    background-image: url("../../../assets/images/bgi24.png");
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    padding-top: 2rem;
+    padding-top: 4rem;
     justify-content: space-between;
     padding-bottom: 5rem;
 }
@@ -35,4 +36,12 @@
     margin-bottom: 5rem;
     padding-bottom: 18rem;
 
+}
+.left-side{
+    margin-top: 15rem;
+    
+}
+.signup-text{
+    font-size: 500;
+    font-size: 14px !important;
 }

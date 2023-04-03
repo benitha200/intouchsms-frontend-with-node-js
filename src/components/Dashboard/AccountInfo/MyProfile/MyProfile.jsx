@@ -23,10 +23,30 @@ import { Link, Outlet } from 'react-router-dom';
 import { BsCashCoin, BsCashStack, BsCheck2Square, BsCode, BsEnvelopeFill, BsHouseFill, BsInfoCircle, BsInfoLg, BsKey, BsKeyFill, BsMailbox, BsMap, BsPerson, BsPersonBadgeFill, BsPersonCheck, BsPersonCheckFill, BsPersonFill, BsPersonX, BsPhoneFill, BsPlusCircleFill, BsSortNumericDown, BsTelephoneFill, BsTelephoneInboundFill } from 'react-icons/bs';
 
 
+const columns = [
 
+  {
+    id: 'sendername',
+    label: 'Sender Names',
+    minWidth: 100,
+    align: 'left',
+    format: (value) => value.toLocaleString('en-US'),
+  },
+  {
+    id: 'expires',
+    label: 'Expires',
+    minWidth: 50,
+    align: 'left',
+    format: (value) => value.toLocaleString('en-US'),
+  },
+
+
+
+];
 const MyProfile = ({ token }) => {
 
-
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   // actual states
   const [profile, setProfile] = React.useState('');
@@ -87,6 +107,16 @@ const MyProfile = ({ token }) => {
 
   // console.log(senderNames)
 
+
+     const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
   function changePassword(e) {
     e.preventDefault();
     var formdata = new FormData();
@@ -94,22 +124,22 @@ const MyProfile = ({ token }) => {
       setMessage("Passwords doesn't match")
       window.location.reload(false)
     }
-    else{
+    else {
 
-    formdata.append("new_pass", newpassword);
+      formdata.append("new_pass", newpassword);
 
-    var requestOptions = {
-      method: 'POST',
-      headers: {
-        'Authorization': `Token ${token}`,
-      },
-      body: formdata, 
-    };
+      var requestOptions = {
+        method: 'POST',
+        headers: {
+          'Authorization': `Token ${token}`,
+        },
+        body: formdata,
+      };
 
-    fetch("http://127.0.0.1:8000/api/changepassword", requestOptions)
-      .then(response => response.text())
-      .then(result => setMessage(convertToJson(result).msg))
-      .catch(error => console.log('error', error));
+      fetch("http://127.0.0.1:8000/api/changepassword", requestOptions)
+        .then(response => response.text())
+        .then(result => setMessage(convertToJson(result).msg))
+        .catch(error => console.log('error', error));
       window.location.reload(false)
 
     }
@@ -334,216 +364,7 @@ const MyProfile = ({ token }) => {
 
 
         </div>
-        {/* 
-        <div className='profile-form m-4' >
-          <Typography className='profile-header'>My Profile</Typography>
-          
-          <Form>
-          {profile && (
-            <>
-            <Stack direction="row" gap={1}>
-           
-                <TextField
-                  id="outlined-read-only-input"
-                  className='form-text-input'
-                  label="Customer No"
-                  value={profile.response.customerno}
-                  size='small'
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-
-             
-                <TextField
-                  id="outlined-read-only-input"
-                  label="Username"
-                  value={profile.response.username}
-                  size='small'
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-          
-            </Stack>
-
-            <Stack direction="row" gap={1}>
-
-                <TextField
-                  id="outlined-read-only-input"
-                  label="Names"
-                  value={profile.response.names}
-                  size='small'
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-              
-                <TextField
-                  id="outlined-read-only-input"
-                  label="Mobile Phone"
-                  value={profile.response.mobilephone}
-                  size='small'
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-            </Stack>
-            <Stack direction="row" gap={1}>
-
-                <TextField
-                  id="outlined-read-only-input"
-                  label="Office Phone"
-                  value={profile.response.officephone}
-                  size='small'
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-                <TextField
-                  id="outlined-read-only-input"
-                  label="Email"
-                  value={profile.response.email}
-                  size='small'
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-            </Stack>
-            <Stack direction="row" gap={1}>
-
-                <TextField
-                  id="outlined-read-only-input"
-                  label="Company"
-                  value={profile.response.company}
-                  size='small'
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-              
-                <TextField
-                  id="outlined-read-only-input"
-                  label="Address"
-                  value={profile.response.address}
-                  size='small'
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-             
-            </Stack>
-            <Stack direction="row" gap={1}>
-
-             
-                <TextField
-                  id="outlined-read-only-input"
-                  label="Account Bal" 
-                  value={profile.response.creditsbalance}
-                  size='small'
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-             
-            
-                <TextField
-                  id="outlined-read-only-input"
-                  label="Commission Bal"
-                  value={profile.response.commissionbalance}
-                  size='small'
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-              
-            </Stack>
-            <Stack direction="column">
-              <TextField
-                id="outlined-read-only-input"
-                label="Auth Token"
-                value={profile.response.authtoken}
-                size='small'
-                InputProps={{
-                  readOnly: true,
-                }}
-              />
-            </Stack>
-            </>
-             )}
-
-            <Stack direction="row" gap={1}>
-      
-           
-
-                <button className='profile-buttons mt-2'>
-                  Generate Token
-                </button>
-            
-
-
-
-
-          
-                <Button
-                  className='app-buttons mt-0 mr-2 text-dark' onClick={handleShow}
-                >Change Password</Button>
-
-                {/* Add Modal
-
-                <Modal show={show} onHide={handleClose} className="modal">
-                  <Modal.Header className='modal-header' closeButton>
-                    <span className='contact-modal-title'><i className='fa fa-key'></i> CHANGE PASSWORD</span>
-                  </Modal.Header>
-                  <Form >
-                    <Modal.Body>
-
-
-                      {/* <InputGroup className="mb-3">
-                        <InputGroup.Text>
-                          <BsSearch />
-                        </InputGroup.Text>
-                        <Form.Control placeholder="Search" aria-label="Search" />
-                      </InputGroup> 
-
-                      <InputGroup className='mb-3'>
-                        {/* <Form.Label>New Password</Form.Label>
-                        <InputGroup.Text>
-                          <BsKey />
-                        </InputGroup.Text>
-                        <Form.Control type='password' placeholder='New Password' required></Form.Control>
-                      </InputGroup>
-
-                      <InputGroup>
-                        <InputGroup.Text><BsKeyFill /></InputGroup.Text>
-                        {/* <Form.Label>Confirm New password</Form.Label>
-                        <Form.Control type='password' placeholder='Confirm New Password' required></Form.Control>
-                      </InputGroup>
-
-
-
-
-
-                    </Modal.Body>
-                    <Modal.Footer>
-
-                      <Button className='btn btn-dark opacity-60' type='submit'>Save Changes</Button>
-
-                      <Button className='btn btn-dark opacity-60' onClick={handleClose}> Cancel</Button>
-
-                    </Modal.Footer>
-                  </Form>
-
-                </Modal>
-
-
-                {/* end modal 
-                <button className='profile-buttons mt-2'>Save Changes</button>
-              
-            </Stack>
-          </Form>
-
-        </div> */}
+     
 
         <div className='profile-contents'>
 
@@ -598,6 +419,50 @@ const MyProfile = ({ token }) => {
               </Table>
             </TableContainer> */}
 
+
+<TableContainer sx={{ maxHeight: 440 }}>
+                <Table stickyHeader aria-label="sticky table">
+                    <TableHead className='my-clients-table'>
+
+                    <TableRow>
+                            {columns.map((column) => (
+                                <TableCell
+                                    key={column.id}
+                                    align={column.align}
+                                    style={{ top: 0, minWidth: column.minWidth,backgroundColor:"lightgrey" }}
+                                >
+                                    {column.label}
+                                </TableCell>
+                            ))}
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {senderNames && senderNames.response
+                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                .map((sendername) => {
+                                    return (
+                                        <TableRow hover role="checkbox" tabIndex={-1} key={sendername.fields.sender.pk}>
+                                            <TableCell>{sendername.fields.sender.fields.sendername}</TableCell>
+                                            <TableCell>{sendername.fields.expires}</TableCell>
+                                            
+
+
+                                        </TableRow>
+                                    )
+                                })}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            <TablePagination
+                rowsPerPageOptions={[10, 25, 100]}
+                component="div"
+                count={10}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+            />
+{/* 
             <table className='table table-hover w-100 pt-0' style={{ height: '100%', fontFamily: 'verdana', fontWeight: 'bold' }}>
               <thead className='table-headers'>
                 <tr>
@@ -618,7 +483,7 @@ const MyProfile = ({ token }) => {
 
               </tbody>
 
-            </table>
+            </table> */}
           </Paper>
         </div >
         <br />

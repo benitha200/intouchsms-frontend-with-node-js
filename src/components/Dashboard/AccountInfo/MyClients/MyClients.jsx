@@ -17,7 +17,7 @@ import './MyClients.css';
 import { TextField } from '@mui/material';
 // import { Form, Label, FormGroup, Input, CloseButton } from 'reactstrap'
 import { Helmet } from 'react-helmet';
-import { BsCalendar2CheckFill, BsCalendarDate, BsCash, BsCashCoin, BsCheck2Square, BsEnvelopeFill, BsHouseFill, BsInfoCircle, BsInfoLg, BsKey, BsKeyFill, BsMailbox, BsPerson, BsPersonBadge, BsPersonCheck, BsPersonCheckFill, BsPersonFill, BsPersonX, BsPhoneFill, BsPlusCircleFill, BsTelephoneFill } from 'react-icons/bs';
+import { BsCalendar2CheckFill, BsCalendarDate, BsCash, BsCashCoin, BsCheck2Square, BsEnvelopeFill, BsHouseFill, BsInfoCircle, BsInfoLg, BsKey, BsKeyFill, BsMailbox, BsPeopleFill, BsPerson, BsPersonBadge, BsPersonCheck, BsPersonCheckFill, BsPersonFill, BsPersonX, BsPhoneFill, BsPlusCircleFill, BsTelephoneFill } from 'react-icons/bs';
 import { useState } from 'react';
 import { Form, Input } from 'reactstrap'
 
@@ -26,57 +26,57 @@ const columns = [
     {
         id: 'agentNo',
         label: 'Agent No',
-        minWidth: 170,
-        align: 'right',
+        minWidth: 100,
+        align: 'left',
         format: (value) => value.toLocaleString('en-US'),
     },
     {
         id: 'username',
         label: 'User Name',
-        minWidth: 170,
-        align: 'right',
+        minWidth: 100,
+        align: 'left',
         format: (value) => value.toLocaleString('en-US'),
     },
     {
         id: 'agentNames',
         label: 'Agent Names',
-        minWidth: 170,
-        align: 'right',
+        minWidth: 100,
+        align: 'left',
         format: (value) => value.toLocaleString('en-US'),
     },
     {
         id: 'phone',
         label: 'Mobile Phone',
-        minWidth: 170,
-        align: 'right',
+        minWidth: 100,
+        align: 'left',
         format: (value) => value.toLocaleString('en-US'),
     },
     {
         id: 'accountBal',
         label: 'Account Bal.(Rwf)',
-        minWidth: 170,
-        align: 'right',
+        minWidth: 100,
+        align: 'left',
         format: (value) => value.toLocaleString('en-US'),
     },
     {
         id: 'active',
         label: 'Active',
-        minWidth: 170,
-        align: 'right',
-        format: (value) => value.toLocaleString('en-US'),
+        minWidth: 50,
+        align: 'left',
+        // format: (value) => value.toLocaleString('en-US'),
     },
     {
         id: 'lastLogin',
         label: 'Last Login',
-        minWidth: 170,
-        align: 'right',
+        minWidth: 150,
+        align: 'left',
         format: (value) => value.toLocaleString('en-US'),
     },
     {
         id: 'dateJoined',
         label: 'Date Joined',
-        minWidth: 170,
-        align: 'right',
+        minWidth: 150,
+        align: 'left',
         format: (value) => value.toLocaleString('en-US'),
     },
 ];
@@ -117,6 +117,10 @@ export default function MyClients({ token }) {
     // refresh
 
     const refresh = () => window.location.reload(true)
+
+    // clients list
+
+    const [myclients, setMyclients] = useState()
 
     // form data
 
@@ -168,6 +172,8 @@ export default function MyClients({ token }) {
             .catch(error => console.log('error', error));
     }
 
+
+
     function convertToJson(response) {
         let json_string = JSON.stringify(response[0]).replace("success", "'success'");
         json_string = json_string.replace("msg", "'msg'");
@@ -179,206 +185,34 @@ export default function MyClients({ token }) {
     }
 
 
+    var formdata = new FormData();
+    formdata.append("start", "1332407871");
+    formdata.append("limit", "1679476671");
+    formdata.append("pattern", "");
+
+    var requestOptions = {
+        method: 'POST',
+        headers: {
+            Authorization: `Token ${token}`
+        },
+        body: formdata,
+        redirect: 'follow'
+    };
+
+    fetch("http://127.0.0.1:8000/api/appgetmyclients", requestOptions)
+        .then(response => response.json())
+        .then(result => setMyclients(JSON.parse(result)))
+        // .then(result=>console.log(JSON.parse(result).response))
+        .catch(error => console.log('error', error));
+
+
+
     return (
-        <Paper sx={{ width: '80%', margin: '1rem', overflowX: 'auto' }}>
-
-
+        <Paper sx={{ width: '95%', margin: '1rem', overflowX: 'auto',overflowY:'auto' }}>
+            <div className='table-headers'>
+                <div className='table-title'><BsPeopleFill/> My Clients</div>
             <Stack spacing={2} direction="row" sx={{ margin: "1rem", paddingTop: "1rem" }}>
                 <Button onClick={handleShow} className="app-buttons mt-0 text-dark ">ADD</Button>
-                {/* <Button variant="outlined" className='app-buttons text-dark mt-0' color='secondary' onClick={handleOpen}>Add</Button> */}
-                {/* <Modal
-                    keepMounted
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="keep-mounted-modal-title"
-                    aria-describedby="keep-mounted-modal-body"
-
-                >
-                    <Box className='my-clients-modal' sx>
-                        <div className="modal-title">
-                            <Typography>Add Client</Typography>
-                        </div>
-
-                        <div className='modal-form'>
-                            <Stack>
-                                <Form>
-                                    <Stack direction="row" gap={1} className='form-row'>
-                                        <FormGroup>
-                                            <TextField
-                                                id="outlined-input"
-                                                label="Customer No."
-                                                size='small'
-                                                className='modal-input'
-                                                inputProps={{
-                                                    readOnly: true
-                                                }}
-
-                                            />
-                                        </FormGroup>
-                                        <FormGroup>
-                                            <TextField
-                                                id="outlined-input"
-                                                label="Names"
-                                                size='small'
-                                                className='modal-input'
-
-                                            />
-                                        </FormGroup>
-                                    </Stack>
-                                    <Stack direction="row" gap={1}>
-                                        <FormGroup>
-                                            <TextField
-                                                id="outlined-input"
-                                                label="User Name"
-                                                size='small'
-                                                className='modal-input'
-
-                                            />
-                                        </FormGroup>
-                                        <FormGroup>
-                                            <TextField
-                                                id="outlined-input"
-                                                label="Active"
-                                                size='small'
-                                                className='modal-input'
-                                                inputProps={{
-                                                    readOnly: true
-                                                }}
-
-                                            />
-                                        </FormGroup>
-                                    </Stack>
-                                    <Stack direction="row" gap={1}>
-                                        <FormGroup>
-                                            <TextField
-                                                id="outlined-input"
-                                                label="Mobile Phone"
-                                                size='small'
-                                                className='modal-input'
-
-                                            />
-                                        </FormGroup>
-                                        <FormGroup>
-                                            <TextField
-                                                id="outlined-input"
-                                                label="E-mail"
-                                                size='small'
-                                                className='modal-input'
-
-                                            />
-                                        </FormGroup>
-                                    </Stack>
-                                    <Stack direction="row" gap={1}>
-                                        <FormGroup>
-                                            <TextField
-                                                id="outlined-input"
-                                                label="Address"
-                                                size='small'
-                                                className='modal-input'
-
-                                            />
-                                        </FormGroup>
-                                        <FormGroup>
-                                            <TextField
-                                                id="outlined-input"
-                                                label="Account Bal"
-                                                size='small'
-                                                className='modal-input'
-                                                inputProps={{
-                                                    readOnly: true
-                                                }}
-
-                                            />
-                                        </FormGroup>
-                                    </Stack>
-
-                                    <Stack direction="row" gap={1}>
-                                        <FormGroup>
-                                            <TextField
-                                                id="outlined-input"
-                                                label="Comission"
-                                                size='small'
-                                                className='modal-input'
-                                                inputProps={{
-                                                    readOnly: true
-                                                }}
-
-                                            />
-                                        </FormGroup>
-                                        <FormGroup>
-                                            <TextField
-                                                id="outlined-input"
-                                                label="Description"
-                                                size='small'
-                                                className='modal-input'
-
-                                            />
-                                        </FormGroup>
-                                    </Stack>
-                                    <Stack direction="row" gap={1}>
-                                        <FormGroup>
-                                            <TextField
-                                                id="outlined-input"
-                                                label="Password"
-                                                size='small'
-                                                className='modal-input'
-
-                                            />
-                                        </FormGroup>
-                                        <FormGroup>
-                                            <TextField
-                                                id="outlined-input"
-                                                label="Created"
-                                                size='small'
-                                                className='modal-input'
-                                                inputProps={{
-                                                    readOnly: true
-                                                }}
-
-                                            />
-                                        </FormGroup>
-                                    </Stack>
-                                    <Stack direction="row" gap={1}>
-                                        <FormGroup>
-                                            <TextField
-                                                id="outlined-input"
-                                                label="Confirm Password"
-                                                size='small'
-                                                className='modal-input'
-
-                                            />
-                                        </FormGroup>
-                                        <FormGroup>
-                                            <TextField
-                                                id="outlined-input"
-                                                label="Last Login"
-                                                size='small'
-                                                className='modal-input'
-                                                inputProps={{
-                                                    readOnly: true
-                                                }}
-
-                                            />
-                                        </FormGroup>
-                                    </Stack>
-
-
-
-                                    <Stack direction="row" gap={1}>
-                                        <button className='app-modal-buttons'>Save and Close</button>
-                                        <button className='app-modal-buttons'>Save and New</button>
-                                        <button className='app-modal-buttons'>Cancel</button>
-                                    </Stack>
-
-                                </Form>
-                            </Stack>
-                        </div>
-
-                    </Box>
-
-
-                </Modal > */}
-
 
                 {/* Add Modal */}
 
@@ -688,6 +522,17 @@ export default function MyClients({ token }) {
                 <button className='app-buttons' variant="contained" color='dark'>View & Modify</button>
                 <button className='app-buttons' onClick={refresh} variant="contained" color='dark'>Refresh</button>
             </Stack >
+            </div>
+
+            {/* <table>
+                {myclients && myclients.response.map((clients) => (
+                  <tr key={clients.pk}>
+                    <td className="table-data">{clients.pk}</td>
+                    <td>{clients.pk}</td>
+
+                  </tr>
+                ))}
+            </table> */}
             <TableContainer sx={{ maxHeight: 440 }}>
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead className='my-clients-table'>
@@ -697,7 +542,7 @@ export default function MyClients({ token }) {
                                 <TableCell
                                     key={column.id}
                                     align={column.align}
-                                    style={{ top: 57, minWidth: column.minWidth }}
+                                    style={{ top: 5, minWidth: column.minWidth }}
                                 >
                                     {column.label}
                                 </TableCell>
@@ -705,7 +550,7 @@ export default function MyClients({ token }) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows
+                        {/* {rows
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((row) => {
                                 return (
@@ -722,19 +567,52 @@ export default function MyClients({ token }) {
                                         })}
                                     </TableRow>
                                 );
-                            })}
+                            })} */}
+
+                        {myclients && 
+                            myclients.response
+                            // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                              .map((clients)=>{
+                                        return (
+                                            <TableRow hover role="checkbox" tabIndex={-1} key={clients.pk}>
+                                                <TableCell>{clients.fields.customerno}</TableCell>
+                                                <TableCell>{clients.fields.username}</TableCell>
+                                                <TableCell>{clients.fields.first_name}  {clients.fields.last_name}</TableCell>
+                                                <TableCell>{clients.fields.phone}</TableCell>
+                                                <TableCell>{clients.fields.smsbalance}</TableCell>
+                                                <TableCell>{clients.fields.is_active}</TableCell>
+                                                <TableCell>{clients.fields.date_joined}</TableCell>
+                                                <TableCell>{clients.fields.last_login}</TableCell>
+
+                                 
+                                            </TableRow>
+                                        )
+                                     })}
+                            
+{/*                             
+                        {myclients && myclients.response.map((clients) => (
+                            <tr key={clients.pk}>
+                                <td className="table-data">{clients.pk}</td>
+                                <td>{clients.customerno}</td>
+
+                            </tr>
+                        ))} */}
+
+                        
                     </TableBody>
                 </Table>
             </TableContainer>
             <TablePagination
                 rowsPerPageOptions={[10, 25, 100]}
                 component="div"
-                count={rows.length}
+                count={myclients && myclients.total}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
             />
+
+             {/* {myclients && (<span>{myclients.total}</span>)} */}
         </Paper >
     );
 }

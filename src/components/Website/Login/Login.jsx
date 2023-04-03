@@ -61,11 +61,11 @@ const Login = ({ setToken }) => {
           {/* <img src={bulkMessage} width="100" height="100"/> */}
 
           <p className='content-header h2 font-weight-bold '>SMS Gateway</p>
-          <span>Your Customer Engagement Platform</span>
+          <span className="login-text">Your Customer Engagement Platform</span>
 
-          <button className='hero-button animated bounce'>Sign Up and Start Messaging</button>
+          <button className='hero-button animated bounce w-75'>Sign Up and Start Messaging</button>
 
-          <span>
+          <span className='login-text'>
             With simple API intergration and cost-effective solutions,<br /> we connect you to your customers
           </span>
         </div>

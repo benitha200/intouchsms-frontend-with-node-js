@@ -39,10 +39,10 @@ const Navbar = () => {
                             <NavLink to="/pricing">Pricing</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/login">Log In</NavLink>
+                            <NavLink to="/login" className="login-button">Log In</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/createaccount">Create Account</NavLink>
+                            <NavLink to="/createaccount" className="signup-button">Create Account</NavLink>
                         </li>
 
 

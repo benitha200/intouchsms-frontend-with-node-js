@@ -94,9 +94,9 @@ function App() {
               <Route path='/account-info' element={<AccountInfo token={token}/>}>
                 <Route path='/account-info/' element={<MyProfile token={token}/>}/>
                 <Route path='/account-info/my-clients' element={<MyClients token={token}/>} />
-                <Route path='/account-info/my-credit-transfers' element={<MyCreditTransfers />} />
-                <Route path='/account-info/my-transactions' element={<MyTransactions />} />
-                <Route path='/account-info/send' element={<Send />} />
+                <Route path='/account-info/my-credit-transfers' element={<MyCreditTransfers token={token} />} />
+                <Route path='/account-info/my-transactions' element={<MyTransactions token={token}/>} />
+                {/* <Route path='/account-info/send' element={<Send />} /> */}
               </Route>
 
               <Route path='/address-book' element={<AddressBook token={token}/>}>
@@ -104,7 +104,7 @@ function App() {
                 <Route path='/address-book/groups' element={<Groups token={token}/>} />
               </Route>
               <Route path='/messaging' element={<Messaging />}>
-                <Route index path='/messaging/' element={<Send />} />
+                <Route index path='/messaging/' element={<Send token={token}/>} />
                 <Route path='/messaging/custom' element={<Custom />} />
                 <Route path='/messaging/custom' element={<Custom />} />
                 <Route path='/messaging/custom' element={<Custom />} />

@@ -120,3 +120,19 @@ body {
     height: 2px;
     background-color: #080808;
 }
+.login-button{
+    border: 2px solid #f9cc41;
+    border-radius: 20px;
+    padding: 0.7rem;
+    color: #f9cc41 !important;
+    font-weight: 500 !important;
+}
+.signup-button{
+    /* border: 2px solid #f9cc41; */
+    background-color: #f9cc41;
+    border-radius: 20px;
+    padding: 0.7rem; 
+    color: #333333 !important;
+    font-weight: 500 !important;
+    margin: 0px !important;
+}
