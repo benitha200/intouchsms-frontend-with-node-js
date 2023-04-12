@@ -9,6 +9,7 @@ import { json } from 'react-router-dom'
 import { BsBook,BsEject, BsEraser, BsEraserFill, BsFileArrowUpFill, BsPenFill, BsFillArrowUpRightSquareFill, BsPlusSquare, BsPersonFill, BsPersonBadge, BsPersonBadgeFill } from 'react-icons/bs'
 import axios from 'axios'
 import { Paper } from '@mui/material'
+import { API_URL } from '../../../../Constants/Index'
 
 const Contacts = ({ token }) => {
 
@@ -56,7 +57,7 @@ const Contacts = ({ token }) => {
             redirect: 'follow'
         };
 
-        fetch("http://127.0.0.1:8000/api/appaddcontact", requestOptions)
+        fetch(API_URL + "appaddcontact", requestOptions)
             .then(response => response.json())
             .then(result => setResponsemessage(convertToJson(result)))
             .catch(error => console.log('error', error));

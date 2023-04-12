@@ -11,6 +11,7 @@ import { BsBook, BsEject, BsEraser, BsEraserFill, BsFileArrowUpFill, BsPenFill, 
 import Popup from 'reactjs-popup'
 import axios from 'axios'
 import { Paper } from '@material-ui/core'
+import { API_URL } from '../../../../Constants/Index'
 
 
 const Groups = ({ token }) => {
@@ -52,7 +53,7 @@ const Groups = ({ token }) => {
       redirect: 'follow'
     };
 
-    fetch("http://127.0.0.1:8000/api/appaddgroup", requestOptions)
+    fetch(API_URL + "appaddgroup", requestOptions)
       .then(response => response.json())
       .then(result => setMessage(convertToJson(result)))
       .catch(error => console.log('error', error));

@@ -19,7 +19,10 @@ import { TextField } from '@mui/material';
 import { Helmet } from 'react-helmet';
 import { BsCalendar2CheckFill, BsCalendarDate, BsCash, BsCashCoin, BsCheck2Square, BsEnvelopeFill, BsHouseFill, BsInfoCircle, BsInfoLg, BsKey, BsKeyFill, BsMailbox, BsPeopleFill, BsPerson, BsPersonBadge, BsPersonCheck, BsPersonCheckFill, BsPersonFill, BsPersonX, BsPhoneFill, BsPlusCircleFill, BsTelephoneFill } from 'react-icons/bs';
 import { useState } from 'react';
-import { Form, Input } from 'reactstrap'
+import { Form, Input } from 'reactstrap';
+import { API_URL } from '../../../../Constants/Index';
+
+
 
 const columns = [
 
@@ -166,7 +169,7 @@ export default function MyClients({ token }) {
             redirect: 'follow'
         };
 
-        fetch("http://127.0.0.1:8000/api/appaddmyclient", requestOptions)
+        fetch(API_URL + "appaddmyclient", requestOptions)
             .then(response => response.json())
             .then(result => setResponsemessage(convertToJson(result)))
             .catch(error => console.log('error', error));
@@ -199,7 +202,7 @@ export default function MyClients({ token }) {
         redirect: 'follow'
     };
 
-    fetch("http://127.0.0.1:8000/api/appgetmyclients", requestOptions)
+    fetch(API_URL +"appgetmyclients", requestOptions)
         .then(response => response.json())
         .then(result => setMyclients(JSON.parse(result)))
         // .then(result=>console.log(JSON.parse(result).response))

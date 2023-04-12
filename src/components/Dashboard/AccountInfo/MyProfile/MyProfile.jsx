@@ -21,7 +21,7 @@ import { responsiveFontSizes, Typography } from '@material-ui/core';
 // import { BsKey, BsKeyFill, BsSearch } from 'react-icons/bs';
 import { Link, Outlet } from 'react-router-dom';
 import { BsCashCoin, BsCashStack, BsCheck2Square, BsCode, BsEnvelopeFill, BsHouseFill, BsInfoCircle, BsInfoLg, BsKey, BsKeyFill, BsMailbox, BsMap, BsPerson, BsPersonBadgeFill, BsPersonCheck, BsPersonCheckFill, BsPersonFill, BsPersonX, BsPhoneFill, BsPlusCircleFill, BsSortNumericDown, BsTelephoneFill, BsTelephoneInboundFill } from 'react-icons/bs';
-
+import { API_URL } from '../../../../Constants/Index';
 
 const columns = [
 
@@ -81,7 +81,7 @@ const MyProfile = ({ token }) => {
 
   // React.useEffect(()=>{
 
-  fetch("http://127.0.0.1:8000/api/getmyprofile", requestOptions)
+  fetch(API_URL + "getmyprofile", requestOptions)
     .then(response => response.json())
     .then(result => setProfile(convertToJson(result)))
     // .then(result => setProfile(result))
@@ -100,7 +100,7 @@ const MyProfile = ({ token }) => {
   }
 
 
-  fetch("http://127.0.0.1:8000/api/getsendernames", senderName_requestOptions)
+  fetch(API_URL + "getsendernames", senderName_requestOptions)
     .then(response => response.json())
     .then(result => setSenderNames(convertToJsonList(result)))
     .catch(error => console.log('error', error))
@@ -108,9 +108,9 @@ const MyProfile = ({ token }) => {
   // console.log(senderNames)
 
 
-     const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
@@ -136,7 +136,7 @@ const MyProfile = ({ token }) => {
         body: formdata,
       };
 
-      fetch("http://127.0.0.1:8000/api/changepassword", requestOptions)
+      fetch(API_URL + "changepassword", requestOptions)
         .then(response => response.text())
         .then(result => setMessage(convertToJson(result).msg))
         .catch(error => console.log('error', error));
@@ -364,7 +364,7 @@ const MyProfile = ({ token }) => {
 
 
         </div>
-     
+
 
         <div className='profile-contents'>
 
@@ -420,49 +420,49 @@ const MyProfile = ({ token }) => {
             </TableContainer> */}
 
 
-<TableContainer sx={{ maxHeight: 440 }}>
-                <Table stickyHeader aria-label="sticky table">
-                    <TableHead className='my-clients-table'>
+            <TableContainer sx={{ maxHeight: 440 }}>
+              <Table stickyHeader aria-label="sticky table">
+                <TableHead className='my-clients-table'>
 
-                    <TableRow>
-                            {columns.map((column) => (
-                                <TableCell
-                                    key={column.id}
-                                    align={column.align}
-                                    style={{ top: 0, minWidth: column.minWidth,backgroundColor:"lightgrey" }}
-                                >
-                                    {column.label}
-                                </TableCell>
-                            ))}
+                  <TableRow>
+                    {columns.map((column) => (
+                      <TableCell
+                        key={column.id}
+                        align={column.align}
+                        style={{ top: 0, minWidth: column.minWidth, backgroundColor: "lightgrey" }}
+                      >
+                        {column.label}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {senderNames && senderNames.response
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((sendername) => {
+                      return (
+                        <TableRow hover role="checkbox" tabIndex={-1} key={sendername.fields.sender.pk}>
+                          <TableCell>{sendername.fields.sender.fields.sendername}</TableCell>
+                          <TableCell>{sendername.fields.expires}</TableCell>
+
+
+
                         </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {senderNames && senderNames.response
-                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                .map((sendername) => {
-                                    return (
-                                        <TableRow hover role="checkbox" tabIndex={-1} key={sendername.fields.sender.pk}>
-                                            <TableCell>{sendername.fields.sender.fields.sendername}</TableCell>
-                                            <TableCell>{sendername.fields.expires}</TableCell>
-                                            
-
-
-                                        </TableRow>
-                                    )
-                                })}
-                    </TableBody>
-                </Table>
+                      )
+                    })}
+                </TableBody>
+              </Table>
             </TableContainer>
             <TablePagination
-                rowsPerPageOptions={[10, 25, 100]}
-                component="div"
-                count={10}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
+              rowsPerPageOptions={[10, 25, 100]}
+              component="div"
+              count={10}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onPageChange={handleChangePage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
             />
-{/* 
+            {/* 
             <table className='table table-hover w-100 pt-0' style={{ height: '100%', fontFamily: 'verdana', fontWeight: 'bold' }}>
               <thead className='table-headers'>
                 <tr>

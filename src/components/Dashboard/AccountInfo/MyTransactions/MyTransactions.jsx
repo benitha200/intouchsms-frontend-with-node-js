@@ -17,6 +17,7 @@ import { DataGrid } from '@mui/x-data-grid'
 import { useState } from 'react';
 import axios from 'axios';
 import { CircularProgress } from '@mui/material';
+import { API_URL } from '../../../../Constants/Index';
 
 const columns = [
 
@@ -137,7 +138,7 @@ export default function MyTransactions({ token }) {
 
 
     React.useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/appgettransactions", requestOptions)
+        fetch(API_URL + "appgettransactions", requestOptions)
             .then(response => response.json())
             .then(result => {
                 setMytransactions(JSON.parse(result));

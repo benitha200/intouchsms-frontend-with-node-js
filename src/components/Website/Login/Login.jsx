@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './Login.css'
+import { API_URL } from '../../../Constants/Index';
 
 import axios from 'axios';
 // import heroImg from '../../../assets/images/3.jpg'
@@ -38,7 +39,7 @@ const Login = ({ setToken }) => {
 
 
 
-    fetch('http://127.0.0.1:8000/api/generatetoken', requestOptions)
+    fetch(API_URL + 'generatetoken', requestOptions)
       .then(response => response.json())
       .then(result => setToken(result.token))
       // .then(result=>console.log(localStorage.setItem("authtoken",result.token)))

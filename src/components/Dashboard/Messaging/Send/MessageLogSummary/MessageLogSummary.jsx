@@ -1,5 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
+import { API_URL } from '../../../../../Constants/Index';
 
 const MessageLogSummary = ({ token }) => {
 
@@ -20,7 +21,7 @@ const MessageLogSummary = ({ token }) => {
     };
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/appgetmessagelogsummary", requestOptions)
+        fetch(API_URL + "appgetmessagelogsummary", requestOptions)
             .then(response => response.json())
             .then(result => console.log(convertToJsonList(result)))
             .catch(error => console.log('error', error));

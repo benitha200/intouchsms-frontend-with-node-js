@@ -11,6 +11,7 @@ import Button from "@mui/material/Button"
 import './Send.css'
 import { AutoComplete } from "@mui/material"
 import MessageLogSummary from './MessageLogSummary/MessageLogSummary';
+import { API_URL } from '../../../../Constants/Index';
 
 const senderNames = [
   { label: 'Test1' },
@@ -47,7 +48,7 @@ const Send = ({ token }) => {
 
   useEffect(() => {
 
-    fetch("http://127.0.0.1:8000/api/getsendernames", senderName_requestOptions)
+    fetch(API_URL + "getsendernames", senderName_requestOptions)
       .then(response => response.json())
       .then(result => setSender(convertToJsonList(result)))
       .catch(error => console.log('error', error))

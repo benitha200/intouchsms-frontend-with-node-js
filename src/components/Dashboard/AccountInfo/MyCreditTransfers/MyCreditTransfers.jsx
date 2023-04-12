@@ -16,6 +16,7 @@ import { Button, Col, Form, FormGroup, InputGroup, Row } from 'react-bootstrap';
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { BsArrowLeftRight, BsCash, BsCashCoin, BsEnvelopeFill, BsHouseDoorFill, BsInfo, BsInfoCircle, BsPersonCircle, BsPersonFill, BsSearch, BsTelephone } from 'react-icons/bs';
+import { API_URL } from '../../../../Constants/Index';
 
 
 const columns = [
@@ -133,11 +134,10 @@ export default function MyCreditTransfers({ token }) {
         redirect: 'follow'
     };
 
-    fetch("http://127.0.0.1:8000/api/appgetcredittransfers", requestOptions)
+    fetch(API_URL + "appgetcredittransfers", requestOptions)
         .then(response => response.json())
         .then(result => setCreditTransfers(JSON.parse(result)))
         .catch(error => console.log('error', error));
-
 
 
     return (

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Header.css'
 import { Stack } from '@mui/material'
-import { TOKEN } from '../../../Constants/Index'
+import { API_URL, TOKEN } from '../../../Constants/Index'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 // import { Button } from '@mui/material';
@@ -53,7 +53,7 @@ const Header = ({ token }) => {
 
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/api/getmyprofile", requestOptions)
+        fetch(API_URL +"getmyprofile", requestOptions)
             .then(response => response.json())
             .then(result => setProfile(convertToJson(result)))
             // .then(result => setProfile(result))
@@ -86,7 +86,7 @@ const Header = ({ token }) => {
             redirect: 'follow'
         };
 
-        fetch("http://127.0.0.1:8000/api/logout", requestOptions)
+        fetch(API_URL +"logout", requestOptions)
             .then(response => response.text())
             .then(result => setLogoutData(result))
             .catch(error => console.log('error', error));
