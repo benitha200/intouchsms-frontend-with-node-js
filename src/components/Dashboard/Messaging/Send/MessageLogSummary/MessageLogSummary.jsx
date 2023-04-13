@@ -14,7 +14,7 @@ const MessageLogSummary = ({ token }) => {
     var requestOptions = {
         method: 'POST',
         headers: {
-            'Authorization':`Token ${token}`
+            'Authorization': `Token ${token}`
         },
         body: formdata,
         redirect: 'follow'
@@ -28,12 +28,12 @@ const MessageLogSummary = ({ token }) => {
     })
 
 
-    function convertToJsonList(response){
+    function convertToJsonList(response) {
         let json_string = JSON.stringify(response[0])
-        let list = json_string.replace('success','"success"')
-
-        console.log(list)
+        let list = json_string.replace('success', '\"success\"')
         JSON.parse(list)
+        console.log(list)
+
     }
 
 

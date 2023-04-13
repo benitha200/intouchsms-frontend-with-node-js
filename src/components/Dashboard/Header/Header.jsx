@@ -8,8 +8,31 @@ import { useNavigate } from 'react-router-dom'
 import MenuIcon from '@mui/icons-material/Menu';
 import { useProSidebar } from 'react-pro-sidebar';
 import Modal from 'react-bootstrap/Modal';
-import { Button, Col, Form, FormGroup, InputGroup, Row } from 'react-bootstrap';
+import { Button, Col, Form, FormGroup, InputGroup, Row, DropdownButton, Dropdown, FormControl } from 'react-bootstrap';
 import { BsArrowLeftRight, BsBagCheck, BsCash, BsCashCoin, BsEnvelopeFill, BsHouseDoorFill, BsInfo, BsInfoCircle, BsPersonCircle, BsPersonFill, BsPhoneLandscape, BsPhoneVibrate, BsSearch, BsTelephone } from 'react-icons/bs';
+
+
+
+const data = [
+    {
+        "id": 1,
+        "author": "J.K. Rowling",
+        "title": "Harry Potter and the Philosopher's Stone",
+        "release_date": "1997-06-26"
+    },
+    {
+        "id": 2,
+        "author": "George R.R. Martin",
+        "title": "A Game of Thrones",
+        "release_date": "1996-08-01"
+    },
+    {
+        "id": 3,
+        "author": "J.R.R. Tolkien",
+        "title": "The Lord of the Rings",
+        "release_date": "1954-07-29"
+    }
+]
 
 
 const Header = ({ token }) => {
@@ -18,16 +41,30 @@ const Header = ({ token }) => {
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
-
     const { collapseSidebar } = useProSidebar()
-
     const navigate = useNavigate();
+    const [showTable, setShowTable] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null);
+
+    const handleButtonClick = () => {
+        // Toggle the visibility of the table
+        setShowTable(!showTable);
+    };
+
+    const handleTableRowClick = (item) => {
+        // Set the selected item and populate the form data
+        setSelectedItem(item);
+        // TODO: Populate form data here
+    };
 
     const [profile, setProfile] = useState()
     const [balance, setBalance] = useState()
+    const [publishedPackages, setPublishedPackages] = useState()
+    const [selectedPackage, setSelectedPackage] = useState(null);
     const [logoutData, setLogoutData] = useState()
 
-    let data = ""
+    let data1 = JSON.parse(JSON.stringify(data))
+
 
     // var requestOptions = {
     //     method: 'POST',
@@ -102,6 +139,28 @@ const Header = ({ token }) => {
     }
 
 
+    // fetch packages
+
+    var formdata = new FormData();
+    formdata.append("start", "1453818286");
+    formdata.append("limit", "1453818286");
+
+    var requestOptions = {
+        method: 'POST',
+        headers: {
+            'Authorization': `Token ${token}`
+        },
+        body: formdata,
+        redirect: 'follow'
+    };
+
+    fetch("http://127.0.0.1:8000/api/getpublishedpackages", requestOptions)
+        .then(response => response.json())
+        .then(result => setPublishedPackages(JSON.parse(result)))
+        .catch(error => console.log('error', error));
+
+    // console.log(publishedPackages);
+
 
 
     return (
@@ -143,19 +202,66 @@ const Header = ({ token }) => {
                                     <span>Price Information</span>
                                     <hr />
 
-                                    <div className='d-flex flex-row gap-2 mb-3'>
+                                    {/* <div className='d-flex flex-column gap-2 mb-3'>
                                         <InputGroup>
-                                            {/* <Form.Label>New Password</Form.Label> */}
+                                            
                                             <InputGroup.Text>
                                                 <BsBagCheck />
                                             </InputGroup.Text>
                                             <Form.Control className='m-0 h-100' type='text' placeholder='Package' required></Form.Control>
                                         </InputGroup>
+                                        <div>
+                                            <InputGroup>
+                                                <Button className='btn btn-dark opacity-50 m-0 h-100 w-100' onClick={handleButtonClick}>Select</Button>
+                                            </InputGroup>
 
-                                        <InputGroup>
-                                            <Button className='btn btn-dark opacity-50 m-0 h-100 w-100'>Select</Button>
-                                        </InputGroup>
-                                    </div>
+                                            {showTable && (
+                                                <table border={1}>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Column 1</th>
+                                                            <th>Column 2</th>
+                                                            <th>Column 3</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {data1 &&
+
+                                                            data1.map((item) => (
+                                                                <tr key={item.id} onClick={() => handleTableRowClick(item)}>
+                                                                    <td>{item.author}</td>
+                                                                    <td>{item.title}</td>
+                                                                    <td>{item.release_date}</td>
+                                                                </tr>
+                                                            ))}
+                                                    </tbody>
+                                                </table>
+                                            )}
+                                            {/* TODO: Render the form here 
+                                        </div>
+                                    </div> */}
+
+
+
+                                    <InputGroup>
+                                        <DropdownButton as={InputGroup.Prepend} title="Select Package" className="m-0 bg-dark">
+                                            {publishedPackages && publishedPackages.response.map((packagedetails) => (
+                                                <Dropdown.Item key={packagedetails.pk} eventKey={packagedetails.pk}>
+                                                    <div className="d-flex flex-row justify-content-xl-between">
+                                                        <span className="p-2 border-right">{packagedetails.fields.name} </span> <span className="p-2 border-right"> min:{packagedetails.fields.minimumprice}</span><span className="p-2 border-right"> max: {packagedetails.fields.maximumprice} </span><span className="p-2"> Unit Price : {packagedetails.fields.unitpricetaxincl}</span>  
+                                                    </div>
+                                                    
+                                                </Dropdown.Item>
+                                               
+                                            ))}
+                                        </DropdownButton>
+                                        <FormControl
+                                            disabled={!selectedPackage}
+                                            value={selectedPackage ? selectedPackage.fields.name : ''}
+                                            placeholder="Release Date"
+                                            onChange={() => { }}
+                                        />
+                                    </InputGroup>
 
 
                                     <div className='d-flex flex-row gap-2 mb-3'>
@@ -303,7 +409,7 @@ const Header = ({ token }) => {
                         <div>
                             {profile && (
                                 <div>
-                                    <span>Welcome <b>{profile.response.names}</b></span><br/>
+                                    <span>Welcome <b>{profile.response.names}</b></span><br />
                                     <span>Balance: <b>{profile.response.creditsbalance} </b> Credits</span>
                                 </div>
                             )}
