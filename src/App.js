@@ -5,6 +5,7 @@ import Navbar from './components/Website/Navbar/Navbar';
 import Home from './components/Website/Home/Home';
 import Footer from './components/Website/Footer/Footer';
 import Login from './components/Website/Login/Login';
+import { Navigate } from 'react-router-dom';
 // import Homepage from './components/Dashboard/Homepage';
 // import Sidebar from './components/Dashboard/SideBar';
 
@@ -32,8 +33,13 @@ import Mine from './components/Dashboard/AccountInfo/MyProfile/Mine';
 
 
 function App() {
-  const [token,setToken] = useState('')
+  const [token, setToken] = useState(localStorage.getItem('token'));
   console.log(token)
+
+  function handleLogout() {
+    localStorage.removeItem('token');
+    setToken(null);
+  }
 
   // const storedToken =localStorage.getItem("refreshToken");
   //   localStorage.setItem("refreshToken",token)
@@ -82,15 +88,17 @@ function App() {
 
     // </BrowserRouter>
     <div id='app'>
-      <BrowserRouter>     
-        <Header token={token}/>
+      
+      <BrowserRouter>    
+        <Header token={token} setToken={setToken}/>
         <div className='all' style={{ display: 'flex', alignItems: 'flex-start' }}>
           <div className='sidebar-menu'>
             <DashboardNavbar style={{ position: 'relative', top: '0px' }} />
           </div>
           <div className='page-contents'>
-            {/* <MyAccountInfo/> */}
+          {/* <Navigate to="/"/> */}
             <Routes>
+              {/* <Route index element={<Send token={token}/>}/> */}
               <Route path='/account-info' element={<AccountInfo token={token}/>}>
                 <Route path='/account-info/' element={<MyProfile token={token}/>}/>
                 <Route path='/account-info/my-clients' element={<MyClients token={token}/>} />

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './Login.css'
-import { API_URL } from '../../../Constants/Index';
+import { API_URL, ONLINE_API_URL } from '../../../Constants/Index';
 
 import axios from 'axios';
 // import heroImg from '../../../assets/images/3.jpg'
@@ -41,12 +41,84 @@ const Login = ({ setToken }) => {
 
     fetch(API_URL + 'generatetoken', requestOptions)
       .then(response => response.json())
-      .then(result => setToken(result.token))
-      // .then(result=>console.log(localStorage.setItem("authtoken",result.token)))
+      .then(data => {
+              const token = data.token;
+              localStorage.setItem('token', token);
+              setToken(token);})
       .catch(error => console.log('error', error));
+      // .then(result => setToken(result.token))
+      
+      
 
     console.log(setToken)
   }
+
+
+  // const [username, setUsername] = useState('')
+  // const [password, setPassword] = useState('')
+  // const [navigate, useNavigate] = useState()
+
+
+
+  //   // var formdata = new FormData();
+
+  //   // let auth = btoa(`${username}:${password}`);
+
+  //   // var requestOptions = {
+  //   //   method: 'GET',
+  //   //   mode:'cors',
+  //   //   headers: {
+  //   //     'Authorization' :`Basic ${auth}`,
+  //   //   },
+  //   //   body: formdata,
+  //   //   redirect: 'follow'
+  //   // };
+
+  //   // fetch("http://127.0.0.1:8000/api/generatetoken", requestOptions)
+  //   //   .then(response => response.json())
+  //   //   .then(data => {
+  //   //         const token = data.token;
+  //   //         localStorage.setItem('token', token);
+  //   //         setToken(token);
+  //   //       })
+  //   //   .catch(error => console.log('error', error));
+
+  //   // e.preventDefault();
+
+  //   // let headers = new Headers();
+  //   // let auth = btoa(`${username}:${password}`);
+
+
+  //   // // headers.append('Accept', 'application/json');
+  //   // var requestOptions = {
+  //   //   method: 'POST',
+  //   //   mode: 'cors',
+  //   //   headers: {
+  //   //     'Authorization' :`Basic ${auth}`,
+  //   //   },
+  //   // };
+
+
+
+
+
+  //   // fetch(API_URL + 'generatetoken', requestOptions)
+  //   //   .then(response => response.json())
+  //   //   .then(data => {
+  //   //     const token = data.token;
+  //   //     localStorage.setItem('token', token);
+  //   //     setToken(token);
+  //   //   })
+  //   //   // .then(result => console.log(result))
+  //   //   // .then(result=>console.log(localStorage.setItem("authtoken",result.token)))
+  //   //   .catch(error => {
+  //   //     console.log('error', error)
+  //   //   });
+
+  //   //   navigate("/")
+
+  //   console.log(setToken)
+  // }
 
 
   return (
@@ -70,14 +142,14 @@ const Login = ({ setToken }) => {
             With simple API intergration and cost-effective solutions,<br /> we connect you to your customers
           </span>
         </div>
-        <div className='form-holder shadow p-3 mb-5 bg-light h-100 gap-2 pb-5 mt-5'>
+        <div className='form-holder shadow p-3 mb-5 bg-white h-100 gap-2 pb-5 mt-5'>
           {/* <div className='login-form'> */}
           <div className='pt-5'>
             <span className='form-title font-weight-bold h4'>Login </span>
           </div>
           <hr color='grey' />
 
-          <form className='d-flex flex-column gap-3' encType='multipart/form-data' onSubmit={login}>
+          <form className='d-flex flex-column gap-3' encType='multipart/form-data' method='GET' onSubmit={login}>
             <div>
               <input
                 type="text"

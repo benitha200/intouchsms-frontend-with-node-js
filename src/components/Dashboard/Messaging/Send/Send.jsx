@@ -9,9 +9,11 @@ import { Pane } from 'split-pane-react'
 import SplitPane from 'split-pane-react/esm/SplitPane'
 import Button from "@mui/material/Button"
 import './Send.css'
-import { AutoComplete } from "@mui/material"
+import { AutoComplete } from "@mui/material";
 import MessageLogSummary from './MessageLogSummary/MessageLogSummary';
 import { API_URL } from '../../../../Constants/Index';
+import * as XLSX from 'xlsx/xlsx.mjs';
+
 
 const senderNames = [
   { label: 'Test1' },
@@ -19,6 +21,27 @@ const senderNames = [
 ];
 
 const Send = ({ token }) => {
+
+  // handle file
+
+  const [data, setData] = useState([]);
+
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const binaryData = event.target.result;
+      const workbook = XLSX.read(binaryData, { type: 'binary' });
+      const sheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[sheetName];
+      const columnData = XLSX.utils.sheet_to_json(worksheet, { header: 1 })[0];
+      const filteredData = columnData.filter((cell) => !isNaN(cell));
+      setData(filteredData);
+    };
+    reader.readAsBinaryString(file);
+  };
+  // end handleFile function
+
   const [counter, setCounter] = useState([0])
   const [recipients, setRecipients] = useState()
 
@@ -96,14 +119,19 @@ const Send = ({ token }) => {
             </div>
 
             <div className="form-outline">
-              <label className="form-label" for="formControlSm">Load Contact File(Excel Format)</label>
-              <input type="file" id="formControlSm" className="form-control form-control-sm" />
+              <label className="form-label" >Load Contact File(Excel Format)</label>
+              <input type="file" id="formControlSm" className="form-control form-control-sm" onChange={handleFileUpload} />
+              <ul>
+                {data.map((cell, index) => (
+                  <li key={index}>{cell}</li>
+                ))}
+              </ul>
             </div>
-          
-          <div className="form-outline">
-            <label className='form-label' for="formControlSm">Sender Name</label>
 
-          </div>
+            <div className="form-outline">
+              <label className='form-label'>Sender Name</label>
+
+            </div>
             <select className="form-select" onChange={handleSelect} required>
               <option value="">Select an Sender Name</option>
               {sender && sender.response.map(sendername => (
@@ -117,12 +145,12 @@ const Send = ({ token }) => {
             <div className="form-outline">
               <label className="form-label" for="textAreaExample">Message</label>
               <textarea
-               className="form-control form-control-sm" 
-               id="textAreaExample"
-               rows="4"
-               value={message}
-               onChange={(e)=>setMessage(e.target.value)}
-                />
+                className="form-control form-control-sm"
+                id="textAreaExample"
+                rows="4"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
               <span>{counter} characters of message 1</span>
             </div>
 
@@ -141,7 +169,7 @@ const Send = ({ token }) => {
 
       <div className='right-side'>
         <div className='message-log-table'>
-          <MessageLogSummary token={token}/>
+          {/* <MessageLogSummary token={token}/> */}
         </div>
         <div className='message-log-table'>
           <MDBTable className='caption-top'>

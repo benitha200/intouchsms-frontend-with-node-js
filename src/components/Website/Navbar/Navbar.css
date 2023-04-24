@@ -31,6 +31,9 @@ body {
 .menu-icon {
     display: none;
 }
+.logo{
+    margin:0;
+}
 
 .logo-img {
     width: 22%;

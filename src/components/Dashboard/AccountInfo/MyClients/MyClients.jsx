@@ -202,7 +202,7 @@ export default function MyClients({ token }) {
         redirect: 'follow'
     };
 
-    fetch(API_URL +"appgetmyclients", requestOptions)
+    fetch(API_URL + "appgetmyclients", requestOptions)
         .then(response => response.json())
         .then(result => setMyclients(JSON.parse(result)))
         // .then(result=>console.log(JSON.parse(result).response))
@@ -211,320 +211,320 @@ export default function MyClients({ token }) {
 
 
     return (
-        <Paper sx={{ width: '95%', margin: '1rem', overflowX: 'auto',overflowY:'auto' }}>
+        <Paper sx={{ width: '95%', margin: '1rem', overflowX: 'auto', overflowY: 'auto' }}>
             <div className='table-headers'>
-                <div className='table-title'><BsPeopleFill/> My Clients</div>
-            <Stack spacing={2} direction="row" sx={{ margin: "1rem", paddingTop: "1rem" }}>
-                <Button onClick={handleShow} className="app-buttons mt-0 text-dark ">ADD</Button>
+                <div className='table-title'><BsPeopleFill /> My Clients</div>
+                <Stack spacing={2} direction="row" sx={{ margin: "1rem", paddingTop: "1rem" }}>
+                    <Button onClick={handleShow} className="app-buttons mt-0 text-dark ">ADD</Button>
 
-                {/* Add Modal */}
+                    {/* Add Modal */}
 
-                <Modal show={show} onHide={handleClose} className="modal">
-                    <Modal.Header className='modal-header' closeButton>
-                        <span className='contact-modal-title'><BsPlusCircleFill /> ADD CLIENT</span>
-                    </Modal.Header>
+                    <Modal show={show} onHide={handleClose} className="modal">
+                        <Modal.Header className='modal-header' closeButton>
+                            <span className='contact-modal-title'><BsPlusCircleFill /> ADD CLIENT</span>
+                        </Modal.Header>
 
-                    <form encType='multipart/form-data' onSubmit={add_client}>
+                        <form encType='multipart/form-data' onSubmit={add_client}>
 
-                        <Modal.Body>
-
-
-                            <div className='d-flex flex-row mb-3 gap-2'>
-
-                                <InputGroup>
-                                    <InputGroup.Text>
-                                        <BsPersonFill />
-                                    </InputGroup.Text>
-
-                                    <Input
-                                        type='text'
-                                        className='form-control'
-                                        placeholder=''
-                                        name=''
-                                        // onChange={(e)=>handle(e)}
-                                        // onChange={(e) => setUsername(e.target.value)}
-                                        value="(New..)"
-                                        readOnly
-
-                                    />
-                                </InputGroup>
-
-                                <InputGroup>
-                                    <InputGroup.Text>
-                                        <BsPersonFill />
-                                    </InputGroup.Text>
-
-                                    <Input
-                                        type='text'
-                                        className='form-control'
-                                        placeholder='Names'
-                                        name='firstname'
-                                        // onChange={(e)=>handle(e)}
-                                        onChange={(e) => setFirstname(e.target.value)}
-                                        value={firstname}
-                                        required
-                                    />
-                                </InputGroup>
-
-                            </div>
-                            <div className='d-flex flex-row mb-3 gap-2'>
-
-                                <InputGroup>
-                                    <InputGroup.Text>
-                                        <BsPersonBadge />
-
-                                    </InputGroup.Text>
-
-                                    <Input
-                                        type='text'
-                                        className='form-control'
-                                        placeholder='Username'
-                                        name='username'
-                                        // onChange={(e)=>handle(e)}
-                                        onChange={(e) => setUsername(e.target.value)}
-                                        value={username}
-                                        required
-                                    />
-                                </InputGroup>
-
-                                <InputGroup>
-                                    <InputGroup.Text>
-                                        <BsPersonCheckFill />
-                                    </InputGroup.Text>
-
-                                    <Input
-                                        type='text'
-                                        className='form-control'
-                                        placeholder='Active'
-                                        name='active'
-                                        // onChange={(e)=>handle(e)}
-                                        // onChange={(e) => setFirstname(e.target.value)}
-                                        // value={firstname}
-                                        readOnly
-                                    />
-                                </InputGroup>
+                            <Modal.Body>
 
 
-                            </div>
+                                <div className='d-flex flex-row mb-3 gap-2'>
 
-                            <div className='d-flex flex-row mb-3 gap-2'>
+                                    <InputGroup>
+                                        <InputGroup.Text>
+                                            <BsPersonFill />
+                                        </InputGroup.Text>
 
-                                <InputGroup>
-                                    <InputGroup.Text>
-                                        <BsTelephoneFill />
-                                    </InputGroup.Text>
+                                        <Input
+                                            type='text'
+                                            className='form-control'
+                                            placeholder=''
+                                            name=''
+                                            // onChange={(e)=>handle(e)}
+                                            // onChange={(e) => setUsername(e.target.value)}
+                                            value="(New..)"
+                                            readOnly
 
-                                    <Input
-                                        type='text'
-                                        className='form-control'
-                                        placeholder='Mobile Phone'
-                                        name='phonenumber'
-                                        // onChange={(e)=>handle(e)}
-                                        onChange={(e) => setPhonenumber(e.target.value)}
-                                        value={phonenumber}
-                                        required
-                                    />
-                                </InputGroup>
+                                        />
+                                    </InputGroup>
 
-                                <InputGroup>
-                                    <InputGroup.Text>
-                                        <BsEnvelopeFill />
-                                    </InputGroup.Text>
+                                    <InputGroup>
+                                        <InputGroup.Text>
+                                            <BsPersonFill />
+                                        </InputGroup.Text>
 
-                                    <Input
-                                        type='email'
-                                        className='form-control'
-                                        placeholder='E-mail'
-                                        name='email'
-                                        // onChange={(e)=>handle(e)}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                        value={email}
-                                        required
-                                    />
-                                </InputGroup>
+                                        <Input
+                                            type='text'
+                                            className='form-control'
+                                            placeholder='Names'
+                                            name='firstname'
+                                            // onChange={(e)=>handle(e)}
+                                            onChange={(e) => setFirstname(e.target.value)}
+                                            value={firstname}
+                                            required
+                                        />
+                                    </InputGroup>
+
+                                </div>
+                                <div className='d-flex flex-row mb-3 gap-2'>
+
+                                    <InputGroup>
+                                        <InputGroup.Text>
+                                            <BsPersonBadge />
+
+                                        </InputGroup.Text>
+
+                                        <Input
+                                            type='text'
+                                            className='form-control'
+                                            placeholder='Username'
+                                            name='username'
+                                            // onChange={(e)=>handle(e)}
+                                            onChange={(e) => setUsername(e.target.value)}
+                                            value={username}
+                                            required
+                                        />
+                                    </InputGroup>
+
+                                    <InputGroup>
+                                        <InputGroup.Text>
+                                            <BsPersonCheckFill />
+                                        </InputGroup.Text>
+
+                                        <Input
+                                            type='text'
+                                            className='form-control'
+                                            placeholder='Active'
+                                            name='active'
+                                            // onChange={(e)=>handle(e)}
+                                            // onChange={(e) => setFirstname(e.target.value)}
+                                            // value={firstname}
+                                            readOnly
+                                        />
+                                    </InputGroup>
 
 
-                            </div>
+                                </div>
 
-                            <div className='d-flex flex-row mb-3 gap-2'>
+                                <div className='d-flex flex-row mb-3 gap-2'>
 
-                                <InputGroup>
-                                    <InputGroup.Text>
-                                        <BsHouseFill />
-                                    </InputGroup.Text>
+                                    <InputGroup>
+                                        <InputGroup.Text>
+                                            <BsTelephoneFill />
+                                        </InputGroup.Text>
 
-                                    <Input
-                                        type='text'
-                                        className='form-control'
-                                        placeholder='Address'
-                                        name='address'
-                                        // onChange={(e)=>handle(e)}
-                                        onChange={(e) => setAddress(e.target.value)}
-                                        value={address}
-                                    />
-                                </InputGroup>
+                                        <Input
+                                            type='text'
+                                            className='form-control'
+                                            placeholder='Mobile Phone'
+                                            name='phonenumber'
+                                            // onChange={(e)=>handle(e)}
+                                            onChange={(e) => setPhonenumber(e.target.value)}
+                                            value={phonenumber}
+                                            required
+                                        />
+                                    </InputGroup>
 
-                                <InputGroup>
-                                    <InputGroup.Text>
-                                        <BsCash />
-                                    </InputGroup.Text>
+                                    <InputGroup>
+                                        <InputGroup.Text>
+                                            <BsEnvelopeFill />
+                                        </InputGroup.Text>
 
-                                    <Input
-                                        type='text'
-                                        className='form-control'
-                                        placeholder='Account Bal'
-                                        name='accountbal'
+                                        <Input
+                                            type='email'
+                                            className='form-control'
+                                            placeholder='E-mail'
+                                            name='email'
+                                            // onChange={(e)=>handle(e)}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            value={email}
+                                            required
+                                        />
+                                    </InputGroup>
+
+
+                                </div>
+
+                                <div className='d-flex flex-row mb-3 gap-2'>
+
+                                    <InputGroup>
+                                        <InputGroup.Text>
+                                            <BsHouseFill />
+                                        </InputGroup.Text>
+
+                                        <Input
+                                            type='text'
+                                            className='form-control'
+                                            placeholder='Address'
+                                            name='address'
+                                            // onChange={(e)=>handle(e)}
+                                            onChange={(e) => setAddress(e.target.value)}
+                                            value={address}
+                                        />
+                                    </InputGroup>
+
+                                    <InputGroup>
+                                        <InputGroup.Text>
+                                            <BsCash />
+                                        </InputGroup.Text>
+
+                                        <Input
+                                            type='text'
+                                            className='form-control'
+                                            placeholder='Account Bal'
+                                            name='accountbal'
+                                            // onChange={(e)=>handle(e)}
+                                            // onChange={(e) => setPhonenumber(e.target.value)}
+                                            // value={phonenumber}
+                                            readOnly
+                                        />
+                                    </InputGroup>
+
+
+                                </div>
+
+                                <div className='d-flex flex-row mb-3 gap-2'>
+
+                                    <InputGroup>
+                                        <InputGroup.Text>
+                                            <BsCashCoin />
+                                        </InputGroup.Text>
+
+                                        <Input
+                                            type='text'
+                                            className='form-control'
+                                            placeholder='Commission'
+                                            name='commision'
+                                            // onChange={(e)=>handle(e)}
+                                            // onChange={(e) => setPhonenumber(e.target.value)}
+                                            // value={phonenumber}
+                                            readOnly
+                                        />
+                                    </InputGroup>
+
+
+                                    <InputGroup>
+                                        <InputGroup.Text>
+                                            <BsInfoCircle />
+                                        </InputGroup.Text>
+
+                                        <Input
+                                            type='text'
+                                            className='form-control'
+                                            placeholder='Desctiption'
+                                            name='description'
+                                            // onChange={(e)=>handle(e)}
+                                            onChange={(e) => setDescription(e.target.value)}
+                                            value={description}
+                                        />
+                                    </InputGroup>
+
+                                </div>
+
+                                <div className='d-flex flex-row mb-3 gap-2'>
+
+                                    <InputGroup>
+                                        <InputGroup.Text>
+                                            <BsKeyFill />
+                                        </InputGroup.Text>
+
+                                        <Input
+                                            type='password'
+                                            className='form-control'
+                                            placeholder='Password'
+                                            name='password'
+                                            // onChange={(e)=>handle(e)}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            value={password}
+                                        />
+                                    </InputGroup>
+
+                                    <InputGroup>
+                                        <InputGroup.Text>
+                                            <BsCalendarDate />
+                                        </InputGroup.Text>
+
+                                        <Input
+                                            type='text'
+                                            className='form-control'
+                                            placeholder='Created'
+                                            name='created'
+                                            // onChange={(e)=>handle(e)}
+                                            // onChange={(e) => setPhonenumber(e.target.value)}
+                                            // value={phonenumber}
+                                            readOnly
+                                        />
+                                    </InputGroup>
+
+
+                                </div>
+
+                                <div className='d-flex flex-row mb-3 gap-2'>
+
+                                    <InputGroup>
+                                        <InputGroup.Text>
+                                            <BsKey />
+                                        </InputGroup.Text>
+
+                                        <Input
+                                            type='password'
+                                            className='form-control'
+                                            placeholder='Confirm Password'
+                                            name='confirmpassword'
+                                            // onChange={(e)=>handle(e)}
+                                            // onChange={(e) => setPhonenumber(e.target.value)}
+                                            // value={phonenumber}
+                                            required
+                                        />
+                                    </InputGroup>
+
+                                    <InputGroup>
+                                        <InputGroup.Text>
+                                            <BsCalendar2CheckFill />
+                                        </InputGroup.Text>
+
+                                        <Input
+                                            type='text'
+                                            className='form-control'
+                                            placeholder='Last Login'
+                                            name='lastlogin'
                                         // onChange={(e)=>handle(e)}
                                         // onChange={(e) => setPhonenumber(e.target.value)}
                                         // value={phonenumber}
-                                        readOnly
-                                    />
-                                </InputGroup>
+                                        />
+                                    </InputGroup>
 
 
-                            </div>
-
-                            <div className='d-flex flex-row mb-3 gap-2'>
-
-                                <InputGroup>
-                                    <InputGroup.Text>
-                                        <BsCashCoin />
-                                    </InputGroup.Text>
-
-                                    <Input
-                                        type='text'
-                                        className='form-control'
-                                        placeholder='Commission'
-                                        name='commision'
-                                        // onChange={(e)=>handle(e)}
-                                        // onChange={(e) => setPhonenumber(e.target.value)}
-                                        // value={phonenumber}
-                                        readOnly
-                                    />
-                                </InputGroup>
+                                </div>
 
 
-                                <InputGroup>
-                                    <InputGroup.Text>
-                                        <BsInfoCircle />
-                                    </InputGroup.Text>
-
-                                    <Input
-                                        type='text'
-                                        className='form-control'
-                                        placeholder='Desctiption'
-                                        name='description'
-                                        // onChange={(e)=>handle(e)}
-                                        onChange={(e) => setDescription(e.target.value)}
-                                        value={description}
-                                    />
-                                </InputGroup>
-
-                            </div>
-
-                            <div className='d-flex flex-row mb-3 gap-2'>
-
-                                <InputGroup>
-                                    <InputGroup.Text>
-                                        <BsKeyFill />
-                                    </InputGroup.Text>
-
-                                    <Input
-                                        type='password'
-                                        className='form-control'
-                                        placeholder='Password'
-                                        name='password'
-                                        // onChange={(e)=>handle(e)}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        value={password}
-                                    />
-                                </InputGroup>
-
-                                <InputGroup>
-                                    <InputGroup.Text>
-                                        <BsCalendarDate />
-                                    </InputGroup.Text>
-
-                                    <Input
-                                        type='text'
-                                        className='form-control'
-                                        placeholder='Created'
-                                        name='created'
-                                        // onChange={(e)=>handle(e)}
-                                        // onChange={(e) => setPhonenumber(e.target.value)}
-                                        // value={phonenumber}
-                                        readOnly
-                                    />
-                                </InputGroup>
-
-
-                            </div>
-
-                            <div className='d-flex flex-row mb-3 gap-2'>
-
-                                <InputGroup>
-                                    <InputGroup.Text>
-                                        <BsKey />
-                                    </InputGroup.Text>
-
-                                    <Input
-                                        type='password'
-                                        className='form-control'
-                                        placeholder='Confirm Password'
-                                        name='confirmpassword'
-                                        // onChange={(e)=>handle(e)}
-                                        // onChange={(e) => setPhonenumber(e.target.value)}
-                                        // value={phonenumber}
-                                        required
-                                    />
-                                </InputGroup>
-
-                                <InputGroup>
-                                    <InputGroup.Text>
-                                        <BsCalendar2CheckFill />
-                                    </InputGroup.Text>
-
-                                    <Input
-                                        type='text'
-                                        className='form-control'
-                                        placeholder='Last Login'
-                                        name='lastlogin'
-                                    // onChange={(e)=>handle(e)}
-                                    // onChange={(e) => setPhonenumber(e.target.value)}
-                                    // value={phonenumber}
-                                    />
-                                </InputGroup>
-
-
-                            </div>
-
-
-                            <div>
-                                {responsemessage && (
-                                    <span><i><b>* {responsemessage.msg}</b></i></span>
-                                )}
-                            </div>
+                                <div>
+                                    {responsemessage && (
+                                        <span><i><b>* {responsemessage.msg}</b></i></span>
+                                    )}
+                                </div>
 
 
 
-                        </Modal.Body>
-                        <Modal.Footer>
+                            </Modal.Body>
+                            <Modal.Footer>
 
-                            <button className='btn btn-dark opacity-60' type='submit'>Save Changes</button>
+                                <button className='btn btn-dark opacity-60' type='submit'>Save Changes</button>
 
-                            <Button className='btn btn-dark opacity-60' onClick={handleClose}> Cancel</Button>
+                                <Button className='btn btn-dark opacity-60' onClick={handleClose}> Cancel</Button>
 
-                        </Modal.Footer>
-                    </form>
-                </Modal>
-
-
-                {/* end modal */}
+                            </Modal.Footer>
+                        </form>
+                    </Modal>
 
 
-                <button className='app-buttons' variant="contained" color='dark'>View & Modify</button>
-                <button className='app-buttons' onClick={refresh} variant="contained" color='dark'>Refresh</button>
-            </Stack >
+                    {/* end modal */}
+
+
+                    <button className='app-buttons' variant="contained" color='dark'>View & Modify</button>
+                    <button className='app-buttons' onClick={refresh} variant="contained" color='dark'>Refresh</button>
+                </Stack >
             </div>
 
             {/* <table>
@@ -572,27 +572,27 @@ export default function MyClients({ token }) {
                                 );
                             })} */}
 
-                        {myclients && 
+                        {myclients &&
                             myclients.response
-                            // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                              .map((clients)=>{
-                                        return (
-                                            <TableRow hover role="checkbox" tabIndex={-1} key={clients.pk}>
-                                                <TableCell>{clients.fields.customerno}</TableCell>
-                                                <TableCell>{clients.fields.username}</TableCell>
-                                                <TableCell>{clients.fields.first_name}  {clients.fields.last_name}</TableCell>
-                                                <TableCell>{clients.fields.phone}</TableCell>
-                                                <TableCell>{clients.fields.smsbalance}</TableCell>
-                                                <TableCell>{clients.fields.is_active}</TableCell>
-                                                <TableCell>{clients.fields.date_joined}</TableCell>
-                                                <TableCell>{clients.fields.last_login}</TableCell>
+                                // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                .map((clients) => {
+                                    return (
+                                        <TableRow hover role="checkbox" tabIndex={-1} key={clients.pk}>
+                                            <TableCell>{clients.fields.customerno}</TableCell>
+                                            <TableCell>{clients.fields.username}</TableCell>
+                                            <TableCell>{clients.fields.first_name}  {clients.fields.last_name}</TableCell>
+                                            <TableCell>{clients.fields.phone}</TableCell>
+                                            <TableCell>{clients.fields.smsbalance}</TableCell>
+                                            <TableCell>{clients.fields.is_active}</TableCell>
+                                            <TableCell>{clients.fields.date_joined}</TableCell>
+                                            <TableCell>{clients.fields.last_login}</TableCell>
 
-                                 
-                                            </TableRow>
-                                        )
-                                     })}
-                            
-{/*                             
+
+                                        </TableRow>
+                                    )
+                                })}
+
+                        {/*                             
                         {myclients && myclients.response.map((clients) => (
                             <tr key={clients.pk}>
                                 <td className="table-data">{clients.pk}</td>
@@ -601,7 +601,7 @@ export default function MyClients({ token }) {
                             </tr>
                         ))} */}
 
-                        
+
                     </TableBody>
                 </Table>
             </TableContainer>
@@ -615,7 +615,7 @@ export default function MyClients({ token }) {
                 onRowsPerPageChange={handleChangeRowsPerPage}
             />
 
-             {/* {myclients && (<span>{myclients.total}</span>)} */}
+            {/* {myclients && (<span>{myclients.total}</span>)} */}
         </Paper >
     );
 }

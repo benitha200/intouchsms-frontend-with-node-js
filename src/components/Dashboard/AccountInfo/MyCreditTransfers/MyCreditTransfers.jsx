@@ -153,12 +153,12 @@ export default function MyCreditTransfers({ token }) {
                     <button className='app-buttons w-25' variant="contained" color='dark'>View & Modify</button>
                     <button className='app-buttons w-25' variant="contained" color='dark'>Refresh</button>
 
-                    <div className="input-group">
+                    <div className="input-group float-right">
                         <div className="form-outline">
                             <input id="search-input" type="search" placeholder='Search' className="form-control" />
                             {/* <label className="form-label" for="form1">Search</label> */}
                         </div>
-                        <button id="search-button" type="button">
+                        <button id="search-button border-0" type="button">
                             <BsSearch variant="inherit"/>
                         </button>
                     </div>

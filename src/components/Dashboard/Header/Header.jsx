@@ -13,29 +13,7 @@ import { BsArrowLeftRight, BsBagCheck, BsCash, BsCashCoin, BsEnvelopeFill, BsHou
 
 
 
-const data = [
-    {
-        "id": 1,
-        "author": "J.K. Rowling",
-        "title": "Harry Potter and the Philosopher's Stone",
-        "release_date": "1997-06-26"
-    },
-    {
-        "id": 2,
-        "author": "George R.R. Martin",
-        "title": "A Game of Thrones",
-        "release_date": "1996-08-01"
-    },
-    {
-        "id": 3,
-        "author": "J.R.R. Tolkien",
-        "title": "The Lord of the Rings",
-        "release_date": "1954-07-29"
-    }
-]
-
-
-const Header = ({ token }) => {
+const Header = ({ token, setToken }) => {
 
     //modal
     const [show, setShow] = useState(false)
@@ -46,24 +24,33 @@ const Header = ({ token }) => {
     const [showTable, setShowTable] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
 
-    const handleButtonClick = () => {
-        // Toggle the visibility of the table
-        setShowTable(!showTable);
-    };
 
-    const handleTableRowClick = (item) => {
-        // Set the selected item and populate the form data
-        setSelectedItem(item);
-        // TODO: Populate form data here
-    };
+    // const handleButtonClick = () => {
+    //     // Toggle the visibility of the table
+    //     setShowTable(!showTable);
+    // };
+
+    // const handleTableRowClick = (item) => {
+    //     // Set the selected item and populate the form data
+    //     setSelectedItem(item);
+    //     // TODO: Populate form data here
+    // };
 
     const [profile, setProfile] = useState()
     const [balance, setBalance] = useState()
     const [publishedPackages, setPublishedPackages] = useState()
     const [selectedPackage, setSelectedPackage] = useState(null);
-    const [logoutData, setLogoutData] = useState()
+    const [logoutData, setLogoutData] = useState();
+    const [priceInfo, setPriceInfo] = useState();
 
-    let data1 = JSON.parse(JSON.stringify(data))
+    const [unitPrice, setUnitPrice] = useState();
+    const [amount, setAmount] = useState(0);
+    const [quantity, setQuantity] = useState();
+    const [totPriceTaxEx, setTotPriceTaxEx] = useState();
+    const [vat, setVat] = useState();
+    const [totPriceTaxInc, setTotPriceTaxInc] = useState();
+
+
 
 
     // var requestOptions = {
@@ -90,7 +77,7 @@ const Header = ({ token }) => {
 
 
     useEffect(() => {
-        fetch(API_URL +"getmyprofile", requestOptions)
+        fetch(API_URL + "getmyprofile", requestOptions)
             .then(response => response.json())
             .then(result => setProfile(convertToJson(result)))
             // .then(result => setProfile(result))
@@ -123,18 +110,22 @@ const Header = ({ token }) => {
             redirect: 'follow'
         };
 
-        fetch(API_URL +"logout", requestOptions)
+        fetch(API_URL + "logout", requestOptions)
             .then(response => response.text())
-            .then(result => setLogoutData(result))
+            .then(result => {
+                setLogoutData(result);
+                localStorage.removeItem('token');
+                setToken(null);
+                navigate('/login', { replace: true });
+            })
             .catch(error => console.log('error', error));
 
-        console.log(logoutData)
-        if (logoutData.includes("true")) {
-            localStorage.setItem("refreshToken", "")
-            navigate('/login', { replace: true });
-            window.location.reload(true)
+        // console.log(logoutData)
+        // if (logoutData.includes("true")) {
 
-        }
+        //     window.location.reload(true)
+
+        // }
 
     }
 
@@ -162,6 +153,92 @@ const Header = ({ token }) => {
     // console.log(publishedPackages);
 
 
+    if (selectedPackage) {
+        alert(selectedPackage);
+    }
+
+
+    // top up for regular customers
+
+    var requestOptions1 = {
+        method: 'POST',
+        headers: {
+            'Authorization': `Token ${token}`,
+        },
+        redirect: 'follow'
+    };
+
+    fetch("http://127.0.0.1:8000/api/getuserunitprice", requestOptions1)
+        .then(response => response.json())
+        .then(result => setPriceInfo(JSON.parse(result)))
+        .catch(error => console.log('error', error));
+
+
+
+    function handleAmount(e) {
+
+
+        setAmount(e.target.value)
+
+
+        let uprice = priceInfo ? priceInfo.response.unitprice : 0;
+        let q = amount / uprice;
+        let v = (e.target.value - (e.target.value / 1.18)).toFixed(2);
+        let TPTE = (e.target.value / 1.18).toFixed(2);
+        let TPTI = (parseFloat(v) + parseFloat(TPTE));
+
+        setQuantity(e.target.value / uprice);
+
+        setTotPriceTaxEx(TPTE);
+
+        setVat(v);
+
+        setTotPriceTaxInc(TPTI);
+
+    }
+
+    function topup(e) {
+        e.preventDefault();
+
+
+        var formdata = new FormData();
+        formdata.append("amount", amount);
+        formdata.append("network", "MTN Mobile Money");
+        formdata.append("phone", "0785283918");
+
+        var requestOptions = {
+            method: 'POST',
+            headers: {
+                'Authorization': `Token ${token}`,
+            },
+            body: formdata,
+            redirect: 'follow'
+        };
+
+        fetch("http://127.0.0.1:8000/api/appecashtopup\n", requestOptions)
+            .then(response => response.json())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+    }
+
+
+    // Load MMN Network
+
+
+    var requestOptions2 = {
+        method: 'POST',
+        headers: {
+            'Authorization': `Token ${token}`,
+        },
+        redirect: 'follow'
+    };
+
+    fetch(API_URL + "getmmnetworks", requestOptions2)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+
+
 
     return (
         <div className='header'>
@@ -183,8 +260,160 @@ const Header = ({ token }) => {
 
                         <button className='account-buttons' onClick={setShow}>Top Up</button>
 
-                        {/* Add Modal */}
 
+                        <Modal show={show} onHide={handleClose} className="modal">
+                            <Modal.Header className='modal-header' closeButton>
+                                <span className='contact-modal-title'><i className='fa fa-key'></i> TopUp Credit</span>
+                            </Modal.Header>
+                            <form onSubmit={topup} encType="multipart/form-data" method="POST">
+                                <Modal.Body>
+
+
+                                    <span className="">Payment Information</span>
+                                    <hr />
+
+                                    <div className='d-flex flex-row gap-2 mb-3'>
+                                        <InputGroup>
+
+                                            <InputGroup.Text>
+                                                <BsCashCoin />
+                                            </InputGroup.Text>
+                                            {/* <Form.Control className='m-0 h-100' type='select' placeholder='Payment Method' required></Form.Control> */}
+                                            <Form.Select aria-label="Default "
+                                            // onChange={handleChange}
+                                            >
+                                                <option>Select an option</option>
+                                                <option value="MTN Mobile Money">MTN Mobile Money </option>
+                                                <option value="2">Airtel Money</option>
+
+                                            </Form.Select>
+                                        </InputGroup>
+
+                                        <InputGroup>
+
+                                            <InputGroup.Text>
+                                                <BsPhoneVibrate />
+                                            </InputGroup.Text>
+                                            <Form.Control type='text' placeholder='Phone Number' required></Form.Control>
+                                        </InputGroup>
+                                    </div>
+                                    <div className='d-flex flex-row gap-2 mb-3'>
+                                        <InputGroup>
+
+                                            <InputGroup.Text>
+                                                <BsCash />
+                                            </InputGroup.Text>
+                                            <Form.Control
+                                                type='text'
+                                                value={amount}
+                                                onChange={handleAmount}
+                                            ></Form.Control>
+                                        </InputGroup>
+
+                                    </div>
+
+                                    <span className="">Price Information</span>
+                                    <hr />
+
+                                    <div className='d-flex flex-row gap-2 mb-3'>
+                                        <InputGroup>
+
+                                            <InputGroup.Text className='w-50'>
+                                                Unit Price:
+                                                {/* <BsCashCoin /> */}
+                                            </InputGroup.Text>
+
+                                            <Form.Control
+                                                className='text-end'
+                                                type='text'
+                                                value={priceInfo && priceInfo.response.unitprice}
+                                                // onChange={(e)=>setUnitPrice(e.target.value)}
+                                                readOnly
+                                            />
+                                        </InputGroup>
+
+                                    </div>
+                                    <div className='d-flex flex-row gap-2 mb-3'>
+                                        <InputGroup>
+
+                                            <InputGroup.Text className='w-50'>
+                                                Quantity :
+                                                {/* <BsCash /> */}
+                                            </InputGroup.Text>
+                                            <Form.Control
+                                                type='text'
+                                                // value={quantity}
+                                                value={quantity}
+
+
+                                                // onChange={handleOnChangeQuantity}
+                                                className='text-end'
+                                                readOnly></Form.Control>
+                                        </InputGroup>
+
+                                    </div>
+                                    <div className='d-flex flex-row gap-2 mb-3'>
+                                        <InputGroup>
+
+                                            <InputGroup.Text className='w-50'>
+                                                Total Price Tax Excl. :
+                                                {/* <BsCash /> */}
+                                            </InputGroup.Text>
+                                            <Form.Control
+                                                type='text'
+                                                value={totPriceTaxEx}
+                                                className='text-end'
+                                                readOnly />
+                                        </InputGroup>
+
+                                    </div>
+                                    <div className='d-flex flex-row gap-2 mb-3'>
+                                        <InputGroup>
+
+                                            <InputGroup.Text className='w-50'>
+                                                VAT(18%) :
+                                                {/* <BsCash /> */}
+                                            </InputGroup.Text>
+                                            <Form.Control
+                                                type='text'
+                                                value={vat}
+                                                className='text-end'
+                                                readOnly></Form.Control>
+                                        </InputGroup>
+
+                                    </div>
+                                    <div className='d-flex flex-row gap-2 mb-3'>
+                                        <InputGroup>
+
+                                            <InputGroup.Text className='w-50'>
+                                                Total Price Tax Incl. :
+                                                {/* <BsCash /> */}
+                                            </InputGroup.Text>
+                                            <Form.Control
+                                                type='text'
+                                                value={totPriceTaxInc}
+                                                className='text-end'
+                                                readOnly />
+                                        </InputGroup>
+
+                                    </div>
+
+                                </Modal.Body>
+                                <Modal.Footer>
+                                    <button type="submit" className='btn btn-dark opacity-60'> Submit </button>
+                                    {/* <Button className='btn btn-dark opacity-60' type='submit'>Submit</Button> */}
+                                    <Button className='btn btn-dark opacity-60' onClick={handleClose}> Cancel</Button>
+
+                                </Modal.Footer>
+                            </form>
+
+                        </Modal>
+
+
+
+
+                        {/* Add Modal */}
+                        {/* 
                         <Modal show={show} onHide={handleClose} className="modal">
                             <Modal.Header className='modal-header' closeButton>
                                 <span className='contact-modal-title'><i className='fa fa-key'></i> TopUp Credit</span>
@@ -193,66 +422,20 @@ const Header = ({ token }) => {
                                 <Modal.Body>
 
 
-                                    {/* <InputGroup className="mb-3">
-                        <InputGroup.Text>
-                          <BsSearch />
-                        </InputGroup.Text>
-                        <Form.Control placeholder="Search" aria-label="Search" />
-                      </InputGroup> */}
+                            
                                     <span>Price Information</span>
                                     <hr />
 
-                                    {/* <div className='d-flex flex-column gap-2 mb-3'>
-                                        <InputGroup>
-                                            
-                                            <InputGroup.Text>
-                                                <BsBagCheck />
-                                            </InputGroup.Text>
-                                            <Form.Control className='m-0 h-100' type='text' placeholder='Package' required></Form.Control>
-                                        </InputGroup>
-                                        <div>
-                                            <InputGroup>
-                                                <Button className='btn btn-dark opacity-50 m-0 h-100 w-100' onClick={handleButtonClick}>Select</Button>
-                                            </InputGroup>
-
-                                            {showTable && (
-                                                <table border={1}>
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Column 1</th>
-                                                            <th>Column 2</th>
-                                                            <th>Column 3</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        {data1 &&
-
-                                                            data1.map((item) => (
-                                                                <tr key={item.id} onClick={() => handleTableRowClick(item)}>
-                                                                    <td>{item.author}</td>
-                                                                    <td>{item.title}</td>
-                                                                    <td>{item.release_date}</td>
-                                                                </tr>
-                                                            ))}
-                                                    </tbody>
-                                                </table>
-                                            )}
-                                            {/* TODO: Render the form here 
-                                        </div>
-                                    </div> */}
-
-
-
                                     <InputGroup>
-                                        <DropdownButton as={InputGroup.Prepend} title="Select Package" className="m-0 bg-dark">
+                                        <DropdownButton as={InputGroup.Prepend} title="Select Package" className="dropdown-toggle btn btn-dark">
                                             {publishedPackages && publishedPackages.response.map((packagedetails) => (
-                                                <Dropdown.Item key={packagedetails.pk} eventKey={packagedetails.pk}>
+                                                <Dropdown.Item key={packagedetails.pk} eventKey={packagedetails.pk} onChange={(e) => setSelectedPackage(e.target.value)}>
                                                     <div className="d-flex flex-row justify-content-xl-between">
-                                                        <span className="p-2 border-right">{packagedetails.fields.name} </span> <span className="p-2 border-right"> min:{packagedetails.fields.minimumprice}</span><span className="p-2 border-right"> max: {packagedetails.fields.maximumprice} </span><span className="p-2"> Unit Price : {packagedetails.fields.unitpricetaxincl}</span>  
+                                                        <span className="p-2 border-right">{packagedetails.fields.name} </span> <span className="p-2 border-right"> min:{packagedetails.fields.minimumprice}</span><span className="p-2 border-right"> max: {packagedetails.fields.maximumprice} </span><span className="p-2"> Unit Price : {packagedetails.fields.unitpricetaxincl}</span>
                                                     </div>
-                                                    
+
                                                 </Dropdown.Item>
-                                               
+
                                             ))}
                                         </DropdownButton>
                                         <FormControl
@@ -266,7 +449,7 @@ const Header = ({ token }) => {
 
                                     <div className='d-flex flex-row gap-2 mb-3'>
                                         <InputGroup>
-                                            {/* <Form.Label>Credits Range</Form.Label> */}
+                                           
                                             <InputGroup.Text>
                                                 Credits Range (From)
                                             </InputGroup.Text>
@@ -275,10 +458,10 @@ const Header = ({ token }) => {
 
                                         <InputGroup>
                                             <InputGroup.Text>
-                                                {/* <BsCashCoin /> */}
+                                             
                                                 To:
                                             </InputGroup.Text>
-                                            {/* <Form.Label>Confirm New password</Form.Label> */}
+                                            
                                             <Form.Control type='textarea' placeholder='' required></Form.Control>
                                         </InputGroup>
                                     </div>
@@ -286,7 +469,7 @@ const Header = ({ token }) => {
 
                                     <div className='d-flex flex-row gap-2 mb-3'>
                                         <InputGroup>
-                                            {/* <Form.Label>Credits Range</Form.Label> */}
+                                            
                                             <InputGroup.Text>
                                                 Price Range (From)
                                             </InputGroup.Text>
@@ -295,10 +478,10 @@ const Header = ({ token }) => {
 
                                         <InputGroup>
                                             <InputGroup.Text>
-                                                {/* <BsCashCoin /> */}
+                                              
                                                 To:
                                             </InputGroup.Text>
-                                            {/* <Form.Label>Confirm New password</Form.Label> */}
+                                            
                                             <Form.Control type='textarea' placeholder='' required></Form.Control>
                                         </InputGroup>
                                     </div>
@@ -306,9 +489,9 @@ const Header = ({ token }) => {
 
                                     <div className='d-flex flex-row gap-2 mb-3'>
                                         <InputGroup>
-                                            {/* <Form.Label>New Password</Form.Label> */}
+                                           
                                             <InputGroup.Text>
-                                                {/* <BsCash /> */}
+                                           
                                                 Unit Price
                                             </InputGroup.Text>
                                             <Form.Control type='text' placeholder='' required></Form.Control>
@@ -318,16 +501,16 @@ const Header = ({ token }) => {
                                             <InputGroup.Text>
                                                 Quantity
                                             </InputGroup.Text>
-                                            {/* <Form.Label>Confirm New password</Form.Label> */}
+                                            
                                             <Form.Control type='textarea' placeholder='' required></Form.Control>
                                         </InputGroup>
                                     </div>
 
                                     <div className='d-flex flex-row gap-2 mb-3'>
                                         <InputGroup>
-                                            {/* <Form.Label>New Password</Form.Label> */}
+                                           
                                             <InputGroup.Text>
-                                                {/* <BsCash /> */}
+                                                
                                                 Tot. Price Tax Excl.
                                             </InputGroup.Text>
                                             <Form.Control type='text' placeholder='' required></Form.Control>
@@ -335,19 +518,19 @@ const Header = ({ token }) => {
 
                                         <InputGroup>
                                             <InputGroup.Text>
-                                                {/* <BsCashCoin /> */}
+                                               
                                                 VAT (18%)
                                             </InputGroup.Text>
-                                            {/* <Form.Label>Confirm New password</Form.Label> */}
+                                          
                                             <Form.Control type='text' placeholder='' required></Form.Control>
                                         </InputGroup>
                                     </div>
 
                                     <div className='d-flex flex-row gap-2 mb-3'>
                                         <InputGroup>
-                                            {/* <Form.Label>New Password</Form.Label> */}
+                                           
                                             <InputGroup.Text>
-                                                {/* <BsCash /> */}
+                                            
                                                 Tot. Price Tax Excl.
                                             </InputGroup.Text>
                                             <Form.Control type='text' placeholder='' required></Form.Control>
@@ -360,7 +543,7 @@ const Header = ({ token }) => {
 
                                     <div className='d-flex flex-row gap-2 mb-3'>
                                         <InputGroup>
-                                            {/* <Form.Label>New Password</Form.Label> */}
+                                            
                                             <InputGroup.Text>
                                                 <BsCashCoin />
                                             </InputGroup.Text>
@@ -368,7 +551,7 @@ const Header = ({ token }) => {
                                         </InputGroup>
 
                                         <InputGroup>
-                                            {/* <Form.Label>New Password</Form.Label> */}
+                                            
                                             <InputGroup.Text>
                                                 <BsPhoneVibrate />
                                             </InputGroup.Text>
@@ -377,7 +560,7 @@ const Header = ({ token }) => {
                                     </div>
                                     <div className='d-flex flex-row gap-2 mb-3'>
                                         <InputGroup>
-                                            {/* <Form.Label>New Password</Form.Label> */}
+                                         
                                             <InputGroup.Text>
                                                 <BsCash />
                                             </InputGroup.Text>
@@ -395,7 +578,7 @@ const Header = ({ token }) => {
                                 </Modal.Footer>
                             </Form>
 
-                        </Modal>
+                        </Modal> */}
 
 
                         {/* end modal */}
