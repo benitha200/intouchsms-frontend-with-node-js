@@ -1,5 +1,4 @@
-import * as React from 'react';
-import Paper from '@mui/material/Paper';
+// import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -14,7 +13,7 @@ import Modal from '@mui/material/Modal'
 import './MyTransactions.css'
 import { Form } from 'react-bootstrap';
 import { DataGrid } from '@mui/x-data-grid'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { CircularProgress } from '@mui/material';
 import { API_URL } from '../../../../Constants/Index';
@@ -101,9 +100,9 @@ const columns = [
 export default function MyTransactions({ token }) {
 
     // modal
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
-    const [open, setOpen] = React.useState(false)
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [open, setOpen] = useState(false)
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
 
@@ -137,7 +136,7 @@ export default function MyTransactions({ token }) {
     };
 
 
-    React.useEffect(() => {
+    useEffect(() => {
         fetch(API_URL + "appgettransactions", requestOptions)
             .then(response => response.json())
             .then(result => {
@@ -181,7 +180,9 @@ export default function MyTransactions({ token }) {
 
 
     return (
-        <Paper sx={{ width: '98%', margin: '0.5rem', overflowX: 'auto' }}>
+        // <Paper sx={{ width: '98%', margin: '0.5rem', overflowX: 'auto' }}>
+
+        <div className="w-100 m-2">
 
             <div className='table-headers'>
                 <div className="table-title">My Transactions</div>
@@ -269,6 +270,6 @@ export default function MyTransactions({ token }) {
 
 
 
-        </Paper>
+</div>
     );
 }

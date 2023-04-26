@@ -1,4 +1,3 @@
-import React from 'react'
 import { AnimationOnScroll } from 'react-animation-on-scroll'
 import './IntroSection.css'
 import computers from  '../../../../assets/images/sw5.jpg'

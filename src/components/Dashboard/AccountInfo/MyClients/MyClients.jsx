@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -96,8 +95,8 @@ const rows = [
 ];
 
 export default function MyClients({ token }) {
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
     // const [open, setOpen] = React.useState(false)
     // const handleOpen = () => setOpen(true)
     // const handleClose = () => setOpen(false)

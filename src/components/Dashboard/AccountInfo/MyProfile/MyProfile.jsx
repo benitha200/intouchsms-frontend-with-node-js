@@ -1,6 +1,5 @@
 // import { FormGroup, Input } from '@mui/material'
 import { Tab, Box, TabContext, TabList, TabPanel, TextField, Stack, Card, CardHeader, Paper } from '@mui/material';
-import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -17,7 +16,6 @@ import Modal from 'react-bootstrap/Modal';
 // import TabList from '@mui/lab/TabList';
 // import TabPanel from '@mui/lab/TabPanel';
 import './MyProfile.css';
-import { responsiveFontSizes, Typography } from '@material-ui/core';
 // import { BsKey, BsKeyFill, BsSearch } from 'react-icons/bs';
 import { Link, Outlet } from 'react-router-dom';
 import { BsCashCoin, BsCashStack, BsCheck2Square, BsCode, BsEnvelopeFill, BsHouseFill, BsInfoCircle, BsInfoLg, BsKey, BsKeyFill, BsMailbox, BsMap, BsPerson, BsPersonBadgeFill, BsPersonCheck, BsPersonCheckFill, BsPersonFill, BsPersonX, BsPhoneFill, BsPlusCircleFill, BsSortNumericDown, BsTelephoneFill, BsTelephoneInboundFill } from 'react-icons/bs';
@@ -45,11 +43,11 @@ const columns = [
 ];
 const MyProfile = ({ token }) => {
 
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   // actual states
-  const [profile, setProfile] = React.useState('');
+  const [profile, setProfile] = useState('');
   const [senderNames, setSenderNames] = useState('');
 
   // change password
@@ -290,7 +288,7 @@ const MyProfile = ({ token }) => {
                     <BsKeyFill />
                     Auth Token
                   </InputGroup.Text>
-                  <Form.Control type='text' className='text-right bg-white' value={profile.response.authtoken}></Form.Control>
+                  <Form.Control type='text' className='text-right bg-white' value={profile.response.authtoken} readOnly></Form.Control>
                 </InputGroup>
               </div>
 

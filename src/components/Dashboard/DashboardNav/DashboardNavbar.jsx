@@ -1,8 +1,6 @@
 import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar } from 'react-pro-sidebar';
-import React from 'react'
 import './DashboardNav.css'
 import { Link, Outlet } from 'react-router-dom';
-import { Divider } from '@material-ui/core';
 import MyProfile from '../AccountInfo/MyProfile/MyProfile';
 import { BsBookFill, BsBookmarkDashFill, BsFillPersonFill, BsPersonCircle } from 'react-icons/bs'
 import { BsPeopleFill } from 'react-icons/bs'

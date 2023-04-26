@@ -1,5 +1,5 @@
 import { Autocomplete, Box, Container, FormGroup, InputLabel, Paper, Stack, TextField, Typography } from '@mui/material'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
@@ -13,7 +13,7 @@ import { AutoComplete } from "@mui/material";
 import MessageLogSummary from './MessageLogSummary/MessageLogSummary';
 import { API_URL } from '../../../../Constants/Index';
 import * as XLSX from 'xlsx/xlsx.mjs';
-
+// import ReactFileInput from "react-file-input";
 
 const senderNames = [
   { label: 'Test1' },
@@ -85,6 +85,29 @@ const Send = ({ token }) => {
 
 
   }
+  const [file, setFile] = useState(null);
+  const [values, setValues] = useState([]);
+
+  const handleChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const contents = e.target.result;
+      const rows = contents.split("\n");
+      const firstColumn = rows.map(row => row.split(",")[0]);
+      setValues(firstColumn);
+    };
+    reader.readAsText(file);
+  };
 
 
 
@@ -120,12 +143,22 @@ const Send = ({ token }) => {
 
             <div className="form-outline">
               <label className="form-label" >Load Contact File(Excel Format)</label>
-              <input type="file" id="formControlSm" className="form-control form-control-sm" onChange={handleFileUpload} />
+              {/* <input type="file" id="formControlSm" className="form-control form-control-sm" onChange={handleFileUpload} />
               <ul>
                 {data.map((cell, index) => (
                   <li key={index}>{cell}</li>
                 ))}
-              </ul>
+              </ul> */}
+
+              {/* <ReactFileInput
+                type="file"
+                onChange={handleChange}
+              /> */}
+              <input
+                type="text"
+                value={values}
+                readOnly
+              />
             </div>
 
             <div className="form-outline">

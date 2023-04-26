@@ -1,5 +1,4 @@
 import { OutlinedFlag } from '@mui/icons-material'
-import React from 'react'
 import { Sidebar } from 'react-pro-sidebar'
 import MyProfile from '../AccountInfo/MyProfile/MyProfile'
 import DashboardNavbar from '../DashboardNav/DashboardNavbar'

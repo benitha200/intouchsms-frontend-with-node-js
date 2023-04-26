@@ -1,4 +1,3 @@
-import React from 'react'
 import logo from '../../../assets/icons/intouch-logo.png'
 import './Footer.css'
 

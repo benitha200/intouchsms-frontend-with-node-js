@@ -1,4 +1,3 @@
-import React from 'react'
 import { MdAddCircle } from 'react-icons/md'
 import './Groups.css'
 import '../AddressBook.css'
@@ -10,7 +9,7 @@ import { BsInfoCircleFill, BsPeopleFill, BsPlusCircleFill } from 'react-icons/bs
 import { BsBook, BsEject, BsEraser, BsEraserFill, BsFileArrowUpFill, BsPenFill, BsFillArrowUpRightSquareFill, BsPlusSquare } from 'react-icons/bs'
 import Popup from 'reactjs-popup'
 import axios from 'axios'
-import { Paper } from '@material-ui/core'
+// import { Paper } from '@material-ui/core'
 import { API_URL } from '../../../../Constants/Index'
 
 
@@ -214,7 +213,8 @@ const Groups = ({ token }) => {
 
 
 
-      <Paper sx={{marginTop:'0.5rem', height:'100%'}}>
+      {/* <Paper sx={{marginTop:'0.5rem', height:'100%'}}> */}
+      <div className="m-2 bg-white rounded-5">
         <div className='p-2'>
         <span className="text-bold p-2"><BsPeopleFill/>  My Groups </span>
         <hr/>
@@ -341,7 +341,7 @@ const Groups = ({ token }) => {
           </div>
         </div>
 
-        </Paper>
+      </div>
 
         <div className='vr'>
 

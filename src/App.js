@@ -29,7 +29,6 @@ import { useState,useEffect } from 'react';
 import SignUp from './components/Website/SignUp/SignUp';
 import { TOKEN } from './Constants/Index';
 import Loginn from './components/Website/Login/Loginn';
-import Mine from './components/Dashboard/AccountInfo/MyProfile/Mine';
 
 
 function App() {

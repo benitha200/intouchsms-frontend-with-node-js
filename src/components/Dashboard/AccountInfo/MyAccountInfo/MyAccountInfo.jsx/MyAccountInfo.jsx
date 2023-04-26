@@ -1,6 +1,6 @@
 import {Paper, Typography } from '@mui/material'
 import { Stack } from '@mui/system'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './MyAccountInfo.css'
 import Button from '@mui/material/Button'
 import { TOKEN } from '../../../../../Constants/Index'

@@ -1,4 +1,3 @@
-import React from 'react'
 import { MdAddCircle } from 'react-icons/md'
 import './Contacts.css'
 import '../AddressBook.css'
