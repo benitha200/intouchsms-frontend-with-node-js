@@ -284,7 +284,7 @@ const Header = ({ token, setToken }) => {
                     <Stack direction="row" gap={2}>
 
 
-                        <button className='app-buttons' onClick={setShow}>Top Up</button>
+                        <button className='app-buttons w-75' onClick={setShow}>Top Up</button>
                         {/* 
 
                         <Modal show={show} onHide={handleClose} className="modal">
@@ -605,7 +605,7 @@ const Header = ({ token, setToken }) => {
                         {/* end modal */}
 
 
-                        <button className='app-buttons' onClick={logout}>Logout</button>
+                        <button className='app-buttons w-75' onClick={logout}>Logout</button>
                     </Stack >
 
                     <div className='account-info'>
