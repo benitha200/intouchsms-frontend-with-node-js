@@ -8,17 +8,17 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { Stack } from '@mui/system';
 // import { Button } from 'reactstrap';
-import { Box, Typography } from '@mui/material';
-import { Button, Col, FormGroup, InputGroup, Row } from 'react-bootstrap';
+// import { Box, Typography } from '@mui/material';
+import { Button, InputGroup} from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 // import Modal from '@mui/material/Modal'
 import './MyClients.css';
-import { TextField } from '@mui/material';
+// import { TextField } from '@mui/material';
 // import { Form, Label, FormGroup, Input, CloseButton } from 'reactstrap'
-import { Helmet } from 'react-helmet';
-import { BsCalendar2CheckFill, BsCalendarDate, BsCash, BsCashCoin, BsCheck2Square, BsEnvelopeFill, BsHouseFill, BsInfoCircle, BsInfoLg, BsKey, BsKeyFill, BsMailbox, BsPeopleFill, BsPerson, BsPersonBadge, BsPersonCheck, BsPersonCheckFill, BsPersonFill, BsPersonX, BsPhoneFill, BsPlusCircleFill, BsTelephoneFill } from 'react-icons/bs';
+// import { Helmet } from 'react-helmet';
+import { BsCalendar2CheckFill, BsCalendarDate, BsCash, BsCashCoin, BsEnvelopeFill, BsHouseFill, BsInfoCircle, BsKey, BsKeyFill, BsPeopleFill, BsPersonBadge, BsPersonCheckFill, BsPersonFill, BsPlusCircleFill, BsTelephoneFill } from 'react-icons/bs';
 import { useState } from 'react';
-import { Form, Input } from 'reactstrap';
+import { Input } from 'reactstrap';
 import { API_URL } from '../../../../Constants/Index';
 
 
@@ -83,16 +83,16 @@ const columns = [
     },
 ];
 
-function createData(agentNo, username, agentNames, phone, accountBal, active, lastLogin, dateJoined) {
-    return { agentNo, username, agentNames, phone, accountBal, active, lastLogin, dateJoined };
-}
+// function createData(agentNo, username, agentNames, phone, accountBal, active, lastLogin, dateJoined) {
+//     return { agentNo, username, agentNames, phone, accountBal, active, lastLogin, dateJoined };
+// }
 
-const rows = [
-    createData('0000006758', 'Rosine', 'Rosine', '0785467789', 5000, '1', 34567890, 34485990),
-    createData('0000006758', 'Rosine', 'Rosine', '0785467789', 5000, '1', 34567890, 34485990),
-    createData('0000006758', 'Rosine', 'Rosine', '0785467789', 5000, '1', 34567890, 34485990),
+// const rows = [
+//     createData('0000006758', 'Rosine', 'Rosine', '0785467789', 5000, '1', 34567890, 34485990),
+//     createData('0000006758', 'Rosine', 'Rosine', '0785467789', 5000, '1', 34567890, 34485990),
+//     createData('0000006758', 'Rosine', 'Rosine', '0785467789', 5000, '1', 34567890, 34485990),
 
-];
+// ];
 
 export default function MyClients({ token }) {
     const [page, setPage] = useState(0);
@@ -133,7 +133,6 @@ export default function MyClients({ token }) {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [phonenumber, setPhonenumber] = useState()
-    const [telephone, setTelephone] = useState()
     const [address, setAddress] = useState()
     const [description, setDescription] = useState()
 

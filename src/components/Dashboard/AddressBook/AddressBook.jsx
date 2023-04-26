@@ -1,5 +1,5 @@
 import { Link, Outlet } from 'react-router-dom'
-import Contacts from './Contacts/Contacts'
+// import Contacts from './Contacts/Contacts'
 
 const AddressBook = () => {
     return (

@@ -4,7 +4,7 @@ import computers from  '../../../../assets/images/sw5.jpg'
 import payment from '../../../../assets/images/payments5.jpg'
 import messaging from '../../../../assets/images/messaging5.jpg'
 import ussd from '../../../../assets/images/ussd5.jpg'
-import { ArrowRight, ArrowRightSharp } from '@mui/icons-material'
+import { ArrowRight } from '@mui/icons-material'
 
 const IntroSection = () => {
 

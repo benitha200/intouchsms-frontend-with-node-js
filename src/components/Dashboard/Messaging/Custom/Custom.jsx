@@ -1,17 +1,14 @@
-import { Autocomplete, Box, Container, FormGroup, InputLabel, Paper, Stack, TextField, Typography } from '@mui/material'
+import { Box,  FormGroup } from '@mui/material'
 import { useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 // import { Form } from 'react-router-dom'
-import { Label, Table } from 'reactstrap'
-import { Pane } from 'split-pane-react'
-import SplitPane from 'split-pane-react/esm/SplitPane'
-import Button from "@mui/material/Button"
+// import { Label, Table } from 'reactstrap'
+// import { Pane } from 'split-pane-react'
+// import SplitPane from 'split-pane-react/esm/SplitPane'
+// import Button from "@mui/material/Button"
 import './Custom.css'
-const senderNames = [
-    { label: 'Test1' },
-    { label: 'Test2' },
-];
+
 
 const Custom = () => {
     const [counter, setCounter] = useState([0])

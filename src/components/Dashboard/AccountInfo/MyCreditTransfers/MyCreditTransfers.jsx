@@ -10,11 +10,11 @@ import { Stack } from '@mui/system';
 // import { Box, FormGroup, TextField, Typography } from '@mui/material';
 // import Modal from '@mui/material/Modal'
 import './MyCreditTransfers.css'
-import { DataGrid } from '@mui/x-data-grid'
-import { Button, Col, Form, FormGroup, InputGroup, Row } from 'react-bootstrap';
+// import { DataGrid } from '@mui/x-data-grid'
+import { Button, Form, InputGroup } from 'react-bootstrap';
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import { BsArrowLeftRight, BsCash, BsCashCoin, BsEnvelopeFill, BsHouseDoorFill, BsInfo, BsInfoCircle, BsPersonCircle, BsPersonFill, BsSearch, BsTelephone } from 'react-icons/bs';
+import { BsArrowLeftRight, BsCash, BsCashCoin, BsEnvelopeFill, BsHouseDoorFill, BsInfo, BsPersonCircle, BsPersonFill, BsSearch, BsTelephone } from 'react-icons/bs';
 import { API_URL } from '../../../../Constants/Index';
 
 
@@ -71,25 +71,25 @@ const columns = [
     },
 ];
 
-function createData(id, transferNo, customerNumber, customerName, phone, email, amountTransfered, created) {
-    return { id, transferNo, customerNumber, customerName, phone, email, amountTransfered, created };
-}
+// function createData(id, transferNo, customerNumber, customerName, phone, email, amountTransfered, created) {
+//     return { id, transferNo, customerNumber, customerName, phone, email, amountTransfered, created };
+// }
 
-const rows = [
-    createData(1, '0000006758', '235679875', 'ISCO', '0785467789', 'isco@isco.co.rw', 5000, 34567890),
-    createData(2, '0000006758', '235679875', 'ISCO', '0785467789', 'isco@isco.co.rw', 5000, 34567890),
-    createData(3, '0998435934', '894348759', 'DMC Hospital', '0786743783', 'dmc@dmc.co.rw', 5600, 89743403),
+// const rows = [
+//     createData(1, '0000006758', '235679875', 'ISCO', '0785467789', 'isco@isco.co.rw', 5000, 34567890),
+//     createData(2, '0000006758', '235679875', 'ISCO', '0785467789', 'isco@isco.co.rw', 5000, 34567890),
+//     createData(3, '0998435934', '894348759', 'DMC Hospital', '0786743783', 'dmc@dmc.co.rw', 5600, 89743403),
 
 
-];
+// ];
 
-const styles = {
-    root: {
-        fontFamily: '"Helvetica Neue", Helvetica, Roboto, Arial, sans-serif',
-        fontSize: '10px',
-        fontWeight: 'normal',
-    },
-};
+// const styles = {
+//     root: {
+//         fontFamily: '"Helvetica Neue", Helvetica, Roboto, Arial, sans-serif',
+//         fontSize: '10px',
+//         fontWeight: 'normal',
+//     },
+// };
 export default function MyCreditTransfers({ token }) {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -101,7 +101,7 @@ export default function MyCreditTransfers({ token }) {
     //modal
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false)
-    const handleShow = () => setShow(true)
+    // const handleShow = () => setShow(true)
 
     // credit transfers
 

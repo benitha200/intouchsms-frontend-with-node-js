@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import './Navbar.css'
 import logo from '../../../assets/icons/intouch-logo.png'
 
-import {BsFillPersonFill} from 'react-icons/bs'
+// import {BsFillPersonFill} from 'react-icons/bs'
 const Navbar = () => {
 
     const [showNavbar,setShowNavbar] = useState(false)

@@ -1,24 +1,21 @@
-import { Autocomplete, Box, Container, FormGroup, InputLabel, Paper, Stack, TextField, Typography } from '@mui/material'
+import { Box,FormGroup, Stack } from '@mui/material'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { Form } from 'react-bootstrap'
+// import { Form } from 'react-bootstrap'
 import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 // import { Form } from 'react-router-dom'
-import { Label, Table } from 'reactstrap'
-import { Pane } from 'split-pane-react'
-import SplitPane from 'split-pane-react/esm/SplitPane'
-import Button from "@mui/material/Button"
+// import { Label, Table } from 'reactstrap'
+// import { Pane } from 'split-pane-react'
+// import SplitPane from 'split-pane-react/esm/SplitPane'
+// import Button from "@mui/material/Button"
 import './Send.css'
-import { AutoComplete } from "@mui/material";
-import MessageLogSummary from './MessageLogSummary/MessageLogSummary';
+// import { AutoComplete } from "@mui/material";
+// import MessageLogSummary from './MessageLogSummary/MessageLogSummary';
 import { API_URL } from '../../../../Constants/Index';
 import * as XLSX from 'xlsx/xlsx.mjs';
 // import ReactFileInput from "react-file-input";
 
-const senderNames = [
-  { label: 'Test1' },
-  { label: 'Test2' },
-];
+
 
 const Send = ({ token }) => {
 
@@ -85,29 +82,29 @@ const Send = ({ token }) => {
 
 
   }
-  const [file, setFile] = useState(null);
-  const [values, setValues] = useState([]);
+  // const [file, setFile] = useState(null);
+  // const [values, setValues] = useState([]);
 
-  const handleChange = (e) => {
-    setFile(e.target.files[0]);
-  };
+  // const handleChange = (e) => {
+  //   setFile(e.target.files[0]);
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
 
-    if (!file) {
-      return;
-    }
+  //   if (!file) {
+  //     return;
+  //   }
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const contents = e.target.result;
-      const rows = contents.split("\n");
-      const firstColumn = rows.map(row => row.split(",")[0]);
-      setValues(firstColumn);
-    };
-    reader.readAsText(file);
-  };
+  //   const reader = new FileReader();
+  //   reader.onload = (e) => {
+  //     const contents = e.target.result;
+  //     const rows = contents.split("\n");
+  //     const firstColumn = rows.map(row => row.split(",")[0]);
+  //     setValues(firstColumn);
+  //   };
+  //   reader.readAsText(file);
+  // };
 
 
 
@@ -154,11 +151,11 @@ const Send = ({ token }) => {
                 type="file"
                 onChange={handleChange}
               /> */}
-              <input
+              {/* <input
                 type="text"
                 value={values}
                 readOnly
-              />
+              /> */}
             </div>
 
             <div className="form-outline">

@@ -1,16 +1,16 @@
 import { useState } from 'react'
 import './Login.css'
-import { API_URL, ONLINE_API_URL } from '../../../Constants/Index';
+import { API_URL } from '../../../Constants/Index';
 
-import axios from 'axios';
-// import heroImg from '../../../assets/images/3.jpg'
-// import { Form } from 'react-router-dom'
-import { Form, Button, FormGroup, Input } from 'reactstrap'
-import { useNavigate } from 'react-router-dom'
-import { BsKeyFill, BsPerson, BsPersonFill } from 'react-icons/bs'
-import { InputGroup } from 'react-bootstrap'
-import { useEffect } from 'react';
-import bulkMessage from '../../../assets/images/BulkMessages.gif';
+// import axios from 'axios';
+// // import heroImg from '../../../assets/images/3.jpg'
+// // import { Form } from 'react-router-dom'
+// import { Form, Button, FormGroup, Input } from 'reactstrap'
+// import { useNavigate } from 'react-router-dom'
+// import { BsKeyFill, BsPerson, BsPersonFill } from 'react-icons/bs'
+// import { InputGroup } from 'react-bootstrap'
+// import { useEffect } from 'react';
+// import bulkMessage from '../../../assets/images/BulkMessages.gif';
 
 
 const Login = ({ setToken }) => {

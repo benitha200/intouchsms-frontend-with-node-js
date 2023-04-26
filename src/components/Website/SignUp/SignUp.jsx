@@ -1,14 +1,16 @@
 import { useState } from 'react'
 // import './Login.css'
 import './SignUp.css'
-import axios from 'axios'
-// import heroImg from '../../../assets/images/3.jpg'
-// import { Form } from 'react-router-dom'
-import { Form, Button, FormGroup, Input } from 'reactstrap'
-import { useNavigate } from 'react-router-dom'
-import { CheckBox } from '@mui/icons-material'
-import { InputGroup } from 'react-bootstrap'
-import { BsEnvelope, BsFillKeyFill, BsKeyFill, BsPerson, BsPersonCheckFill, BsPersonFill, BsSuitHeart, BsTelephoneFill } from 'react-icons/bs'
+// import axios from 'axios'
+// // import heroImg from '../../../assets/images/3.jpg'
+// // import { Form } from 'react-router-dom'
+// import { Form, Button, FormGroup, Input } from 'reactstrap'
+// import { useNavigate } from 'react-router-dom'
+// import { CheckBox } from '@mui/icons-material'
+// import { InputGroup } from 'react-bootstrap'
+// import { BsEnvelope, BsFillKeyFill, BsKeyFill, BsPerson, BsPersonCheckFill, BsPersonFill, BsSuitHeart, BsTelephoneFill } from 'react-icons/bs'
+
+
 const SignUp = () => {
 
 
@@ -62,16 +64,16 @@ const SignUp = () => {
                                 type="text"
                                 placeholder='Full Name'
                                 className='form-control border-bottom rounded-0'
-                                onChange={(e) => setUsername(e.target.value)}
-                                value={username}
+                                onChange={(e) => setNames(e.target.value)}
+                                value={names}
                             /></div>
                         <div>
                             <input
                                 type="text"
                                 placeholder='Mobile Phone'
                                 className='form-control border-bottom rounded-0'
-                                onChange={(e) => setUsername(e.target.value)}
-                                value={username}
+                                onChange={(e) => setPhone(e.target.value)}
+                                value={phone}
                             />
                         </div>
                         <div>
@@ -79,8 +81,8 @@ const SignUp = () => {
                                 type="text"
                                 placeholder='E-mail'
                                 className='form-control border-bottom rounded-0'
-                                onChange={(e) => setUsername(e.target.value)}
-                                value={username}
+                                onChange={(e) => setEmail(e.target.value)}
+                                value={email}
                             /></div>
                         <div>
                             <input
@@ -95,6 +97,7 @@ const SignUp = () => {
                                 type="password"
                                 placeholder='Confirm Password'
                                 className='form-control border-bottom rounded-0 width-25'
+                                value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>

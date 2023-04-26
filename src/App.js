@@ -1,44 +1,42 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
+import { BrowserRouter,Route, Routes } from 'react-router-dom';
 import Navbar from './components/Website/Navbar/Navbar';
 import Home from './components/Website/Home/Home';
 import Footer from './components/Website/Footer/Footer';
 import Login from './components/Website/Login/Login';
-import { Navigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 // import Homepage from './components/Dashboard/Homepage';
 // import Sidebar from './components/Dashboard/SideBar';
 
-import { ProSidebarProvider } from 'react-pro-sidebar';
+// import { ProSidebarProvider } from 'react-pro-sidebar';
 import DashboardNavbar from './components/Dashboard/DashboardNav/DashboardNavbar';
 import MyProfile from './components/Dashboard/AccountInfo/MyProfile/MyProfile';
-import MainLayout from './components/Dashboard/MainLayout/MainLayout';
 import Header from './components/Dashboard/Header/Header';
 import MyClients from './components/Dashboard/AccountInfo/MyClients/MyClients';
 import MyCreditTransfers from './components/Dashboard/AccountInfo/MyCreditTransfers/MyCreditTransfers';
 import MyTransactions from './components/Dashboard/AccountInfo/MyTransactions/MyTransactions';
 import Send from './components/Dashboard/Messaging/Send/Send'
-import MyAccountInfo from './components/Dashboard/AccountInfo/MyAccountInfo/MyAccountInfo.jsx/MyAccountInfo';
+// import MyAccountInfo from './components/Dashboard/AccountInfo/MyAccountInfo/MyAccountInfo.jsx/MyAccountInfo';
 import AddressBook from './components/Dashboard/AddressBook/AddressBook';
 import Contacts from './components/Dashboard/AddressBook/Contacts/Contacts';
 import Groups from './components/Dashboard/AddressBook/Groups/Groups';
 import Messaging from './components/Dashboard/Messaging/Messaging';
 import Custom from './components/Dashboard/Messaging/Custom/Custom'
 import AccountInfo from './components/Dashboard/AccountInfo/AccountInfo';
-import { useState,useEffect } from 'react';
+import { useState } from 'react';
 import SignUp from './components/Website/SignUp/SignUp';
-import { TOKEN } from './Constants/Index';
-import Loginn from './components/Website/Login/Loginn';
+
 
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
   console.log(token)
 
-  function handleLogout() {
-    localStorage.removeItem('token');
-    setToken(null);
-  }
+  // function handleLogout() {
+  //   localStorage.removeItem('token');
+  //   setToken(null);
+  // }
 
   // const storedToken =localStorage.getItem("refreshToken");
   //   localStorage.setItem("refreshToken",token)

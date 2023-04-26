@@ -1,4 +1,3 @@
-import React from 'react'
 import { useEffect, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -95,8 +94,8 @@ const columns = [
 const MessageLogSummary = ({ token }) => {
 
     const [messageLog, setMessageLog] = useState();
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
     // const [open, setOpen] = React.useState(false)
     // const handleOpen = () => setOpen(true)
     // const handleClose = () => setOpen(false)

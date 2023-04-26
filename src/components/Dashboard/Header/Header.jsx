@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
 import './Header.css'
 import { Stack } from '@mui/material'
-import { API_URL, TOKEN } from '../../../Constants/Index'
-import axios from 'axios'
+import { API_URL } from '../../../Constants/Index'
+// import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 // import { Button } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+// import MenuIcon from '@mui/icons-material/Menu';
 import { useProSidebar } from 'react-pro-sidebar';
 import Modal from 'react-bootstrap/Modal';
-import { Button, Col, Form, FormGroup, InputGroup, Row, DropdownButton, Dropdown, FormControl } from 'react-bootstrap';
-import { BsArrowLeftRight, BsBagCheck, BsCash, BsCashCoin, BsEnvelopeFill, BsHouseDoorFill, BsInfo, BsInfoCircle, BsPersonCircle, BsPersonFill, BsPhoneLandscape, BsPhoneVibrate, BsSearch, BsTelephone } from 'react-icons/bs';
+import { Button,Form, InputGroup } from 'react-bootstrap';
+import { BsCash, BsCashCoin,BsPhoneVibrate} from 'react-icons/bs';
 import Select from 'react-select';
 
 
@@ -284,7 +284,7 @@ const Header = ({ token, setToken }) => {
                     <Stack direction="row" gap={2}>
 
 
-                        <button className='account-buttons' onClick={setShow}>Top Up</button>
+                        <button className='app-buttons' onClick={setShow}>Top Up</button>
                         {/* 
 
                         <Modal show={show} onHide={handleClose} className="modal">
@@ -605,7 +605,7 @@ const Header = ({ token, setToken }) => {
                         {/* end modal */}
 
 
-                        <button className='account-buttons' onClick={logout}>Logout</button>
+                        <button className='app-buttons' onClick={logout}>Logout</button>
                     </Stack >
 
                     <div className='account-info'>

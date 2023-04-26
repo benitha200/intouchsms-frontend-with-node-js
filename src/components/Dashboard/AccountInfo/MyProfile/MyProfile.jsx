@@ -1,5 +1,5 @@
 // import { FormGroup, Input } from '@mui/material'
-import { Tab, Box, TabContext, TabList, TabPanel, TextField, Stack, Card, CardHeader, Paper } from '@mui/material';
+import { Paper } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { Button, Col, Form, FormGroup, InputGroup, Row } from 'react-bootstrap';
+import { Button,Form,InputGroup } from 'react-bootstrap';
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 // import Box from '@mui/material/Box';
@@ -18,7 +18,7 @@ import Modal from 'react-bootstrap/Modal';
 import './MyProfile.css';
 // import { BsKey, BsKeyFill, BsSearch } from 'react-icons/bs';
 import { Link, Outlet } from 'react-router-dom';
-import { BsCashCoin, BsCashStack, BsCheck2Square, BsCode, BsEnvelopeFill, BsHouseFill, BsInfoCircle, BsInfoLg, BsKey, BsKeyFill, BsMailbox, BsMap, BsPerson, BsPersonBadgeFill, BsPersonCheck, BsPersonCheckFill, BsPersonFill, BsPersonX, BsPhoneFill, BsPlusCircleFill, BsSortNumericDown, BsTelephoneFill, BsTelephoneInboundFill } from 'react-icons/bs';
+import { BsCashCoin, BsCashStack, BsEnvelopeFill, BsHouseFill,BsKey, BsKeyFill, BsMap, BsPerson, BsPersonBadgeFill,  BsPersonFill, BsTelephoneFill, BsTelephoneInboundFill } from 'react-icons/bs';
 import { API_URL } from '../../../../Constants/Index';
 
 const columns = [

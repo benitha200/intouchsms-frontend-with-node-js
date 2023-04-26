@@ -1,31 +1,31 @@
 import { Sidebar, Menu, MenuItem, SubMenu, useProSidebar } from 'react-pro-sidebar';
 import './DashboardNav.css'
-import { Link, Outlet } from 'react-router-dom';
-import MyProfile from '../AccountInfo/MyProfile/MyProfile';
-import { BsBookFill, BsBookmarkDashFill, BsFillPersonFill, BsPersonCircle } from 'react-icons/bs'
+import { Link } from 'react-router-dom';
+// import MyProfile from '../AccountInfo/MyProfile/MyProfile';
+import { BsFillPersonFill } from 'react-icons/bs'
 import { BsPeopleFill } from 'react-icons/bs'
 import { BsArrowLeftRight } from 'react-icons/bs'
 import { BsCreditCard2BackFill } from 'react-icons/bs'
 import { BsCashCoin } from 'react-icons/bs'
 import { BsPersonPlusFill } from 'react-icons/bs'
-import { MdContactMail, MdForwardToInbox, MdMenu } from 'react-icons/md'
+import { MdContactMail, MdForwardToInbox } from 'react-icons/md'
 import { MdMarkEmailRead } from 'react-icons/md'
-import { MdEmail } from 'react-icons/md'
+// import { MdEmail } from 'react-icons/md'
 import { BsFillCalendar2WeekFill } from 'react-icons/bs'
 import { MdOutlineMail } from 'react-icons/md'
-import { BsList } from 'react-icons/bs'
+// import { BsList } from 'react-icons/bs'
 import { Button } from '@mui/material';
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import MessageRoundedIcon from "@mui/icons-material/MessageRounded"
+// import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+// import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
+// import MessageRoundedIcon from "@mui/icons-material/MessageRounded"
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded"
 import MailRounded from "@mui/icons-material/MailRounded"
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
+// import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
+// import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
-import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
+// import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
 
 
 const DashboardNavbar = props => {

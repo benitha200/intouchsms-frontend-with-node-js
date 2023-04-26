@@ -8,13 +8,13 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { Stack } from '@mui/system';
 import { Button } from 'reactstrap';
-import { Box, FormGroup, TextField, Typography } from '@mui/material';
-import Modal from '@mui/material/Modal'
+// import { Box, FormGroup, TextField, Typography } from '@mui/material';
+// import Modal from '@mui/material/Modal'
 import './MyTransactions.css'
-import { Form } from 'react-bootstrap';
-import { DataGrid } from '@mui/x-data-grid'
+// import { Form } from 'react-bootstrap';
+// import { DataGrid } from '@mui/x-data-grid'
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { CircularProgress } from '@mui/material';
 import { API_URL } from '../../../../Constants/Index';
 
@@ -102,9 +102,9 @@ export default function MyTransactions({ token }) {
     // modal
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
-    const [open, setOpen] = useState(false)
-    const handleOpen = () => setOpen(true)
-    const handleClose = () => setOpen(false)
+    // const [open, setOpen] = useState(false)
+    // const handleOpen = () => setOpen(true)
+    // const handleClose = () => setOpen(false)
 
     // my transactions
     const [mytransactions, setMytransactions] = useState()
@@ -147,7 +147,7 @@ export default function MyTransactions({ token }) {
                 console.log('error', error);
                 setLoading(false);
             });
-    }, []);
+    }, [requestOptions]);
 
 
 
