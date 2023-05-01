@@ -149,10 +149,15 @@ const Header = ({ token, setToken }) => {
 
 
         setAmount(e.target.value)
+        let uprice=0;
+        let q=0;
 
-
-        let uprice = priceInfo ? priceInfo.response.unitprice : 0;
-        let q = amount / uprice;
+        if(priceInfo){
+            uprice = priceInfo ? priceInfo.response.unitprice : 0;
+            q = amount / uprice;
+        }
+        q =amount / unitPrice;
+        
         let v = (e.target.value - (e.target.value / 1.18)).toFixed(2);
         let TPTE = (e.target.value / 1.18).toFixed(2);
         let TPTI = (parseFloat(v) + parseFloat(TPTE));
@@ -284,7 +289,7 @@ const Header = ({ token, setToken }) => {
                     <Stack direction="row" gap={2}>
 
 
-                        <button className='app-buttons w-75' onClick={setShow}>Top Up</button>
+                        <button className='app-buttons w-100' onClick={setShow}>Top Up</button>
                         {/* 
 
                         <Modal show={show} onHide={handleClose} className="modal">
@@ -494,7 +499,7 @@ const Header = ({ token, setToken }) => {
                                             <InputGroup.Text>
                                                 Price Range (From)
                                             </InputGroup.Text>
-                                            <Form.Control type='text' className="text-right" placeholder='0.0' value={selectedOption && selectedOption.minprice}></Form.Control>
+                                            <Form.Control type='text' className="text-right" placeholder='0.0' value={selectedOption && selectedOption.minprice.toLocaleString()}></Form.Control>
                                         </InputGroup>
 
                                         <InputGroup>
@@ -503,7 +508,7 @@ const Header = ({ token, setToken }) => {
                                                 To:
                                             </InputGroup.Text>
 
-                                            <Form.Control type='text' className="text-right" placeholder='0.0' value={selectedOption && selectedOption.maxprice}></Form.Control>
+                                            <Form.Control type='text' className="text-right" placeholder='0.0' value={selectedOption && selectedOption.maxprice.toLocaleString()}></Form.Control>
                                         </InputGroup>
                                     </div>
 
@@ -523,7 +528,7 @@ const Header = ({ token, setToken }) => {
                                                 Quantity
                                             </InputGroup.Text>
 
-                                            <Form.Control type='textarea' className="text-right" placeholder='' required></Form.Control>
+                                            <Form.Control type='textarea' className="text-right" placeholder='' value={quantity}></Form.Control>
                                         </InputGroup>
                                     </div>
 
@@ -534,7 +539,7 @@ const Header = ({ token, setToken }) => {
 
                                                 Tot. Price Tax Excl.
                                             </InputGroup.Text>
-                                            <Form.Control type='text' className="text-right" placeholder='' required></Form.Control>
+                                            <Form.Control type='text' className="text-right" placeholder='' value={totPriceTaxEx}></Form.Control>
                                         </InputGroup>
 
                                         <InputGroup>
@@ -543,7 +548,7 @@ const Header = ({ token, setToken }) => {
                                                 VAT (18%)
                                             </InputGroup.Text>
 
-                                            <Form.Control type='text' className="text-right" placeholder='' required></Form.Control>
+                                            <Form.Control type='text' className="text-right" placeholder='' value={vat}></Form.Control>
                                         </InputGroup>
                                     </div>
 
@@ -554,7 +559,7 @@ const Header = ({ token, setToken }) => {
 
                                                 Tot. Price Tax Excl.
                                             </InputGroup.Text>
-                                            <Form.Control type='text' className="text-right" placeholder='' required></Form.Control>
+                                            <Form.Control type='text' className="text-right" placeholder='' value={totPriceTaxInc}></Form.Control>
                                         </InputGroup>
 
                                     </div>
@@ -585,7 +590,7 @@ const Header = ({ token, setToken }) => {
                                             <InputGroup.Text>
                                                 <BsCash />
                                             </InputGroup.Text>
-                                            <Form.Control type='text' placeholder='Amount' required></Form.Control>
+                                            <Form.Control type='text' placeholder='Amount' value={amount} onChange={(e)=>setAmount(e.target.value)}></Form.Control>
                                         </InputGroup>
 
                                     </div>
@@ -605,7 +610,7 @@ const Header = ({ token, setToken }) => {
                         {/* end modal */}
 
 
-                        <button className='app-buttons w-75' onClick={logout}>Logout</button>
+                        <button className='app-buttons w-100' onClick={logout}>Logout</button>
                     </Stack >
 
                     <div className='account-info'>

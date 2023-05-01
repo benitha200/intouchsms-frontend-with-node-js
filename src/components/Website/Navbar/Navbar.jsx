@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import './Navbar.css'
 import logo from '../../../assets/icons/intouch-logo.png'
+import { AiOutlineMenu } from 'react-icons/ai';
 
 // import {BsFillPersonFill} from 'react-icons/bs'
 const Navbar = () => {
@@ -18,9 +19,7 @@ const Navbar = () => {
                     <img src={logo} className='logo-img m-0 h-100'/>
                 </div>
                 <div className='menu-icon' onClick={handleShowNavbar}>
-                  --
-                  --
-                  --
+                <AiOutlineMenu/>
                 </div>
                 <div className={`nav-elements  ${showNavbar && 'active'}`}>
                     <ul>
