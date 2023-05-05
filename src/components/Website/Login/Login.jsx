@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import './Login.css'
 import { API_URL } from '../../../Constants/Index';
+import bulk from '../../../assets/images/bulk.png';
+import { Fade } from 'react-reveal';
 
 // import axios from 'axios';
 // // import heroImg from '../../../assets/images/3.jpg'
@@ -39,16 +41,17 @@ const Login = ({ setToken }) => {
 
 
 
-    fetch(API_URL + 'generatetoken', requestOptions)
+    fetch('/generatetoken', requestOptions)
       .then(response => response.json())
       .then(data => {
-              const token = data.token;
-              localStorage.setItem('token', token);
-              setToken(token);})
+        const token = data.token;
+        localStorage.setItem('token', token);
+        setToken(token);
+      })
       .catch(error => console.log('error', error));
-      // .then(result => setToken(result.token))
-      
-      
+    // .then(result => setToken(result.token))
+
+
 
     console.log(setToken)
   }
@@ -122,28 +125,24 @@ const Login = ({ setToken }) => {
 
 
   return (
+    <>
     <div className='login-page h-100'>
       {/* <div className='hero-img-section'>
              <img className='hero-img' src={heroImg}/>
         </div> */}
 
-      <div className='container d-flex flex-row pt-5 me-1 mb-5'>
+      <div className='login-container d-flex flex-row pt-5 me-1 mb-5'>
 
-        <div className='left pt-0 gap-4 pl-0'>
-
-          {/* <img src={bulkMessage} width="100" height="100"/> */}
-
-          <p className='content-header h2 font-weight-bold '>SMS Gateway</p>
-          <span className="login-text">Your Customer Engagement Platform</span>
-
-          <button className='hero-button animated bounce w-75'>Sign Up and Start Messaging</button>
-
-          <span className='login-text'>
-            With simple API intergration and cost-effective solutions,<br /> we connect you to your customers
-          </span>
+        {/* {/* <div className='left pt-0 gap-4 pl-0'> */}
+        <div className='w-50'>
+          <Fade left>
+          <img src={bulk} className=" bulk-image"/>
+          </Fade>
         </div>
-        <div className='form-holder shadow p-3 mb-5 bg-white h-100 gap-2 pb-5 mt-5'>
-          {/* <div className='login-form'> */}
+
+
+        <div className='form-holder shadow p-3 mb-5 bg-white h-100 gap-2 pb-5 mt-5 pull-right'>
+          {/* //  <div className='login-form'> */}
           <div className='pt-5'>
             <span className='form-title font-weight-bold h4'>Login </span>
           </div>
@@ -182,6 +181,8 @@ const Login = ({ setToken }) => {
 
       </div>
     </div>
+    </>
+    
   )
 }
 

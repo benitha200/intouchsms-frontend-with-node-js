@@ -83,7 +83,7 @@ const Header = ({ token, setToken }) => {
 
 
     useEffect(() => {
-        fetch(API_URL + "getmyprofile", requestOptions)
+        fetch("/getmyprofile", requestOptions)
             .then(response => response.json())
             .then(result => setProfile(convertToJson(result)))
             // .then(result => setProfile(result))
@@ -116,7 +116,7 @@ const Header = ({ token, setToken }) => {
             redirect: 'follow'
         };
 
-        fetch(API_URL + "logout", requestOptions)
+        fetch("/logout", requestOptions)
             .then(response => response.text())
             .then(result => {
                 setLogoutData(result);
@@ -190,7 +190,7 @@ const Header = ({ token, setToken }) => {
             redirect: 'follow'
         };
 
-        fetch("http://127.0.0.1:8000/api/appecashtopup\n", requestOptions)
+        fetch("/appecashtopup", requestOptions)
             .then(response => response.json())
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
@@ -236,20 +236,20 @@ const Header = ({ token, setToken }) => {
 
     useEffect(() => {
         // fetch networks
-        fetch(API_URL + "getmmnetworks", requestOptions2)
+        fetch("/getmmnetworks", requestOptions2)
             .then(response => response.json())
             .then(result => console.log(result.substring(2, result.lenght - 3)))
             .catch(error => console.log('error', error));
 
 
         // fetch user unit price
-        fetch("http://127.0.0.1:8000/api/getuserunitprice", requestOptions1)
+        fetch("/getuserunitprice", requestOptions1)
             .then(response => response.json())
             .then(result => setPriceInfo(JSON.parse(result)))
             .catch(error => console.log('error', error));
 
         // fetch published packages
-        fetch("http://127.0.0.1:8000/api/getpublishedpackages", requestOptions)
+        fetch("/getpublishedpackages", requestOptions)
             .then(response => response.json())
             .then(result => {
                 setPublishedPackages(JSON.parse(result));

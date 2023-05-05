@@ -1,11 +1,11 @@
-import logo from '../../../assets/icons/intouch-logo.png'
+import logo from '../../../assets/images/intouch-logo2.png'
 import './Footer.css'
 
 const Footer = () => {
     return (
         <div className='footer-section'>
             <div className='logo-section'>
-                <img src={logo} className='logo-img' />
+                <img src={logo} className='logo-img ' />
             </div>
             <div className='company-info-section'>
                 <p className='description'>

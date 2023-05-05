@@ -54,6 +54,7 @@
   border: 2px solid #f9cc41;
   color: #333;
   border-radius: 2px;
+  cursor:pointer !important;
   /* background: rgb(247,247,247);
   background: linear-gradient(0deg, rgba(247,247,247,1) 0%, rgba(255,255,255,1) 100%);
   color: #333; */

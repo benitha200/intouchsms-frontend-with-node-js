@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #fcfcfc;
-}
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 .container {
     max-width: 100%;
@@ -17,15 +11,20 @@ body {
     height: 100%;
     box-shadow: none !important;
 }
+.head{
+    position: relative;
+    width: 100%;
+}
 
 .navbar {
     height: 60px;
     background-color: #333333;
-    position: relative;
+    /* position: relative; */
     color: whitesmoke;
-    position: fixed;
+    /* position: fixed; */
     width: 100%;
     box-shadow: none !important;
+    font-family:"Montserrat",sans-serif !important;
 }
 
 .menu-icon {
@@ -35,15 +34,24 @@ body {
     margin:0;
 }
 
-.logo-img {
-    width: 22%;
-    background-color: #fcfcfc;
-    margin: 0;
+.logo-image{
+    width: 13rem;
+    background-color: #e9e9e9;
+    margin: 0 !important;
 }
 
 .logo-img {
     width: 8rem;
     margin: 0.5rem;
+}
+.navbar{
+    padding: 0 !important;
+}
+.head-button{
+    border: 0 !important;
+}
+.head1{
+    background-color: #f9cc41;
 }
 
 @media screen {}

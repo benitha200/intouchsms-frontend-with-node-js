@@ -36,7 +36,7 @@ const HeroSection = () => {
           <img className='content-right-img w-100' src={messaging} />
           <div className='content-right-text'> 
          
-             <span className='h4'>Stay Connected</span>
+             <span className='h4 description'>Stay Connected</span>
         
            
           </div>

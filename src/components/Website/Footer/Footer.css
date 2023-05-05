@@ -4,13 +4,15 @@
     padding: 2rem;
     row-gap: 2rem;
     justify-content: space-between;
-    background-color: rgb(250, 200, 75);
+    /* background-color: rgb(250, 200, 75); */
+    background-color:#f9cc41;
 
 }
 
 .logo-img{
     width: 10rem;
-    margin: 1.5rem;    
+    margin: 1.5rem;  
+    background-color: #f9cc41; 
 }
 .company-info-section{
     margin:1.5rem
@@ -29,7 +31,7 @@
     flex-direction: column;
     padding: 2rem;
     /* row-gap: 2rem; */
-    background-color: rgb(250, 200, 75);
+    background-color: #f9cc41;
 
 }
 }

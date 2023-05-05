@@ -88,7 +88,7 @@ const IntroSection = () => {
                         <p className='description'>Commonly known as an Enterprise Messaging Solution,<br/> A2P (Application-to-Person) is the process that involves an application that sends messages to a mobile user. Besides, A2P can also be used as a customer service tool, activation and authentication mechanism. Typical uses of A2P include travel updates, banking messages and many other value-add messages.<br/>
                         IntouchSMS A2P gives you a highly customizable, cost-effective, reliable yet fast plug-and-play system using our standard HTTP APIs.</p>
                     
-                        <button className='home-buttons'> Read More <ArrowRight/></button>
+                        <button className='home-buttons description'> Read More <ArrowRight/></button>
 
                     </div>
                 </div>
@@ -201,7 +201,7 @@ const IntroSection = () => {
             {/* Contact us Section */}
             <div className='contact-section'>
                 <div className='contact-section-left'>
-                    <p className='h2 description'>Any general or sales enquiries?</p>
+                    <p className='h2 description font-weight-bold '>Any general or sales enquiries?</p><br/>
                     <p className='description'>
                         Let us help you bring your business closer to customers.<br />
                         Feel free to contact us for general or sales inquires, or for technical support.

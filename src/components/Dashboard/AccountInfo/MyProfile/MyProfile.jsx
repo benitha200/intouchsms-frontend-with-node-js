@@ -79,7 +79,7 @@ const MyProfile = ({ token }) => {
 
   // React.useEffect(()=>{
 
-  fetch(API_URL + "getmyprofile", requestOptions)
+  fetch("/getmyprofile", requestOptions)
     .then(response => response.json())
     .then(result => setProfile(convertToJson(result)))
     // .then(result => setProfile(result))
@@ -98,7 +98,7 @@ const MyProfile = ({ token }) => {
   }
 
 
-  fetch(API_URL + "getsendernames", senderName_requestOptions)
+  fetch("/getsendernames", senderName_requestOptions)
     .then(response => response.json())
     .then(result => setSenderNames(convertToJsonList(result)))
     .catch(error => console.log('error', error))

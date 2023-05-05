@@ -1,4 +1,4 @@
-import { Box,FormGroup, Stack } from '@mui/material'
+import { Box, FormGroup, Stack } from '@mui/material'
 import { useEffect } from 'react'
 import { useState } from 'react'
 // import { Form } from 'react-bootstrap'
@@ -68,7 +68,7 @@ const Send = ({ token }) => {
 
   useEffect(() => {
 
-    fetch(API_URL + "getsendernames", senderName_requestOptions)
+    fetch("/getsendernames", senderName_requestOptions)
       .then(response => response.json())
       .then(result => setSender(convertToJsonList(result)))
       .catch(error => console.log('error', error))
@@ -78,8 +78,31 @@ const Send = ({ token }) => {
     setSelectedSenderName(event.target.value)
   }
 
-  function send_message() {
+  function send_message(e) {
+    e.preventDefault();
 
+    // var myHeaders = new Headers();
+    // myHeaders.append("Authorization", "Token 5c9087468778e187cf3e885ce1326ed0343b127b");
+    // myHeaders.append("Cookie", "csrftoken=k9WQ2vC2eSvfA1RgvFyM9bBMiTFXvWUj");
+
+    var formdata = new FormData();
+    formdata.append("recipients", recipients);
+    formdata.append("sender", selectedSenderName);
+    formdata.append("message", message);
+
+    var requestOptions = {
+      method: 'POST',
+      headers: {
+        "Authorization": `Token ${token}`,
+      },
+      body: formdata,
+      redirect: 'follow'
+    };
+
+    fetch("/sendsms/.json", requestOptions)
+      .then(response => response.json())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
 
   }
   // const [file, setFile] = useState(null);
@@ -163,7 +186,7 @@ const Send = ({ token }) => {
 
             </div>
             <select className="form-select" onChange={handleSelect} required>
-              <option value="">Select an Sender Name</option>
+              <option>Select an Sender Name</option>
               {sender && sender.response.map(sendername => (
                 <option key={sendername.fields.sender.fields.sendername} value={sendername.fields.sender.fields.sendername}>
                   {sendername.fields.sender.fields.sendername}
@@ -185,7 +208,7 @@ const Send = ({ token }) => {
             </div>
 
             <FormGroup>
-              <button className='app-buttons' color='secondary' disabled >Send</button>
+              <button type='submit' className='app-buttons' color='secondary'  >Send</button>
             </FormGroup>
             {/* </Form> */}
           </form>

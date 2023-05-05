@@ -1,43 +1,19 @@
-/* *{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-} */
-/* .hero-img {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-}
-
-.hero-content {
-    background-image: url('../../../assets/images/bg14.jpg');
+.login-container{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-top: 6rem;
-    padding-bottom: 10rem;
-    row-gap: 30rem !important;
-
-} */
-
-/* .content-left {
-    display: flex;
-    flex-direction: column;
-    color: rgb(57, 56, 56);
-    padding-top: 1rem;
-    padding-left: 4rem;
-    margin: 1rem;
-    row-gap: 30px;
-    font-size: 16px;
-
-} */
+}
 
 .login-page {
     /* background-image: url("../../../../assets/images/bgi2.png"); */
-    background-image: url("../../../assets/images/bg14.jpg");
-    background-size: cover;
+    background-image: url("../../../assets/images/bg33.png");
+    background-size: contain;
+    background-repeat: no-repeat;
     width: 100%;
     height: 100%;
     padding-bottom: 14rem;
     margin-bottom: 2rem;
+
 }
 
 .content-left .content-header {
@@ -196,12 +172,16 @@
     width: 90% !important;
     position: inherit;
 }
+.bulk-image{
+    width: 40rem;
+}
 
 .form-holder {
     margin-left: 2rem;
     width: 40%;
     padding-bottom: 4rem;
     margin-bottom: 5rem;
+    float:right !important;
     /* background: rgb(247, 217, 48);
     background: linear-gradient(90deg, rgba(247, 217, 48, 1) 0%, rgba(51, 51, 51, 1) 0%, rgba(249, 204, 65, 1) 100%); */
 
